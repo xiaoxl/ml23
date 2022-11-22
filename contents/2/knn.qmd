@@ -7,7 +7,32 @@ k-NN algorithm starts from a very straightforward idea. We use the distances fro
 
 Let us take cities and countries as an example. <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span> are U.S cities, and <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span> are Chinese cities. Now we would like to consider Tianjin and Russellville. Do they belong to China or U.S? We calculate the distances from Tianjin (resp. Russellville) to all four known cities. Since Tianjin is closer to <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span> comparing to <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span>, we classify Tianjin as a Chinese city. Similarly, since Russellville is closer to <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span> comparing to <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span>, we classify it as a U.S. city.
 
-![](assests/img/220729-152348.png)
+
+
+```{dot}
+digraph G {
+    layout=circo
+
+    Beijing [color=black]
+    Shanghai [color=black]
+    Tianjin [color=blue, fontcolor=black, shape=box]
+
+    "New York" [color=red, fontcolor=red]
+    "Los Angelis" [color=red, fontcolor=red]
+    Russellville [color=blue, fontcolor=red, shape=box]
+
+
+ 
+    Tianjin -> Beijing [label="closer"];
+    Tianjin -> Shanghai [label="closer   "];
+    Tianjin -> "New York" [style=dashed, color=blue, fontcolor=blue, label=" far away"];
+    Tianjin -> "Los Angelis" [style=dashed, color=blue, fontcolor=blue, label=" far away"];
+    Russellville -> "New York" [color=red, label="closer  ", fontcolor=red];
+    Russellville -> "Los Angelis" [color=red, label="closer", fontcolor=red];
+    Russellville -> Beijing [color=red, style=dashed, color=blue, label="far away ", fontcolor=blue];
+    Russellville -> Shanghai [color=red, style=dashed, color=blue, label="far away", fontcolor=blue];
+}
+```
 
 This naive example explains the idea of k-NN. Here is a more detailed description of the algorithm. 
 
