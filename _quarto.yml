@@ -36,8 +36,8 @@ format:
 
 book:
   title: "ML23"
-  subtitle: "Lecture notes for Spring 2023 at Arkansas Tech University"
-  author: "Weijia Jia & Xinli Xiao"
+  subtitle: "Lecture notes for Fall 2023 at Arkansas Tech University"
+  author: "Xinli Xiao"
   date: last-modified
   downloads: [pdf]
   # crossref:
