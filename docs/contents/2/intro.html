@@ -373,9 +373,13 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <section id="normalization" class="level3" data-number="2.1.6">
 <h3 data-number="2.1.6" class="anchored" data-anchor-id="normalization"><span class="header-section-number">2.1.6</span> Normalization</h3>
 <p>Different features may have different scales. It might be unfair for those features that have small scales. Therefore usually it is better to rescale all the features to make them have similar scales. After examining all the data, we find the minimal value <code>minVal</code> and the range <code>ranges</code> for each column. The normalization formula is:</p>
-<p><span class="math display">\[X_{norm} = \frac{X_{original}-minVal}{ranges}.\]</span></p>
+<p><span class="math display">\[
+X_{norm} = \frac{X_{original}-minVal}{ranges}.
+\]</span></p>
 <p>We could also convert the normalized number back to the original value by</p>
-<p><span class="math display">\[X_{original} = X_{norm} \times ranges + minVal.\]</span></p>
+<p><span class="math display">\[
+X_{original} = X_{norm} \times ranges + minVal.
+\]</span></p>
 <p>The sample codes are listed below.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> encodeNorm(X, parameters<span class="op">=</span><span class="va">None</span>):</span>
@@ -443,11 +447,11 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <span id="cb6-12"><a href="#cb6-12"></a>           loc<span class="op">=</span><span class="st">"right"</span>, title<span class="op">=</span><span class="st">"Labels"</span>)</span>
 <span id="cb6-13"><a href="#cb6-13"></a></span>
 <span id="cb6-14"><a href="#cb6-14"></a><span class="co"># plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="83">
-<pre><code>&lt;matplotlib.legend.Legend at 0x29929ad2920&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>&lt;matplotlib.legend.Legend at 0x24bb5df3880&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="intro_files/figure-html/cell-7-output-2.png" width="883" height="550"></p>
+<p><img src="intro_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>(section:applyourknn)= ### Apply our k-NN model</p>
@@ -541,7 +545,7 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <span id="cb17-11"><a href="#cb17-11"></a>disp.ax_.scatter(X_test[:, <span class="dv">0</span>], X_test[:, <span class="dv">1</span>], c<span class="op">=</span>y_test, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
 <span id="cb17-12"><a href="#cb17-12"></a>disp.figure_.set_size_inches((<span class="dv">10</span>,<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="intro_files/figure-html/cell-13-output-1.png" width="812" height="567"></p>
+<p><img src="intro_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>(section-cross-validation)= ### k-Fold Cross-Validation</p>
@@ -611,7 +615,7 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <span id="cb24-4"><a href="#cb24-4"></a></span>
 <span id="cb24-5"><a href="#cb24-5"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./assests/datasets/datingTestSet2.txt'</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, header<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb24-6"><a href="#cb24-6"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="93">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -671,7 +675,7 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"Mileage"</span>, <span class="dv">1</span>: <span class="st">"Gamingtime"</span>, <span class="dv">2</span>: <span class="st">'Icecream'</span>, <span class="dv">3</span>: <span class="st">'Rating'</span>})</span>
 <span id="cb25-2"><a href="#cb25-2"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="94">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -732,7 +736,7 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb26-2"><a href="#cb26-2"></a>sns.pairplot(data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">'Rating'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="intro_files/figure-html/cell-19-output-1.png" width="774" height="709"></p>
+<p><img src="intro_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -810,8 +814,8 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 </section>
 <section id="exercises-and-projects" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="exercises-and-projects"><span class="header-section-number">2.4</span> Exercises and Projects</h2>
-<p>````ntdxzfwcpu Handwritten example :label: ex2handwritten Consider the 1-dimensional data set shown below.</p>
-<p>```utdlzarlsupr Dataset :header-rows: 1</p>
+<p>````lprsiqvumi Handwritten example :label: ex2handwritten Consider the 1-dimensional data set shown below.</p>
+<p>```hbzjdybgimvb Dataset :header-rows: 1</p>
 <ul>
 <li><ul>
 <li><span class="math inline">\(x\)</span></li>
@@ -840,13 +844,13 @@ dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
 <li><span class="math inline">\(+\)</span></li>
 </ul>
 <pre><code>Please use the data to compute the class of $x=5.5$ according to $k=1$, $3$, $6$ and $9$. Please compute everything by hand.</code></pre>
-<code>xxqgelsewp ex2handwritten :class: dropdown Not yet done!</code></li>
+<code>qedumlporv ex2handwritten :class: dropdown Not yet done!</code></li>
 </ul>
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource {exercise} number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>:label: ex2titanic</span>
 <span id="cb37-2"><a href="#cb37-2"></a>Please download the titanic dataset from {Download}`here&lt;./assests/datasets/titanic.csv&gt;`. This is the same dataset from what you dealt with in Chapter 1 Exercises. Therefore you may use the same way to prepare the data. </span>
 <span id="cb37-3"><a href="#cb37-3"></a></span>
 <span id="cb37-4"><a href="#cb37-4"></a>Please analyze the dataset and build a k-NN model to predict whether someone is survived or not. Note that you have to pick `k` at the end.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>````xxqgelsewp ex2titanic :class: dropdown</p>
+<p>````qedumlporv ex2titanic :class: dropdown</p>
 <p>Not yet done! ````</p>
 
 
