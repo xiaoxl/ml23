@@ -18,11 +18,11 @@ References: {cite:p}`Har2012`.
 
 
 
-<!-- {{< include knnproj2.ipynb >}} -->
+{{< include knnproj2.qmd >}}
 
 
 
-<!-- {{< include knnproj3.ipynb >}} -->
+<!-- {{< include knnproj3.qmd >}} -->
 
 
 {{< include project.qmd >}}

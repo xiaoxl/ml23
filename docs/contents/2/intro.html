@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -121,7 +92,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -137,14 +112,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">ML23</span>
     </a>
   </div>
+        <div class="quarto-navbar-tools ms-auto">
+    <a href="../../ML23.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
           <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../contents/2/intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -152,54 +135,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../contents/1/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="../../contents/1/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../contents/2/intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></a>
+  <a href="../../contents/2/intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#k-nearest-neighbors-algorithm-k-nn" id="toc-k-nearest-neighbors-algorithm-k-nn" class="nav-link active" data-scroll-target="#k-nearest-neighbors-algorithm-k-nn"><span class="toc-section-number">3</span>  k-Nearest Neighbors Algorithm (k-NN)</a>
+  <li><a href="#k-nearest-neighbors-algorithm-k-nn" id="toc-k-nearest-neighbors-algorithm-k-nn" class="nav-link active" data-scroll-target="#k-nearest-neighbors-algorithm-k-nn"><span class="header-section-number">2.1</span> k-Nearest Neighbors Algorithm (k-NN)</a>
   <ul class="collapse">
-  <li><a href="#ideas" id="toc-ideas" class="nav-link" data-scroll-target="#ideas"><span class="toc-section-number">3.1</span>  Ideas</a></li>
-  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link" data-scroll-target="#the-algorithm"><span class="toc-section-number">3.2</span>  The Algorithm</a></li>
-  <li><a href="#sklearn-packages" id="toc-sklearn-packages" class="nav-link" data-scroll-target="#sklearn-packages"><span class="toc-section-number">3.3</span>  <code>sklearn</code> packages</a></li>
-  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization"><span class="toc-section-number">3.4</span>  Normalization</a></li>
+  <li><a href="#ideas" id="toc-ideas" class="nav-link" data-scroll-target="#ideas"><span class="header-section-number">2.1.1</span> Ideas</a></li>
+  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link" data-scroll-target="#the-algorithm"><span class="header-section-number">2.1.2</span> The Algorithm</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details"><span class="header-section-number">2.1.3</span> Details</a></li>
+  <li><a href="#the-codes" id="toc-the-codes" class="nav-link" data-scroll-target="#the-codes"><span class="header-section-number">2.1.4</span> The codes</a></li>
+  <li><a href="#sklearn-packages" id="toc-sklearn-packages" class="nav-link" data-scroll-target="#sklearn-packages"><span class="header-section-number">2.1.5</span> <code>sklearn</code> packages</a></li>
+  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization"><span class="header-section-number">2.1.6</span> Normalization</a></li>
   </ul></li>
-  <li><a href="#k-nn-project-1-iris-classification" id="toc-k-nn-project-1-iris-classification" class="nav-link" data-scroll-target="#k-nn-project-1-iris-classification"><span class="toc-section-number">4</span>  k-NN Project 1: <code>iris</code> Classification</a>
+  <li><a href="#k-nn-project-1-iris-classification" id="toc-k-nn-project-1-iris-classification" class="nav-link" data-scroll-target="#k-nn-project-1-iris-classification"><span class="header-section-number">2.2</span> k-NN Project 1: <code>iris</code> Classification</a>
   <ul class="collapse">
-  <li><a href="#explore-the-dataset" id="toc-explore-the-dataset" class="nav-link" data-scroll-target="#explore-the-dataset"><span class="toc-section-number">4.1</span>  Explore the dataset</a></li>
-  <li><a href="#apply-k-nn-model-from-sklearn" id="toc-apply-k-nn-model-from-sklearn" class="nav-link" data-scroll-target="#apply-k-nn-model-from-sklearn"><span class="toc-section-number">4.2</span>  Apply k-NN model from <code>sklearn</code></a></li>
-  <li><a href="#using-data-pipeline" id="toc-using-data-pipeline" class="nav-link" data-scroll-target="#using-data-pipeline"><span class="toc-section-number">4.3</span>  Using data pipeline</a></li>
-  <li><a href="#visualize-the-decision-boundary" id="toc-visualize-the-decision-boundary" class="nav-link" data-scroll-target="#visualize-the-decision-boundary"><span class="toc-section-number">4.4</span>  Visualize the Decision boundary</a></li>
-  <li><a href="#choosing-a-k-value" id="toc-choosing-a-k-value" class="nav-link" data-scroll-target="#choosing-a-k-value"><span class="toc-section-number">4.5</span>  Choosing a <code>k</code> value</a></li>
+  <li><a href="#explore-the-dataset" id="toc-explore-the-dataset" class="nav-link" data-scroll-target="#explore-the-dataset"><span class="header-section-number">2.2.1</span> Explore the dataset</a></li>
+  <li><a href="#apply-k-nn-model-from-sklearn" id="toc-apply-k-nn-model-from-sklearn" class="nav-link" data-scroll-target="#apply-k-nn-model-from-sklearn"><span class="header-section-number">2.2.2</span> Apply k-NN model from <code>sklearn</code></a></li>
+  <li><a href="#using-data-pipeline" id="toc-using-data-pipeline" class="nav-link" data-scroll-target="#using-data-pipeline"><span class="header-section-number">2.2.3</span> Using data pipeline</a></li>
+  <li><a href="#visualize-the-decision-boundary" id="toc-visualize-the-decision-boundary" class="nav-link" data-scroll-target="#visualize-the-decision-boundary"><span class="header-section-number">2.2.4</span> Visualize the Decision boundary</a></li>
+  <li><a href="#choosing-a-k-value" id="toc-choosing-a-k-value" class="nav-link" data-scroll-target="#choosing-a-k-value"><span class="header-section-number">2.2.5</span> Choosing a <code>k</code> value</a></li>
   </ul></li>
-  <li><a href="#exercises-and-projects" id="toc-exercises-and-projects" class="nav-link" data-scroll-target="#exercises-and-projects"><span class="toc-section-number">5</span>  Exercises and Projects</a></li>
+  <li><a href="#k-nn-project-2-dating-classification" id="toc-k-nn-project-2-dating-classification" class="nav-link" data-scroll-target="#k-nn-project-2-dating-classification"><span class="header-section-number">2.3</span> k-NN Project 2: Dating Classification</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">2.3.1</span> Background</a></li>
+  <li><a href="#look-at-data" id="toc-look-at-data" class="nav-link" data-scroll-target="#look-at-data"><span class="header-section-number">2.3.2</span> Look at Data</a></li>
+  <li><a href="#applying-knn" id="toc-applying-knn" class="nav-link" data-scroll-target="#applying-knn"><span class="header-section-number">2.3.3</span> Applying kNN</a></li>
+  <li><a href="#choosing-k-value" id="toc-choosing-k-value" class="nav-link" data-scroll-target="#choosing-k-value"><span class="header-section-number">2.3.4</span> Choosing <code>k</code> Value</a></li>
+  </ul></li>
+  <li><a href="#exercises-and-projects" id="toc-exercises-and-projects" class="nav-link" data-scroll-target="#exercises-and-projects"><span class="header-section-number">2.4</span> Exercises and Projects</a></li>
   </ul>
 </nav>
     </div>
@@ -208,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></h1>
 </div>
 
 
@@ -226,18 +222,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This algorithm is different from other algorithms covered in this course, that it doesn’t really extract features from the data. However, since its idea is easy to understand, we use it as our first step towards machine learning world.</p>
 <p>Similar to other algorithms, we will only cover the beginning part of the algorithm. All later upgrades of the algorithms are left for yourselves to learn.</p>
 <p>References: {cite:p}<code>Har2012</code>.</p>
-<section id="k-nearest-neighbors-algorithm-k-nn" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> k-Nearest Neighbors Algorithm (k-NN)</h1>
-<section id="ideas" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="ideas"><span class="header-section-number">3.1</span> Ideas</h2>
+<section id="k-nearest-neighbors-algorithm-k-nn" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="k-nearest-neighbors-algorithm-k-nn"><span class="header-section-number">2.1</span> k-Nearest Neighbors Algorithm (k-NN)</h2>
+<section id="ideas" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="ideas"><span class="header-section-number">2.1.1</span> Ideas</h3>
 <p>Assume that we have a set of labeled data <span class="math inline">\(\{(X_i, y_i)\}\)</span> where <span class="math inline">\(y_i\)</span> denotes the label. Given a new data <span class="math inline">\(X\)</span>, how do we determine the label of it?</p>
 <p>k-NN algorithm starts from a very straightforward idea. We use the distances from the new data point <span class="math inline">\(X\)</span> to the known data points to identify the label. If <span class="math inline">\(X\)</span> is closer to <span class="math inline">\(y_i\)</span> points, then we will label <span class="math inline">\(X\)</span> as <span class="math inline">\(y_i\)</span>.</p>
 <p>Let us take cities and countries as an example. <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span> are U.S cities, and <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span> are Chinese cities. Now we would like to consider Tianjin and Russellville. Do they belong to China or U.S? We calculate the distances from Tianjin (resp. Russellville) to all four known cities. Since Tianjin is closer to <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span> comparing to <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span>, we classify Tianjin as a Chinese city. Similarly, since Russellville is closer to <span style="color:red">New York</span> and <span style="color:red">Los Angeles</span> comparing to <span style="color:grey">Beijing</span> and <span style="color:grey">Shanghai</span>, we classify it as a U.S. city.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 465.48 354.87" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 465.48 354.87" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 350.87)">
 <title>
 G
@@ -300,15 +296,15 @@ Russellville-&gt;Los Angelis
 </title>
 <path fill="none" stroke="red" d="M275.02,-328.87C254.29,-328.87 228.6,-328.87 205.02,-328.87"></path> <polygon fill="red" stroke="red" points="204.71,-325.37 194.71,-328.87 204.71,-332.37 204.71,-325.37"></polygon> <text text-anchor="middle" x="223.31" y="-333.07" font-family="Times,serif" font-size="14.00" fill="red">closer</text> </g> </g>
 </svg>
-</p>
+</div>
 </div>
 </div>
 </div>
 <p>This naive example explains the idea of k-NN. Here is a more detailed description of the algorithm.</p>
 </section>
-<section id="the-algorithm" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="the-algorithm"><span class="header-section-number">3.2</span> The Algorithm</h2>
-<p>```{prf:algorithm} k-NN Classifier <strong>Inputs</strong> Given the training data set <span class="math inline">\(\{(X_i, y_i)\}\)</span> where <span class="math inline">\(X_i=(x_i^1,x_i^2,\ldots,x_i^n)\)</span> represents <span class="math inline">\(n\)</span> features and <span class="math inline">\(y_i\)</span> represents labels. Given a new data point <span class="math inline">\(\tilde{X}=(\tilde{x}^1,\tilde{x}^2,\ldots,\tilde{x}^n)\)</span>.</p>
+<section id="the-algorithm" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="the-algorithm"><span class="header-section-number">2.1.2</span> The Algorithm</h3>
+<p>k-NN Classifier <strong>Inputs</strong> Given the training data set <span class="math inline">\(\{(X_i, y_i)\}\)</span> where <span class="math inline">\(X_i=(x_i^1,x_i^2,\ldots,x_i^n)\)</span> represents <span class="math inline">\(n\)</span> features and <span class="math inline">\(y_i\)</span> represents labels. Given a new data point <span class="math inline">\(\tilde{X}=(\tilde{x}^1,\tilde{x}^2,\ldots,\tilde{x}^n)\)</span>.</p>
 <p><strong>Outputs</strong> Want to find the best label for <span class="math inline">\(\tilde{X}\)</span>.</p>
 <ol type="1">
 <li>Compute the distance from <span class="math inline">\(\tilde{X}\)</span> to each <span class="math inline">\(X_i\)</span>.</li>
@@ -317,62 +313,72 @@ Russellville-&gt;Los Angelis
 <li>Determine the labels for each of these <span class="math inline">\(k\)</span> nearest points, and compute the frenqucy of each labels.</li>
 <li>The most frequent label is considered to be the label of <span class="math inline">\(\tilde{X}\)</span>.</li>
 </ol>
-<pre><code>## Details
-- The distance between two data points are defined by the Euclidean distance:
-  
-\begin{equation}
-dist\left((x^j_i)_{j=1}^n, (\tilde{x}^j)_{j=1}^n\right)=\sqrt{\sum_{j=1}^n(x^j_i-\tilde{x}^j)^2}.
-\end{equation}
-  
-- Using linear algebra notations: 
-  
-\begin{equation}
-dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
-\end{equation}
-
-- All the distances are stored in a $1$-dim numpy array, and we will combine it together with another $1$-dim array that store the labels of each point.
-
-## The codes
-- `argsort`
-- `get`
-- `sorted`
-
-```python
-def classify_kNN(inX, X, y, k):
-    # create a new 2-d numpy array by copying inX for each row.
-    Xmat = np.tile(np.array([inX]), (X.shape[0], 1))
-    # compute the distance between each row of X and Xmat
-    Dmat = np.sqrt(np.sum((Xmat - X)**2, axis=1))
-    # sort by distance
-    sortedlist = Dmat.argsort()
-    # count the freq. of the first k items
-    k = min(k, len(sortedlist))
-    classCount = dict()
-    for i in sortedlist[:k]:
-        classCount[y[i]] = classCount.get(y[i], 0) + 1
-    # find out the most freqent one
-    sortedCount = sorted(classCount.items(), key=lambda x:x[1],
-                         reverse=True)
-    return sortedCount[0][0]</code></pre>
 </section>
-<section id="sklearn-packages" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sklearn-packages"><span class="header-section-number">3.3</span> <code>sklearn</code> packages</h2>
+<section id="details" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="details"><span class="header-section-number">2.1.3</span> Details</h3>
+<ul>
+<li>The distance between two data points are defined by the Euclidean distance:</li>
+</ul>
+<p><span class="math display">\[
+dist\left((x^j_i)_{j=1}^n, (\tilde{x}^j)_{j=1}^n\right)=\sqrt{\sum_{j=1}^n(x^j_i-\tilde{x}^j)^2}.
+\]</span></p>
+<ul>
+<li>Using linear algebra notations:</li>
+</ul>
+<p><span class="math display">\[
+dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
+\]</span></p>
+<ul>
+<li>All the distances are stored in a <span class="math inline">\(1\)</span>-dim numpy array, and we will combine it together with another <span class="math inline">\(1\)</span>-dim array that store the labels of each point.</li>
+</ul>
+</section>
+<section id="the-codes" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="the-codes"><span class="header-section-number">2.1.4</span> The codes</h3>
+<ul>
+<li><code>argsort</code></li>
+<li><code>get</code></li>
+<li><code>sorted</code></li>
+</ul>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> classify_kNN(inX, X, y, k):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co"># create a new 2-d numpy array by copying inX for each row.</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    Xmat <span class="op">=</span> np.tile(np.array([inX]), (X.shape[<span class="dv">0</span>], <span class="dv">1</span>))</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="co"># compute the distance between each row of X and Xmat</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    Dmat <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((Xmat <span class="op">-</span> X)<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="co"># sort by distance</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    sortedlist <span class="op">=</span> Dmat.argsort()</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="co"># count the freq. of the first k items</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    k <span class="op">=</span> <span class="bu">min</span>(k, <span class="bu">len</span>(sortedlist))</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    classCount <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">for</span> i <span class="kw">in</span> sortedlist[:k]:</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        classCount[y[i]] <span class="op">=</span> classCount.get(y[i], <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="co"># find out the most freqent one</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    sortedCount <span class="op">=</span> <span class="bu">sorted</span>(classCount.items(), key<span class="op">=</span><span class="kw">lambda</span> x:x[<span class="dv">1</span>],</span>
+<span id="cb1-15"><a href="#cb1-15"></a>                         reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">return</span> sortedCount[<span class="dv">0</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sklearn-packages" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="sklearn-packages"><span class="header-section-number">2.1.5</span> <code>sklearn</code> packages</h3>
 <p>You may also directly use the kNN function <code>KNeighborsClassifier</code> packaged in <code>sklearn.neighbors</code>. You may check the description of the function online from <a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">here</a>.</p>
 <p>There are many ways to modify the kNN algorithm. What we just mentioned is the simplest idea. It is correspondent to the argument <code>weights='uniform'</code>, <code>algorithm='brute</code> and <code>metric='euclidean'</code>. However due to the implementation details, the results we got from <code>sklearn</code> are still a little bit different from the results produced by our naive codes.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
 <span id="cb2-2"><a href="#cb2-2"></a>clf <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">10</span>, weights<span class="op">=</span><span class="st">'uniform'</span>, algorithm<span class="op">=</span><span class="st">'brute'</span>,</span>
 <span id="cb2-3"><a href="#cb2-3"></a>                             metric<span class="op">=</span><span class="st">'euclidean'</span>)</span>
 <span id="cb2-4"><a href="#cb2-4"></a>clf.fit(X_train, y_train)</span>
 <span id="cb2-5"><a href="#cb2-5"></a>y_pred <span class="op">=</span> ckf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="normalization" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="normalization"><span class="header-section-number">3.4</span> Normalization</h2>
+<section id="normalization" class="level3" data-number="2.1.6">
+<h3 data-number="2.1.6" class="anchored" data-anchor-id="normalization"><span class="header-section-number">2.1.6</span> Normalization</h3>
 <p>Different features may have different scales. It might be unfair for those features that have small scales. Therefore usually it is better to rescale all the features to make them have similar scales. After examining all the data, we find the minimal value <code>minVal</code> and the range <code>ranges</code> for each column. The normalization formula is:</p>
 <p><span class="math display">\[X_{norm} = \frac{X_{original}-minVal}{ranges}.\]</span></p>
 <p>We could also convert the normalized number back to the original value by</p>
 <p><span class="math display">\[X_{original} = X_{norm} \times ranges + minVal.\]</span></p>
 <p>The sample codes are listed below.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> encodeNorm(X, parameters<span class="op">=</span><span class="va">None</span>):</span>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> encodeNorm(X, parameters<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="co"># parameters contains minVals and ranges</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    <span class="cf">if</span> parameters <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb3-4"><a href="#cb3-4"></a>        minVals <span class="op">=</span> np.<span class="bu">min</span>(X, axis<span class="op">=</span><span class="dv">0</span>)</span>
@@ -394,15 +400,16 @@ def classify_kNN(inX, X, y, k):
 <span id="cb3-20"><a href="#cb3-20"></a>    Nmat <span class="op">=</span> np.tile(minVals, (X.shape[<span class="dv">0</span>], <span class="dv">1</span>))</span>
 <span id="cb3-21"><a href="#cb3-21"></a>    Xoriginal <span class="op">=</span> X <span class="op">*</span> ranges <span class="op">+</span> Nmat</span>
 <span id="cb3-22"><a href="#cb3-22"></a>    <span class="cf">return</span> Xoriginal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="k-nn-project-1-iris-classification" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> k-NN Project 1: <code>iris</code> Classification</h1>
+<section id="k-nn-project-1-iris-classification" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="k-nn-project-1-iris-classification"><span class="header-section-number">2.2</span> k-NN Project 1: <code>iris</code> Classification</h2>
 <p>This data is from <code>sklearn.datasets</code>. This dataset consists of 3 different types of irises’ petal / sepal length / width, stored in a <span class="math inline">\(150\times4\)</span> <code>numpy.ndarray</code>. We already explored the dataset briefly in the previous chapter. This time we will try to use the feature provided to predict the type of the irises. For the purpose of plotting, we will only use the first two features: <code>sepal length</code> and <code>sepal width</code>.</p>
-<section id="explore-the-dataset" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="explore-the-dataset"><span class="header-section-number">4.1</span> Explore the dataset</h2>
+<section id="explore-the-dataset" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="explore-the-dataset"><span class="header-section-number">2.2.1</span> Explore the dataset</h3>
 <p>We first load the dataset.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
 <span id="cb4-2"><a href="#cb4-2"></a>iris <span class="op">=</span> datasets.load_iris()</span>
 <span id="cb4-3"><a href="#cb4-3"></a>X <span class="op">=</span> iris.data[:, :<span class="dv">2</span>]</span>
@@ -412,7 +419,7 @@ def classify_kNN(inX, X, y, k):
 <p>The split will be randomly. You may set the argument <code>random_state</code> to be a certain number to control the random process. If you set a <code>random_state</code>, the result of the random process will stay the same. This is for reproducible output across multiple function calls.</p>
 <p>After we get the training set, we should also normalize it. All our normalization should be based on the training set. When we want to use our model on some new data points, we will use the same normalization parameters to normalize the data points in interests right before we apply the model. Here since we mainly care about the test set, we could normalize the test set at this stage.</p>
 <p>Note that in the following code, I import functions <code>encodeNorm</code> from <code>assests.codes.knn</code>. You need to modify this part based on your file structure. See <a href="section:applyourknn">here</a> for more details.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> encodeNorm</span>
 <span id="cb5-3"><a href="#cb5-3"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.1</span>, random_state<span class="op">=</span><span class="dv">1</span>, stratify<span class="op">=</span>y)</span>
@@ -421,7 +428,7 @@ def classify_kNN(inX, X, y, k):
 <span id="cb5-6"><a href="#cb5-6"></a>X_test_norm, _ <span class="op">=</span> encodeNorm(X_test, parameters<span class="op">=</span>parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Before we start to play with k-NN, let us look at the data first. Since we only choose two features, it is able to plot these data points on a 2D plane, with different colors representing different classes.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -435,154 +442,376 @@ def classify_kNN(inX, X, y, k):
 <span id="cb6-11"><a href="#cb6-11"></a>fig.legend(handles<span class="op">=</span>scatter.legend_elements()[<span class="dv">0</span>], labels<span class="op">=</span>labels,</span>
 <span id="cb6-12"><a href="#cb6-12"></a>           loc<span class="op">=</span><span class="st">"right"</span>, title<span class="op">=</span><span class="st">"Labels"</span>)</span>
 <span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co"># plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>&lt;matplotlib.legend.Legend at 0x29929ad2920&gt;</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<p><img src="intro_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+<p><img src="intro_files/figure-html/cell-7-output-2.png" width="883" height="550"></p>
 </div>
 </div>
-<p>(section:applyourknn)= ## Apply our k-NN model</p>
+<p>(section:applyourknn)= ### Apply our k-NN model</p>
 <p>Now let us apply k-NN to this dataset. We first use our codes. Here I use <code>from assests.codes.knn</code> to import our functions since I put all our functions in <code>./assests/codes/knn.py</code>. Then the poential code is</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>y_pred <span class="op">=</span> classify_kNN(X_test, X_train, y_train, k<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>y_pred <span class="op">=</span> classify_kNN(X_test, X_train, y_train, k<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that the above code is actually wrong. The issue ist that our function <code>classify_kNN</code> can only classify one row of data. To classify many rows, we need to use a <code>for</code> loop.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> classify_kNN</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>y_pred <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">for</span> row <span class="kw">in</span> X_test_norm:</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    row_pred <span class="op">=</span> classify_kNN(row, X_train_norm, y_train, k<span class="op">=</span>n_neighbors)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    y_pred.append(row_pred)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>y_pred <span class="op">=</span> np.array(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We could use list comprehension to simply the above codes.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> classify_kNN</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>y_pred <span class="op">=</span> np.array([classify_kNN(row, X_train_norm, y_train, k<span class="op">=</span>n_neighbors)</span>
-<span id="cb9-5"><a href="#cb9-5"></a>                   <span class="cf">for</span> row <span class="kw">in</span> X_test_norm])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a>y_pred <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="cf">for</span> row <span class="kw">in</span> X_test_norm:</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    row_pred <span class="op">=</span> classify_kNN(row, X_train_norm, y_train, k<span class="op">=</span>n_neighbors)</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    y_pred.append(row_pred)</span>
+<span id="cb9-8"><a href="#cb9-8"></a>y_pred <span class="op">=</span> np.array(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We could use list comprehension to simply the above codes.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> classify_kNN</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>y_pred <span class="op">=</span> np.array([classify_kNN(row, X_train_norm, y_train, k<span class="op">=</span>n_neighbors)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>                   <span class="cf">for</span> row <span class="kw">in</span> X_test_norm])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This <code>y_pred</code> is the result we got for the test set. We may compare it with the real answer <code>y_test</code>, and calcuate the accuracy.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>acc <span class="op">=</span> np.mean(y_pred <span class="op">==</span> y_test)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>acc <span class="op">=</span> np.mean(y_pred <span class="op">==</span> y_test)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.7333333333333333</code></pre>
 </div>
 </div>
 </section>
-<section id="apply-k-nn-model-from-sklearn" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="apply-k-nn-model-from-sklearn"><span class="header-section-number">4.2</span> Apply k-NN model from <code>sklearn</code></h2>
+<section id="apply-k-nn-model-from-sklearn" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="apply-k-nn-model-from-sklearn"><span class="header-section-number">2.2.2</span> Apply k-NN model from <code>sklearn</code></h3>
 <p>Now we would like to use <code>sklearn</code> to reproduce this result. Since our data is prepared, what we need to do is directly call the functions.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb12-2"><a href="#cb12-2"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>clf <span class="op">=</span> KNeighborsClassifier(n_neighbors, weights<span class="op">=</span><span class="st">"uniform"</span>, metric<span class="op">=</span><span class="st">"euclidean"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>                           algorithm<span class="op">=</span><span class="st">'brute'</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a>clf.fit(X_train_norm, y_train)</span>
-<span id="cb12-6"><a href="#cb12-6"></a>y_pred_sk <span class="op">=</span> clf.predict(X_test_norm)</span>
-<span id="cb12-7"><a href="#cb12-7"></a></span>
-<span id="cb12-8"><a href="#cb12-8"></a>acc <span class="op">=</span> np.mean(y_pred_sk <span class="op">==</span> y_test)</span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="bu">print</span>(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb13-2"><a href="#cb13-2"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>clf <span class="op">=</span> KNeighborsClassifier(n_neighbors, weights<span class="op">=</span><span class="st">"uniform"</span>, metric<span class="op">=</span><span class="st">"euclidean"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>                           algorithm<span class="op">=</span><span class="st">'brute'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>clf.fit(X_train_norm, y_train)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>y_pred_sk <span class="op">=</span> clf.predict(X_test_norm)</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a>acc <span class="op">=</span> np.mean(y_pred_sk <span class="op">==</span> y_test)</span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="bu">print</span>(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.7333333333333333</code></pre>
 </div>
 </div>
 </section>
-<section id="using-data-pipeline" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="using-data-pipeline"><span class="header-section-number">4.3</span> Using data pipeline</h2>
+<section id="using-data-pipeline" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="using-data-pipeline"><span class="header-section-number">2.2.3</span> Using data pipeline</h3>
 <p>We may organize the above process in a neater way. After we get a data, the usual process is to apply several transforms to the data before we really get to the model part. Using terminolgies from <code>sklearn</code>, the former are called <em>transforms</em>, and the latter is called an <em>estimator</em>. In this example, we have exactly one tranform which is the normalization. The estimator here we use is the k-NN classifier.</p>
 <p><code>sklearn</code> provides a standard way to write these codes, which is called <code>pipeline</code>. We may chain the transforms and estimators in a sequence and let the data go through the pipeline. In this example, the pipeline contains two steps: 1. The normalization transform <code>sklearn.preprocessing.MinMaxScaler</code>. When we directly apply it the parameters <code>ranges</code> and <code>minVals</code> and will be recorded automatically, and we don’t need to worry about it when we want to use the same parameters to normalize other data. 2. The k-NN classifier <code>sklearn.neighbors.KNeighborsClassifier</code>. This is the same one as we use previously.</p>
 <p>The code is as follows. It is a straightforward code. Note that the <code>()</code> after the class in each step of <code>steps</code> is very important. The codes cannot run if you miss it.</p>
 <p>After we setup the pipeline, we may use it as other estimators since it is an estimator. Here we may also use the accuracy function provided by <code>sklearn</code> to perform the computation. It is essentially the same as our <code>acc</code> computation.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a>steps <span class="op">=</span> [(<span class="st">'scaler'</span>, MinMaxScaler()),</span>
-<span id="cb14-6"><a href="#cb14-6"></a>         (<span class="st">'knn'</span>, KNeighborsClassifier(n_neighbors, weights<span class="op">=</span><span class="st">"uniform"</span>,</span>
-<span id="cb14-7"><a href="#cb14-7"></a>                                      metric<span class="op">=</span><span class="st">"euclidean"</span>, algorithm<span class="op">=</span><span class="st">'brute'</span>))]</span>
-<span id="cb14-8"><a href="#cb14-8"></a>pipe <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
-<span id="cb14-9"><a href="#cb14-9"></a>pipe.fit(X_train, y_train)</span>
-<span id="cb14-10"><a href="#cb14-10"></a>y_pipe <span class="op">=</span> pipe.predict(X_test)</span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="bu">print</span>(accuracy_score(y_pipe, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>steps <span class="op">=</span> [(<span class="st">'scaler'</span>, MinMaxScaler()),</span>
+<span id="cb15-6"><a href="#cb15-6"></a>         (<span class="st">'knn'</span>, KNeighborsClassifier(n_neighbors, weights<span class="op">=</span><span class="st">"uniform"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>                                      metric<span class="op">=</span><span class="st">"euclidean"</span>, algorithm<span class="op">=</span><span class="st">'brute'</span>))]</span>
+<span id="cb15-8"><a href="#cb15-8"></a>pipe <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb15-9"><a href="#cb15-9"></a>pipe.fit(X_train, y_train)</span>
+<span id="cb15-10"><a href="#cb15-10"></a>y_pipe <span class="op">=</span> pipe.predict(X_test)</span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="bu">print</span>(accuracy_score(y_pipe, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.7333333333333333</code></pre>
 </div>
 </div>
 </section>
-<section id="visualize-the-decision-boundary" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="visualize-the-decision-boundary"><span class="header-section-number">4.4</span> Visualize the Decision boundary</h2>
+<section id="visualize-the-decision-boundary" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="visualize-the-decision-boundary"><span class="header-section-number">2.2.4</span> Visualize the Decision boundary</h3>
 <p>Using the classifier we get above, we are able to classify every points on the plane. This enables us to draw the following plot, which is called the Decision boundary. It helps us to visualize the relations between features and the classes.</p>
 <p>We use <code>DecisionBoundaryDisplay</code> from <code>sklearn.inspection</code> to plot the decision boundary. The function requires us to have a fitted classifier. We may use the classifier <code>pipe</code> we got above. Note that this classifier should have some build-in structures that our <code>classify_kNN</code> function doesn’t have. We may rewrite our codes to make it work, but this goes out of the scope of this section. This is supposed to be Python programming exercise. We will talk about it in the future if we have enough time.</p>
 <p>We first plot the dicision boundary using <code>DecisionBoundaryDisplay.from_estimator</code>. Then we plot the points from <code>X_test</code>. From the plot it is very clear which points are misclassified.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> DecisionBoundaryDisplay</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a>disp <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
-<span id="cb16-4"><a href="#cb16-4"></a>            pipe, </span>
-<span id="cb16-5"><a href="#cb16-5"></a>            X_train,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>            response_method<span class="op">=</span><span class="st">"predict"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>            plot_method<span class="op">=</span><span class="st">"pcolormesh"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8"></a>            xlabel<span class="op">=</span>iris.feature_names[<span class="dv">0</span>],</span>
-<span id="cb16-9"><a href="#cb16-9"></a>            ylabel<span class="op">=</span>iris.feature_names[<span class="dv">1</span>],</span>
-<span id="cb16-10"><a href="#cb16-10"></a>            alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb16-11"><a href="#cb16-11"></a>disp.ax_.scatter(X_test[:, <span class="dv">0</span>], X_test[:, <span class="dv">1</span>], c<span class="op">=</span>y_test, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12"></a>disp.figure_.set_size_inches((<span class="dv">10</span>,<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> DecisionBoundaryDisplay</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>disp <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
+<span id="cb17-4"><a href="#cb17-4"></a>            pipe, </span>
+<span id="cb17-5"><a href="#cb17-5"></a>            X_train,</span>
+<span id="cb17-6"><a href="#cb17-6"></a>            response_method<span class="op">=</span><span class="st">"predict"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>            plot_method<span class="op">=</span><span class="st">"pcolormesh"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8"></a>            xlabel<span class="op">=</span>iris.feature_names[<span class="dv">0</span>],</span>
+<span id="cb17-9"><a href="#cb17-9"></a>            ylabel<span class="op">=</span>iris.feature_names[<span class="dv">1</span>],</span>
+<span id="cb17-10"><a href="#cb17-10"></a>            alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-11"><a href="#cb17-11"></a>disp.ax_.scatter(X_test[:, <span class="dv">0</span>], X_test[:, <span class="dv">1</span>], c<span class="op">=</span>y_test, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12"></a>disp.figure_.set_size_inches((<span class="dv">10</span>,<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="intro_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="intro_files/figure-html/cell-13-output-1.png" width="812" height="567"></p>
 </div>
 </div>
-<p>(section-cross-validation)= ## k-Fold Cross-Validation</p>
+<p>(section-cross-validation)= ### k-Fold Cross-Validation</p>
 <p>Previously we perform a random split and test our model in this case. What would happen if we fit our model on another split? We might get a different accuracy score. So in order to evaluate the performance of our model, it is natual to consider several different split and compute the accuracy socre for each case, and combine all these socres together to generate an index to indicate whehter our model is good or bad. This naive idea is called <em>k-Fold Cross-Validation</em>.</p>
 <p>The algorithm is described as follows. We first randomly split the dataset into <code>k</code> groups. We use one of them as the test set, and the rest together forming the training set, and use this setting to get an accuracy score. We did this for each group to be chosen as the test set. Then the final score is the mean.</p>
 <p><code>sklearn</code> provides a function <code>sklearn.model_selection.cross_val_score</code> to perform the above computation. The usage is straightforward, as follows.</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb17-2"><a href="#cb17-2"></a>cv_scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="bu">print</span>(cv_scores)</span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="bu">print</span>(np.mean(cv_scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb18-2"><a href="#cb18-2"></a>cv_scores <span class="op">=</span> cross_val_score(pipe, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="bu">print</span>(cv_scores)</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="bu">print</span>(np.mean(cv_scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0.66666667 0.8        0.63333333 0.8        0.7       ]
 0.7200000000000001</code></pre>
 </div>
 </div>
 </section>
-<section id="choosing-a-k-value" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="choosing-a-k-value"><span class="header-section-number">4.5</span> Choosing a <code>k</code> value</h2>
+<section id="choosing-a-k-value" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="choosing-a-k-value"><span class="header-section-number">2.2.5</span> Choosing a <code>k</code> value</h3>
 <p>In the previous example we choose <code>k</code> to be <code>10</code> as an example. To choose a <code>k</code> value we usually run some test by trying different <code>k</code> and choose the one with the best performance. In this case, best performance means the highest cross-validation score.</p>
 <p><code>sklearn.model_selection.GridSearchCV</code> provides a way to do this directly. We only need to setup the esitimator, the metric (which is the cross-validation score in this case), and the hyperparameters to be searched through, and <code>GridSearchCV</code> will run the search automatically.</p>
 <p>We let <code>k</code> go from <code>1</code> to <code>100</code>. The code is as follows.</p>
 <p>Note that <code>parameters</code> is where we set the search space. It is a dictionary. The key is the name of the estimator plus double <code>_</code> and then plus the name of the parameter.</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
-<span id="cb19-2"><a href="#cb19-2"></a>n_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>))</span>
-<span id="cb19-3"><a href="#cb19-3"></a>parameters <span class="op">=</span> <span class="bu">dict</span>(knn__n_neighbors<span class="op">=</span>n_list)</span>
-<span id="cb19-4"><a href="#cb19-4"></a>clf <span class="op">=</span> GridSearchCV(pipe, parameters)</span>
-<span id="cb19-5"><a href="#cb19-5"></a>clf.fit(X, y)</span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="bu">print</span>(clf.best_estimator_.get_params()[<span class="st">"knn__n_neighbors"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb20-2"><a href="#cb20-2"></a>n_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>))</span>
+<span id="cb20-3"><a href="#cb20-3"></a>parameters <span class="op">=</span> <span class="bu">dict</span>(knn__n_neighbors<span class="op">=</span>n_list)</span>
+<span id="cb20-4"><a href="#cb20-4"></a>clf <span class="op">=</span> GridSearchCV(pipe, parameters)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>clf.fit(X, y)</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(clf.best_estimator_.get_params()[<span class="st">"knn__n_neighbors"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>35</code></pre>
 </div>
 </div>
 <p>After we fit the data, the <code>best_estimator_.get_params()</code> can be printed. It tells us that it is best to use <code>31</code> neibhours for our model. We can directly use the best estimator by calling <code>clf.best_estimator_</code>.</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>cv_scores <span class="op">=</span> cross_val_score(clf.best_estimator_, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="bu">print</span>(np.mean(cv_scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>cv_scores <span class="op">=</span> cross_val_score(clf.best_estimator_, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="bu">print</span>(np.mean(cv_scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.82</code></pre>
 </div>
 </div>
 <p>The cross-validation score using <code>k=31</code> is calculated. This serves as a benchmark score and we may come back to dataset using other methods and compare the scores.</p>
-<!-- {{< include knnproj2.ipynb >}} -->
-<!-- {{< include knnproj3.ipynb >}} -->
 </section>
 </section>
-<section id="exercises-and-projects" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Exercises and Projects</h1>
-<p>````{exercise} Handwritten example :label: ex2handwritten Consider the 1-dimensional data set shown below.</p>
-<p>```{list-table} Dataset :header-rows: 1</p>
+<section id="k-nn-project-2-dating-classification" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="k-nn-project-2-dating-classification"><span class="header-section-number">2.3</span> k-NN Project 2: Dating Classification</h2>
+<p>The data can be downloaded from {Download}<code>here&lt;./assests/datasets/datingTestSet2.txt&gt;</code>.</p>
+<section id="background" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="background"><span class="header-section-number">2.3.1</span> Background</h3>
+<p>Helen dated several people and rated them using a three-point scale: 3 is best and 1 is worst. She also collected data from all her dates and recorded them in the file attached. These data contains 3 features:</p>
+<ul>
+<li>Number of frequent flyer miles earned per year</li>
+<li>Percentage of time spent playing video games</li>
+<li>Liters of ice cream consumed per week</li>
+</ul>
+<p>We would like to predict her ratings of new dates when we are given the three features.</p>
+<p>The data contains four columns, while the first column refers to <code>Mileage</code>, the second <code>Gamingtime</code>, the third <code>Icecream</code> and the fourth <code>Rating</code>.</p>
+</section>
+<section id="look-at-data" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="look-at-data"><span class="header-section-number">2.3.2</span> Look at Data</h3>
+<p>We first load the data and store it into a DataFrame.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./assests/datasets/datingTestSet2.txt'</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>40920</td>
+<td>8.326976</td>
+<td>0.953952</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>14488</td>
+<td>7.153469</td>
+<td>1.673904</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>26052</td>
+<td>1.441871</td>
+<td>0.805124</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>75136</td>
+<td>13.147394</td>
+<td>0.428964</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>38344</td>
+<td>1.669788</td>
+<td>0.134296</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>To make it easier to read, we would like to change the name of the columns.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"Mileage"</span>, <span class="dv">1</span>: <span class="st">"Gamingtime"</span>, <span class="dv">2</span>: <span class="st">'Icecream'</span>, <span class="dv">3</span>: <span class="st">'Rating'</span>})</span>
+<span id="cb25-2"><a href="#cb25-2"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="94">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Mileage</th>
+<th data-quarto-table-cell-role="th">Gamingtime</th>
+<th data-quarto-table-cell-role="th">Icecream</th>
+<th data-quarto-table-cell-role="th">Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>40920</td>
+<td>8.326976</td>
+<td>0.953952</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>14488</td>
+<td>7.153469</td>
+<td>1.673904</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>26052</td>
+<td>1.441871</td>
+<td>0.805124</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>75136</td>
+<td>13.147394</td>
+<td>0.428964</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>38344</td>
+<td>1.669788</td>
+<td>0.134296</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Since now we have more than 2 features, it is not suitable to directly draw scatter plots. We use <code>seaborn.pairplot</code> to look at the pairplot. From the below plots, before we apply any tricks, it seems that <code>Milegae</code> and <code>Gamingtime</code> are better than <code>Icecream</code> to classify the data points.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb26-2"><a href="#cb26-2"></a>sns.pairplot(data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">'Rating'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-19-output-1.png" width="774" height="709"></p>
+</div>
+</div>
+</section>
+<section id="applying-knn" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="applying-knn"><span class="header-section-number">2.3.3</span> Applying kNN</h3>
+<p>Similar to the previous example, we will apply both methods for comparisons.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> encodeNorm</span>
+<span id="cb27-3"><a href="#cb27-3"></a>X <span class="op">=</span> np.array(df[[<span class="st">'Mileage'</span>, <span class="st">'Gamingtime'</span>, <span class="st">'Icecream'</span>]])</span>
+<span id="cb27-4"><a href="#cb27-4"></a>y <span class="op">=</span> np.array(df[<span class="st">'Rating'</span>])</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.1</span>, random_state<span class="op">=</span><span class="dv">40</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb27-7"><a href="#cb27-7"></a></span>
+<span id="cb27-8"><a href="#cb27-8"></a>X_train_norm, parameters <span class="op">=</span> encodeNorm(X_train)</span>
+<span id="cb27-9"><a href="#cb27-9"></a>X_test_norm, _ <span class="op">=</span> encodeNorm(X_test, parameters<span class="op">=</span>parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Using our codes.</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="im">from</span> assests.codes.knn <span class="im">import</span> classify_kNN</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a>n_neighbors <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>y_pred <span class="op">=</span> np.array([classify_kNN(row, X_train_norm, y_train, k<span class="op">=</span>n_neighbors)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>                   <span class="cf">for</span> row <span class="kw">in</span> X_test_norm])</span>
+<span id="cb28-7"><a href="#cb28-7"></a></span>
+<span id="cb28-8"><a href="#cb28-8"></a>acc <span class="op">=</span> np.mean(y_pred <span class="op">==</span> y_test)</span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="bu">print</span>(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.93</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Using sklearn.</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a>steps <span class="op">=</span> [(<span class="st">'scaler'</span>, MinMaxScaler()),</span>
+<span id="cb30-8"><a href="#cb30-8"></a>         (<span class="st">'knn'</span>, KNeighborsClassifier(n_neighbors, weights<span class="op">=</span><span class="st">"uniform"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9"></a>                                      metric<span class="op">=</span><span class="st">"euclidean"</span>, algorithm<span class="op">=</span><span class="st">'brute'</span>))]</span>
+<span id="cb30-10"><a href="#cb30-10"></a>pipe <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb30-11"><a href="#cb30-11"></a>pipe.fit(X_train, y_train)</span>
+<span id="cb30-12"><a href="#cb30-12"></a>y_pipe <span class="op">=</span> pipe.predict(X_test)</span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="bu">print</span>(accuracy_score(y_pipe, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.93</code></pre>
+</div>
+</div>
+</section>
+<section id="choosing-k-value" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="choosing-k-value"><span class="header-section-number">2.3.4</span> Choosing <code>k</code> Value</h3>
+<p>Similar to the previous section, we can run tests on <code>k</code> value to choose one to be used in our model using <code>GridSearchCV</code>.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV, cross_val_score</span>
+<span id="cb32-2"><a href="#cb32-2"></a>n_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>))</span>
+<span id="cb32-3"><a href="#cb32-3"></a>parameters <span class="op">=</span> <span class="bu">dict</span>(knn__n_neighbors<span class="op">=</span>n_list)</span>
+<span id="cb32-4"><a href="#cb32-4"></a>clf <span class="op">=</span> GridSearchCV(pipe, parameters)</span>
+<span id="cb32-5"><a href="#cb32-5"></a>clf.fit(X, y)</span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="bu">print</span>(clf.best_estimator_.get_params()[<span class="st">"knn__n_neighbors"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+</div>
+<p>From this result, in this case the best <code>k</code> is <code>4</code>. The corresponding cross-validation score is computed below.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>cv_scores <span class="op">=</span> cross_val_score(clf.best_estimator_, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="bu">print</span>(np.mean(cv_scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.952</code></pre>
+</div>
+</div>
+<!-- {{< include knnproj3.qmd >}} -->
+</section>
+</section>
+<section id="exercises-and-projects" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="exercises-and-projects"><span class="header-section-number">2.4</span> Exercises and Projects</h2>
+<p>````meerfzdbts Handwritten example :label: ex2handwritten Consider the 1-dimensional data set shown below.</p>
+<p>```fktvbvhbsisu Dataset :header-rows: 1</p>
 <ul>
 <li><ul>
 <li><span class="math inline">\(x\)</span></li>
@@ -611,13 +840,13 @@ def classify_kNN(inX, X, y, k):
 <li><span class="math inline">\(+\)</span></li>
 </ul>
 <pre><code>Please use the data to compute the class of $x=5.5$ according to $k=1$, $3$, $6$ and $9$. Please compute everything by hand.</code></pre>
-<code>{solution} ex2handwritten :class: dropdown Not yet done!</code></li>
+<code>uzjvpwrzjk ex2handwritten :class: dropdown Not yet done!</code></li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource {exercise} number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>:label: ex2titanic</span>
-<span id="cb24-2"><a href="#cb24-2"></a>Please download the titanic dataset from {Download}`here&lt;./assests/datasets/titanic.csv&gt;`. This is the same dataset from what you dealt with in Chapter 1 Exercises. Therefore you may use the same way to prepare the data. </span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a>Please analyze the dataset and build a k-NN model to predict whether someone is survived or not. Note that you have to pick `k` at the end.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>````{solution} ex2titanic :class: dropdown</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource {exercise} number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>:label: ex2titanic</span>
+<span id="cb37-2"><a href="#cb37-2"></a>Please download the titanic dataset from {Download}`here&lt;./assests/datasets/titanic.csv&gt;`. This is the same dataset from what you dealt with in Chapter 1 Exercises. Therefore you may use the same way to prepare the data. </span>
+<span id="cb37-3"><a href="#cb37-3"></a></span>
+<span id="cb37-4"><a href="#cb37-4"></a>Please analyze the dataset and build a k-NN model to predict whether someone is survived or not. Note that you have to pick `k` at the end.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>````uzjvpwrzjk ex2titanic :class: dropdown</p>
 <p>Not yet done! ````</p>
 
 
@@ -651,9 +880,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -718,6 +961,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

@@ -1,6 +1,6 @@
-# k-Nearest Neighbors Algorithm (k-NN)
+## k-Nearest Neighbors Algorithm (k-NN)
 
-## Ideas
+### Ideas
 Assume that we have a set of labeled data $\{(X_i, y_i)\}$ where $y_i$ denotes the label. Given a new data $X$, how do we determine the label of it? 
 
 k-NN algorithm starts from a very straightforward idea. We use the distances from the new data point $X$ to the known data points to identify the label. If $X$ is closer to $y_i$ points, then we will label $X$ as $y_i$. 
@@ -36,9 +36,9 @@ digraph G {
 
 This naive example explains the idea of k-NN. Here is a more detailed description of the algorithm. 
 
-## The Algorithm
+### The Algorithm
 
-```{prf:algorithm} k-NN Classifier
+ k-NN Classifier
 **Inputs** Given the training data set $\{(X_i, y_i)\}$ where $X_i=(x_i^1,x_i^2,\ldots,x_i^n)$ represents $n$ features and $y_i$ represents labels. Given a new data point $\tilde{X}=(\tilde{x}^1,\tilde{x}^2,\ldots,\tilde{x}^n)$.
 
 **Outputs** Want to find the best label for $\tilde{X}$.
@@ -48,28 +48,32 @@ This naive example explains the idea of k-NN. Here is a more detailed descriptio
 3. Find the nearest $k$ data points.
 4. Determine the labels for each of these $k$ nearest points, and compute the frenqucy of each labels.
 5. The most frequent label is considered to be the label of $\tilde{X}$.
-```
-## Details
+
+
+### Details
 - The distance between two data points are defined by the Euclidean distance:
   
-\begin{equation}
+$$
 dist\left((x^j_i)_{j=1}^n, (\tilde{x}^j)_{j=1}^n\right)=\sqrt{\sum_{j=1}^n(x^j_i-\tilde{x}^j)^2}.
-\end{equation}
+$$
   
 - Using linear algebra notations: 
   
-\begin{equation}
+$$
 dist(X_i,\tilde{X})=\sqrt{(X_i-\tilde{X})\cdot(X_i-\tilde{X})}.
-\end{equation}
+$$
 
 - All the distances are stored in a $1$-dim numpy array, and we will combine it together with another $1$-dim array that store the labels of each point.
 
-## The codes
+### The codes
+
 - `argsort`
 - `get`
 - `sorted`
 
-```python
+```{python}
+#| eval: false
+
 def classify_kNN(inX, X, y, k):
     # create a new 2-d numpy array by copying inX for each row.
     Xmat = np.tile(np.array([inX]), (X.shape[0], 1))
@@ -88,12 +92,14 @@ def classify_kNN(inX, X, y, k):
     return sortedCount[0][0]
 ```
 
-## `sklearn` packages
+### `sklearn` packages
 You may also directly use the kNN function `KNeighborsClassifier` packaged in `sklearn.neighbors`. You may check the description of the function online from [here](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html).
 
 There are many ways to modify the kNN algorithm. What we just mentioned is the simplest idea. It is correspondent to the argument `weights='uniform'`, `algorithm='brute` and `metric='euclidean'`. However due to the implementation details, the results we got from `sklearn` are still a little bit different from the results produced by our naive codes.
 
-```python
+```{python}
+#| eval: false
+
 from sklearn.neighbors import KNeighborsClassifier
 clf = KNeighborsClassifier(n_neighbors=10, weights='uniform', algorithm='brute',
                              metric='euclidean')
@@ -102,18 +108,24 @@ y_pred = ckf.predict(X_test)
 ```
 
 
-## Normalization
+### Normalization
 Different features may have different scales. It might be unfair for those features that have small scales. Therefore usually it is better to rescale all the features to make them have similar scales. After examining all the data, we find the minimal value `minVal` and the range `ranges` for each column. The normalization formula is:
 
-$$X_{norm} = \frac{X_{original}-minVal}{ranges}.$$
+$$
+X_{norm} = \frac{X_{original}-minVal}{ranges}.
+$$
 
 We could also convert the normalized number back to the original value by 
 
-$$X_{original} = X_{norm} \times ranges + minVal.$$
+$$
+X_{original} = X_{norm} \times ranges + minVal.
+$$
 
 The sample codes are listed below.
 
-```python
+```{python}
+#| eval: false
+
 def encodeNorm(X, parameters=None):
     # parameters contains minVals and ranges
     if parameters is None:

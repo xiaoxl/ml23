@@ -1,4 +1,4 @@
-# Exercises and Projects
+## Exercises and Projects
 
 ````{exercise} Handwritten example
 :label: ex2handwritten

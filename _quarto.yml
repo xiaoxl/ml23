@@ -21,12 +21,12 @@ knitr:
     comment: "#>"
     collapse: true
 
-jupyter: base23
+jupyter: base
 
 format:
   html:
     theme: 
-      - cosmo
+      - lumen
     code-block-bg: true
     code-block-border-left: true #"#31BAE9"
     code-line-numbers: true

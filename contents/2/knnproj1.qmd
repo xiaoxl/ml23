@@ -1,8 +1,8 @@
-# k-NN Project 1: `iris` Classification
+## k-NN Project 1: `iris` Classification
 
 This data is from `sklearn.datasets`. This dataset consists of 3 different types of irises' petal / sepal length / width, stored in a $150\times4$ `numpy.ndarray`. We already explored the dataset briefly in the previous chapter. This time we will try to use the feature provided to predict the type of the irises. For the purpose of plotting, we will only use the first two features: `sepal length` and `sepal width`.
 
-## Explore the dataset
+### Explore the dataset
 We first load the dataset. 
 
 
@@ -53,12 +53,12 @@ labels = ['setosa', 'versicolor', 'virginica']
 fig.legend(handles=scatter.legend_elements()[0], labels=labels,
            loc="right", title="Labels")
 
-plt.show()
+# plt.show()
 ```
 
 
 (section:applyourknn)=
-## Apply our k-NN model 
+### Apply our k-NN model 
 
 Now let us apply k-NN to this dataset. We first use our codes. Here I use `from assests.codes.knn` to import our functions since I put all our functions in `./assests/codes/knn.py`. Then the poential code is 
 ```python
@@ -101,7 +101,7 @@ print(acc)
 ```
 
 
-## Apply k-NN model from `sklearn`
+### Apply k-NN model from `sklearn`
 
 Now we would like to use `sklearn` to reproduce this result. Since our data is prepared, what we need to do is directly call the functions.
 
@@ -119,7 +119,7 @@ print(acc)
 ```
 
 
-## Using data pipeline
+### Using data pipeline
 We may organize the above process in a neater way. After we get a data, the usual process is to apply several transforms to the data before we really get to the model part. Using terminolgies from `sklearn`, the former are called *transforms*, and the latter is called an *estimator*. In this example, we have exactly one tranform which is the normalization. The estimator here we use is the k-NN classifier. 
 
 `sklearn` provides a standard way to write these codes, which is called `pipeline`. We may chain the transforms and estimators in a sequence and let the data go through the pipeline. In this example, the pipeline contains two steps:
@@ -146,7 +146,7 @@ print(accuracy_score(y_pipe, y_test))
 ```
 
 
-## Visualize the Decision boundary
+### Visualize the Decision boundary
 Using the classifier we get above, we are able to classify every points on the plane. This enables us to draw the following plot, which is called the Decision boundary. It helps us to visualize the relations between features and the classes.
 
 We use `DecisionBoundaryDisplay` from `sklearn.inspection` to plot the decision boundary. The function requires us to have a fitted classifier. We may use the classifier `pipe` we got above. Note that this classifier should have some build-in structures that our `classify_kNN` function doesn't have. We may rewrite our codes to make it work, but this goes out of the scope of this section. This is supposed to be Python programming exercise. We will talk about it in the future if we have enough time.
@@ -171,7 +171,7 @@ disp.figure_.set_size_inches((10,7))
 
 
 (section-cross-validation)=
-## k-Fold Cross-Validation
+### k-Fold Cross-Validation
 
 Previously we perform a random split and test our model in this case. What would happen if we fit our model on another split? We might get a different accuracy score. So in order to evaluate the performance of our model, it is natual to consider several different split and compute the accuracy socre for each case, and combine all these socres together to generate an index to indicate whehter our model is good or bad. This naive idea is called *k-Fold Cross-Validation*.
 
@@ -188,7 +188,7 @@ print(np.mean(cv_scores))
 ```
 
 
-## Choosing a `k` value
+### Choosing a `k` value
 In the previous example we choose `k` to be `10` as an example. To choose a `k` value we usually run some test by trying different `k` and choose the one with the best performance. In this case, best performance means the highest cross-validation score.
 
 `sklearn.model_selection.GridSearchCV` provides a way to do this directly. We only need to setup the esitimator, the metric (which is the cross-validation score in this case), and the hyperparameters to be searched through, and `GridSearchCV` will run the search automatically.
