@@ -1,6 +1,6 @@
-# Python quick guide
+## Python quick guide
 
-## Python Notebook
+### Python Notebook
 We mainly use Python Notebook (.ipynb) to write documents for this course. Currently all main stream Python IDE support Python Notebook. All of them are not entirely identical but the differences are not huge and you may choose any you like.
 
 One of the easiest ways to use Python Notebook is through [JupyterLab](https://jupyter.org/try). The best part about it is that you don't need to worry about installation and configuration in the first place, and you can directly start to code. 
@@ -24,9 +24,10 @@ JupyterLite contains a few popular packages. Therefore it is totally ok if you w
 - [Anaconda](https://www.anaconda.com/)
 
 
-## Python fundamentals
-We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is {cite:p}`Har2012`. 
-### Indentation
+### Python fundamentals
+We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is @Har2012. 
+
+#### Indentation
 Python is using indentation to denote code blocks. It is not convienent to write in the first place, but it forces you to write clean, readable code.
 
 By the way, the `if` and `for` block are actually straightforward.
@@ -73,7 +74,7 @@ print(i)
 Please tell the differences between the above codes.
 
 
-### `list` and `dict`
+#### `list` and `dict`
 Here are some very basic usage of lists of dictionaries in Python.
 ```{code-block} python
 newlist = list()
@@ -94,7 +95,7 @@ print(newdicttwo)
 ```
 
 
-### Loop through lists
+#### Loop through lists
 When creating `for` loops we may let Python directly loop through lists. Here is an example. The code is almost self-explained.
 ```{code-block} python
 alist = ['one', 2, 'three', 4]
@@ -104,7 +105,7 @@ for item in alist:
 ```
 
 
-### Reading files
+#### Reading files
 There are a lot of functions that can read files. The basic one is to read any files as a big string. After we get the string, we may parse it based on the structure of the data.
 
 The above process sounds complicated. That's why we have so many different functions reading files. Usually they focus on a certain types of files (e.g. spreadsheets, images, etc..), parse the data into a particular data structure for us to use later.
@@ -122,7 +123,7 @@ Both of them are spreadsheets format. Usually we use [`pandas.read_csv`](https:/
 - `.json` files
 `.json` is a file format to store dictionary type of data. To read a `json` file and parse it as a dictionary, we need [`json.load`](https://docs.python.org/3/library/json.html#json.load) from the package `json`. 
 
-### Writing files
+#### Writing files
 
 - [`pandas.DataFrame.to_csv`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html)
 - [`pandas.DataFrame.to_excel`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html)
@@ -130,7 +131,7 @@ Both of them are spreadsheets format. Usually we use [`pandas.read_csv`](https:/
 - [`cv.imwrite`](https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce)
 - [`json.dump`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imsave.html)
 
-### Relative paths
+#### Relative paths
 In this course, when reading and writing files, please keep all the files using relative paths. That is, only write the path starting from the working directory. 
 
 ````{prf:example} 
@@ -154,15 +155,15 @@ Please pay attention to how the paths are written.
 ````
 
 
-### `.`
+#### `.`
 
 - class and packages.
 - Get access to attributes and methods
 - Chaining dots.
 
-## Some additional topics
+### Some additional topics
 
-### Package management and Virtual environment
+#### Package management and Virtual environment
 
 - [`conda`](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
   - `conda create`
@@ -184,7 +185,7 @@ Please pay attention to how the paths are written.
   - `pip install -r /path/to/requirements.txt`
   - `deactivate`
 
-### Version Control
+#### Version Control
 
 - `Git`
   - [Install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)

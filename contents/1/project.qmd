@@ -1,7 +1,7 @@
-# Exercises 
-These exercises are from {cite:p}`Klo2021`, {cite:p}`Ger2019` and {cite:p}`Har2012`. 
+## Exercises 
+These exercises are from @Klo2021, @Ger2019 and @Har2012. 
 
-## Python Notebook
+### Python Notebook
 
 ```{exercise} Hello World!
 
@@ -19,7 +19,7 @@ Please set up a Python Notebook and start a new virtual environment and type `pr
 ### dd
 {cite:p}`Klo2021` -->
 
-## Basic Python 
+### Basic Python 
 
 ```{exercise} Play with lists
 :label: ex1helloworld

@@ -1,6 +1,7 @@
 # Introduction
 
 In this Chapter we will discuss
+
 - What is Machine Learning?
 - What do typical Machine Learning problems look like?
 - What is the basic structure of Machine Learning models?

@@ -1,10 +1,10 @@
-# Basic setting for Machine learning problems
+## Basic setting for Machine learning problems
 
 ```{note}
 We by default assume that we are dealing with a **Supervised** **Classification** problem.
 ```
 
-## Input and output data structure
+### Input and output data structure
 Since we are dealing with Supervised Classification problems, the desired solutions are given. These desired solutions in Classification problems are also called *labels*. The properties that the data are used to describe are called *features*. Both features and labels are usually organized as row vectors. 
 
 
@@ -79,7 +79,7 @@ Then the Supervised Learning problem is stated as follows: Given the features an
 :::
 
 
-## Parameters and hyperparameters
+### Parameters and hyperparameters
 A model parameter is internal to the model and its value is learned from the data. 
 
 A model hyperparameter is external to the model and its value is set by people.
@@ -93,7 +93,7 @@ The two cofficients $0.8$ and $0.7$ are the parameters of the model. The model `
 
 The details of Logistic regression will be discussed in {numref}`Chapter %s<chapter-log-reg>`.
 
-## Evaluate a Machine Learning model
+### Evaluate a Machine Learning model
 Once the model is built, how do we know that it is good or not? The naive idea is to test the model on some brand new data and check whether it is able to get the desired results. The usual way to achieve it is to split the input dataset into three pieces: *training set*, *validation set* and *test set*.
 
 The model is initially fit on the training set, with some arbitrary selections of hyperparameters. Then hyperparameters will be changed, and new model is fitted over the training set. Which set of hyperparameters is better? We then test their performance over the validation set. We could run through a lot of different combinations of hyperparameters, and find the best performance over the validation set. After we get the best hyperparameters, the model is selcted, and we fit it over the training set to get our model to use.
@@ -111,9 +111,9 @@ The validation set is not always required. If we use cross-validation technique 
 The sizes and strategies for dataset division depends on the problem and data available. It is often recommanded that more training data should be used. The typical distribution of training, validation and test is $(6:3:1)$, $(7:2:1)$ or $(8:1:1)$. Sometimes validation set is discarded and only training set and test set are used. In this case the distribution of training and test set is usually $(7:3)$, $(8:2)$ or $(9:1)$.
 
 
-## Workflow in developing a machine learning application
+### Workflow in developing a machine learning application
 
-The workflow described below is from {cite:p}`Har2012`.
+The workflow described below is from @Har2012.
 
 1. Collect data.
 2. Prepare the input data.
