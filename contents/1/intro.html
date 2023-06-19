@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -169,42 +188,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-machine-learning" id="toc-what-is-machine-learning" class="nav-link active" data-scroll-target="#what-is-machine-learning"><span class="header-section-number">2</span> What is Machine Learning?</a>
+  <li><a href="#what-is-machine-learning" id="toc-what-is-machine-learning" class="nav-link active" data-scroll-target="#what-is-machine-learning"><span class="header-section-number">1.1</span> What is Machine Learning?</a></li>
+  <li><a href="#types-of-machine-learning-systems" id="toc-types-of-machine-learning-systems" class="nav-link" data-scroll-target="#types-of-machine-learning-systems"><span class="header-section-number">1.2</span> Types of Machine Learning Systems</a>
   <ul class="collapse">
-  <li><a href="#types-of-machine-learning-systems" id="toc-types-of-machine-learning-systems" class="nav-link" data-scroll-target="#types-of-machine-learning-systems"><span class="header-section-number">2.1</span> Types of Machine Learning Systems</a>
-  <ul class="collapse">
-  <li><a href="#tasks-for-supervised-learning" id="toc-tasks-for-supervised-learning" class="nav-link" data-scroll-target="#tasks-for-supervised-learning"><span class="header-section-number">2.1.1</span> Tasks for Supervised Learning</a></li>
-  <li><a href="#classification-based-on-complexity" id="toc-classification-based-on-complexity" class="nav-link" data-scroll-target="#classification-based-on-complexity"><span class="header-section-number">2.1.2</span> Classification based on complexity</a></li>
+  <li><a href="#tasks-for-supervised-learning" id="toc-tasks-for-supervised-learning" class="nav-link" data-scroll-target="#tasks-for-supervised-learning"><span class="header-section-number">1.2.1</span> Tasks for Supervised Learning</a></li>
+  <li><a href="#classification-based-on-complexity" id="toc-classification-based-on-complexity" class="nav-link" data-scroll-target="#classification-based-on-complexity"><span class="header-section-number">1.2.2</span> Classification based on complexity</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#basic-setting-for-machine-learning-problems" id="toc-basic-setting-for-machine-learning-problems" class="nav-link" data-scroll-target="#basic-setting-for-machine-learning-problems"><span class="header-section-number">3</span> Basic setting for Machine learning problems</a>
+  <li><a href="#basic-setting-for-machine-learning-problems" id="toc-basic-setting-for-machine-learning-problems" class="nav-link" data-scroll-target="#basic-setting-for-machine-learning-problems"><span class="header-section-number">1.3</span> Basic setting for Machine learning problems</a>
   <ul class="collapse">
-  <li><a href="#input-and-output-data-structure" id="toc-input-and-output-data-structure" class="nav-link" data-scroll-target="#input-and-output-data-structure"><span class="header-section-number">3.1</span> Input and output data structure</a></li>
-  <li><a href="#parameters-and-hyperparameters" id="toc-parameters-and-hyperparameters" class="nav-link" data-scroll-target="#parameters-and-hyperparameters"><span class="header-section-number">3.2</span> Parameters and hyperparameters</a></li>
-  <li><a href="#evaluate-a-machine-learning-model" id="toc-evaluate-a-machine-learning-model" class="nav-link" data-scroll-target="#evaluate-a-machine-learning-model"><span class="header-section-number">3.3</span> Evaluate a Machine Learning model</a></li>
-  <li><a href="#workflow-in-developing-a-machine-learning-application" id="toc-workflow-in-developing-a-machine-learning-application" class="nav-link" data-scroll-target="#workflow-in-developing-a-machine-learning-application"><span class="header-section-number">3.4</span> Workflow in developing a machine learning application</a></li>
+  <li><a href="#input-and-output-data-structure" id="toc-input-and-output-data-structure" class="nav-link" data-scroll-target="#input-and-output-data-structure"><span class="header-section-number">1.3.1</span> Input and output data structure</a></li>
+  <li><a href="#parameters-and-hyperparameters" id="toc-parameters-and-hyperparameters" class="nav-link" data-scroll-target="#parameters-and-hyperparameters"><span class="header-section-number">1.3.2</span> Parameters and hyperparameters</a></li>
+  <li><a href="#evaluate-a-machine-learning-model" id="toc-evaluate-a-machine-learning-model" class="nav-link" data-scroll-target="#evaluate-a-machine-learning-model"><span class="header-section-number">1.3.3</span> Evaluate a Machine Learning model</a></li>
+  <li><a href="#workflow-in-developing-a-machine-learning-application" id="toc-workflow-in-developing-a-machine-learning-application" class="nav-link" data-scroll-target="#workflow-in-developing-a-machine-learning-application"><span class="header-section-number">1.3.4</span> Workflow in developing a machine learning application</a></li>
   </ul></li>
-  <li><a href="#python-quick-guide" id="toc-python-quick-guide" class="nav-link" data-scroll-target="#python-quick-guide"><span class="header-section-number">4</span> Python quick guide</a>
+  <li><a href="#python-quick-guide" id="toc-python-quick-guide" class="nav-link" data-scroll-target="#python-quick-guide"><span class="header-section-number">1.4</span> Python quick guide</a>
   <ul class="collapse">
-  <li><a href="#python-notebook" id="toc-python-notebook" class="nav-link" data-scroll-target="#python-notebook"><span class="header-section-number">4.1</span> Python Notebook</a></li>
-  <li><a href="#python-fundamentals" id="toc-python-fundamentals" class="nav-link" data-scroll-target="#python-fundamentals"><span class="header-section-number">4.2</span> Python fundamentals</a>
-  <ul class="collapse">
-  <li><a href="#list-and-dict" id="toc-list-and-dict" class="nav-link" data-scroll-target="#list-and-dict"><span class="header-section-number">4.2.1</span> <code>list</code> and <code>dict</code></a></li>
-  <li><a href="#reading-files" id="toc-reading-files" class="nav-link" data-scroll-target="#reading-files"><span class="header-section-number">4.2.2</span> Reading files</a></li>
-  <li><a href="#writing-files" id="toc-writing-files" class="nav-link" data-scroll-target="#writing-files"><span class="header-section-number">4.2.3</span> Writing files</a></li>
-  <li><a href="#relative-paths" id="toc-relative-paths" class="nav-link" data-scroll-target="#relative-paths"><span class="header-section-number">4.2.4</span> Relative paths</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.2.5</span> <code>.</code></a></li>
+  <li><a href="#python-notebook" id="toc-python-notebook" class="nav-link" data-scroll-target="#python-notebook"><span class="header-section-number">1.4.1</span> Python Notebook</a></li>
+  <li><a href="#python-fundamentals" id="toc-python-fundamentals" class="nav-link" data-scroll-target="#python-fundamentals"><span class="header-section-number">1.4.2</span> Python fundamentals</a></li>
+  <li><a href="#some-additional-topics" id="toc-some-additional-topics" class="nav-link" data-scroll-target="#some-additional-topics"><span class="header-section-number">1.4.3</span> Some additional topics</a></li>
   </ul></li>
-  <li><a href="#some-additional-topics" id="toc-some-additional-topics" class="nav-link" data-scroll-target="#some-additional-topics"><span class="header-section-number">4.3</span> Some additional topics</a>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.5</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#package-management-and-virtual-environment" id="toc-package-management-and-virtual-environment" class="nav-link" data-scroll-target="#package-management-and-virtual-environment"><span class="header-section-number">4.3.1</span> Package management and Virtual environment</a></li>
-  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control"><span class="header-section-number">4.3.2</span> Version Control</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5</span> Exercises</a>
-  <ul class="collapse">
-  <li><a href="#python-notebook-1" id="toc-python-notebook-1" class="nav-link" data-scroll-target="#python-notebook-1"><span class="header-section-number">5.1</span> Python Notebook</a></li>
-  <li><a href="#basic-python" id="toc-basic-python" class="nav-link" data-scroll-target="#basic-python"><span class="header-section-number">5.2</span> Basic Python</a></li>
+  <li><a href="#python-notebook-1" id="toc-python-notebook-1" class="nav-link" data-scroll-target="#python-notebook-1"><span class="header-section-number">1.5.1</span> Python Notebook</a></li>
+  <li><a href="#basic-python" id="toc-basic-python" class="nav-link" data-scroll-target="#basic-python"><span class="header-section-number">1.5.2</span> Basic Python</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,57 +235,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In this Chapter we will discuss - What is Machine Learning? - What do typical Machine Learning problems look like? - What is the basic structure of Machine Learning models? - What is the basic work flow to use Machine Learning to solve problems? - Some supplementary materials, such as Linear Algebra and Python. <!-- 
-{cite:p}`ucimlrepo` --></p>
-<section id="what-is-machine-learning" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> What is Machine Learning?</h1>
-<p>Machine Learning is the science (and art) of programming computers so they can <em>learn from data</em> {cite:p}<code>Ger2019</code>.</p>
+<p>In this Chapter we will discuss</p>
+<ul>
+<li>What is Machine Learning?</li>
+<li>What do typical Machine Learning problems look like?</li>
+<li>What is the basic structure of Machine Learning models?</li>
+<li>What is the basic work flow to use Machine Learning to solve problems?</li>
+<li>Some supplementary materials, such as Linear Algebra and Python. <!-- 
+{cite:p}`ucimlrepo` --></li>
+</ul>
+<section id="what-is-machine-learning" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-machine-learning"><span class="header-section-number">1.1</span> What is Machine Learning?</h2>
+<p>Machine Learning is the science (and art) of programming computers so they can <em>learn from data</em> <span class="citation" data-cites="Ger2019">[<a href="../../index.html#ref-Ger2019" role="doc-biblioref">1</a>]</span>.</p>
 <p>Here is a slightly more general definition:</p>
-<pre><code>[Machine Learning is the] field of study that gives computers the ability to learn without being explicitly programmed.
-
--- Arthur Samuel, 1959</code></pre>
-<p>This “<mark>without being explicitly programmed to do so</mark>” is the essential difference between Machine Learning and usual computing tasks. The usual way to make a computer do useful work is to have a human programmer write down rules — a computer program — to be followed to turn input data into appropriate answers. Machine Learning turns this around: the machine looks at the input data and the expected task outcome, and figures out what the rules should be. A Machine Learning system is <em>trained</em> rather than explicitly programmed. It’s presented with many examples relevant to a task, and it finds statistical structure in these examples that eventually allows the system to come up with rules for automating the task {cite:p}<code>Cho2021</code>.</p>
-<section id="types-of-machine-learning-systems" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="types-of-machine-learning-systems"><span class="header-section-number">2.1</span> Types of Machine Learning Systems</h2>
+<blockquote class="blockquote">
+<p>[Machine Learning is the] field of study that gives computers the ability to learn without being explicitly programmed.</p>
+<pre><code>                                                   -- Arthur Samuel, 1959</code></pre>
+</blockquote>
+<p>This “<mark>without being explicitly programmed to do so</mark>” is the essential difference between Machine Learning and usual computing tasks. The usual way to make a computer do useful work is to have a human programmer write down rules — a computer program — to be followed to turn input data into appropriate answers. Machine Learning turns this around: the machine looks at the input data and the expected task outcome, and figures out what the rules should be. A Machine Learning system is <em>trained</em> rather than explicitly programmed. It’s presented with many examples relevant to a task, and it finds statistical structure in these examples that eventually allows the system to come up with rules for automating the task <span class="citation" data-cites="Cho2021">[<a href="../../index.html#ref-Cho2021" role="doc-biblioref">2</a>]</span>.</p>
+</section>
+<section id="types-of-machine-learning-systems" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="types-of-machine-learning-systems"><span class="header-section-number">1.2</span> Types of Machine Learning Systems</h2>
 <p>There are many different types of Machine Learning systems that it is useful to classify them in braod categories, based on different criteria. These criteria are not exclusive, and you can combine them in any way you like.</p>
 <p>The most popular criterion for Machine Learning classification is the amount and type of supervision they get during training. In this case there are four major types.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {glossary} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Supervised Learning</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    The training set you feed to the algorithm includes the desired solutions. The machines learn from the data to alter the model to get the desired output. The main task for Supervised Learning is classification and regression.</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>Unsupervised Learning</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    In Unsupervised Learning, the data provided doesn't have class information or desired solutions. We just want to dig some information directly from those data themselves. Usually Unsupervised Learning is used for clustering and dimension reduction.</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>Reinforcement Learning</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    In Reinforcement Learning, there is a reward system to measure how well the machine performs the task, and the machine is learning to find the strategy to maximize the rewards. Typical examples here include gaming AI and walking robots.</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a>Semisupervised Learning</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    This is actually a combination of Supervised Learning and Unsupervised Learning, that it is usually used to deal with data that are half labelled. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="tasks-for-supervised-learning" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="tasks-for-supervised-learning"><span class="header-section-number">2.1.1</span> Tasks for Supervised Learning</h3>
+<p><strong>Supervised Learning</strong> The training set you feed to the algorithm includes the desired solutions. The machines learn from the data to alter the model to get the desired output. The main task for Supervised Learning is classification and regression.</p>
+<p><strong>Unsupervised Learning</strong> In Unsupervised Learning, the data provided doesn’t have class information or desired solutions. We just want to dig some information directly from those data themselves. Usually Unsupervised Learning is used for clustering and dimension reduction.</p>
+<p><strong>Reinforcement Learning</strong> In Reinforcement Learning, there is a reward system to measure how well the machine performs the task, and the machine is learning to find the strategy to maximize the rewards. Typical examples here include gaming AI and walking robots.</p>
+<p><strong>Semisupervised Learning</strong> This is actually a combination of Supervised Learning and Unsupervised Learning, that it is usually used to deal with data that are half labelled.</p>
+<section id="tasks-for-supervised-learning" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="tasks-for-supervised-learning"><span class="header-section-number">1.2.1</span> Tasks for Supervised Learning</h3>
 <p>As mentioned above, for Supervised Learning, there are two typical types of tasks:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {glossary} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>Classification</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    It is the task of predicting a discrete class labels. A typical classification problem is to see an handwritten digit image and recognize it.</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>Regression</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    It is the task of predicting a continuous quantity. A typical regression problem is to predict the house price based on various features of the house.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Classification</strong> It is the task of predicting a discrete class labels. A typical classification problem is to see an handwritten digit image and recognize it.</p>
+<p><strong>Regression</strong> It is the task of predicting a continuous quantity. A typical regression problem is to predict the house price based on various features of the house.</p>
 <p>There are a lot of other tasks that are not directly covered by these two, but these two are the most classical Supervised Learning tasks.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource callout-note number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>In this course we will mainly focus on **Supervised Classification problems**.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this course we will mainly focus on <strong>Supervised Classification problems</strong>.</p>
+</div>
+</div>
 </section>
-<section id="classification-based-on-complexity" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="classification-based-on-complexity"><span class="header-section-number">2.1.2</span> Classification based on complexity</h3>
+<section id="classification-based-on-complexity" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="classification-based-on-complexity"><span class="header-section-number">1.2.2</span> Classification based on complexity</h3>
 <p>Along with the popularity boost of deep neural network, there comes another classificaiton: shallow learning vs.&nbsp;deep learning. Basically all but deep neural network belongs to shallow learning. Although deep learning can do a lot of fancy stuffs, shallow learning is still very good in many cases. When the performance of a shallow learning model is good enough comparing to that of a deep learning model, people tend to use the shallow learning since it is usually faster, easier to understand and easier to modify.</p>
 </section>
 </section>
-</section>
-<section id="basic-setting-for-machine-learning-problems" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Basic setting for Machine learning problems</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {note} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>We by default assume that we are dealing with a **Supervised** **Classification** problem.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="input-and-output-data-structure" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="input-and-output-data-structure"><span class="header-section-number">3.1</span> Input and output data structure</h2>
+<section id="basic-setting-for-machine-learning-problems" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="basic-setting-for-machine-learning-problems"><span class="header-section-number">1.3</span> Basic setting for Machine learning problems</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {note} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>We by default assume that we are dealing with a **Supervised** **Classification** problem.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="input-and-output-data-structure" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="input-and-output-data-structure"><span class="header-section-number">1.3.1</span> Input and output data structure</h3>
 <p>Since we are dealing with Supervised Classification problems, the desired solutions are given. These desired solutions in Classification problems are also called <em>labels</em>. The properties that the data are used to describe are called <em>features</em>. Both features and labels are usually organized as row vectors.</p>
 <div id="exm-" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.1 </strong></span>The example is extracted from {cite:p}<code>Har2012</code>. There are some sample data shown in the following table. We would like to use these information to classify bird species.</p>
-<p>```orzxjkklgcrl Bird species classification based on four features :header-rows: 1</p>
+<p><span class="theorem-title"><strong>Example 1.1 </strong></span>The example is extracted from {cite:p}<code>Har2012</code>. There are some sample data shown in the following table. We would like to use these information to classify bird species.</p>
+<p>```pwclulmtbjup Bird species classification based on four features :header-rows: 1</p>
 <ul>
 <li><ul>
 <li>Weight (g)</li>
@@ -332,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Then we are able to transform the above data into the following form:</p>
-<p>```orzxjkklgcrl Vectorized Bird species data :header-rows: 1</p>
+<p>```pwclulmtbjup Vectorized Bird species data :header-rows: 1</p>
 <ul>
 <li><ul>
 <li>Features</li>
@@ -366,8 +382,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then the Supervised Learning problem is stated as follows: Given the features and the labels, we would like to find a model that can classify future data.</p>
 </div>
 </section>
-<section id="parameters-and-hyperparameters" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="parameters-and-hyperparameters"><span class="header-section-number">3.2</span> Parameters and hyperparameters</h2>
+<section id="parameters-and-hyperparameters" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="parameters-and-hyperparameters"><span class="header-section-number">1.3.2</span> Parameters and hyperparameters</h3>
 <p>A model parameter is internal to the model and its value is learned from the data.</p>
 <p>A model hyperparameter is external to the model and its value is set by people.</p>
 <p>For example, assume that we would like to use Logistic regression to fit the data. We set the learning rate is <code>0.1</code> and the maximal iteration is <code>100</code>. After the computations are done, we get a the model</p>
@@ -376,8 +392,8 @@ y = \sigma(0.8+0.7x).
 \]</span> The two cofficients <span class="math inline">\(0.8\)</span> and <span class="math inline">\(0.7\)</span> are the parameters of the model. The model <code>Logistic regression</code>, the learning rate <code>0.1</code> and the maximal iteration <code>100</code> are all hyperparametrs. If we change to a different set of hyperparameters, we may get a different model, with a different set of parameters.</p>
 <p>The details of Logistic regression will be discussed in {numref}<code>Chapter %s&lt;chapter-log-reg&gt;</code>.</p>
 </section>
-<section id="evaluate-a-machine-learning-model" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="evaluate-a-machine-learning-model"><span class="header-section-number">3.3</span> Evaluate a Machine Learning model</h2>
+<section id="evaluate-a-machine-learning-model" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="evaluate-a-machine-learning-model"><span class="header-section-number">1.3.3</span> Evaluate a Machine Learning model</h3>
 <p>Once the model is built, how do we know that it is good or not? The naive idea is to test the model on some brand new data and check whether it is able to get the desired results. The usual way to achieve it is to split the input dataset into three pieces: <em>training set</em>, <em>validation set</em> and <em>test set</em>.</p>
 <p>The model is initially fit on the training set, with some arbitrary selections of hyperparameters. Then hyperparameters will be changed, and new model is fitted over the training set. Which set of hyperparameters is better? We then test their performance over the validation set. We could run through a lot of different combinations of hyperparameters, and find the best performance over the validation set. After we get the best hyperparameters, the model is selcted, and we fit it over the training set to get our model to use.</p>
 <p>To compare our model with our models, either our own model using other algorithms, or models built by others, we need some new data. We can no longer use the training set and the validation set since all data in them are used, either for training or for hyperparameters tuning. We need to use the test set to evaluate the “real performance” of our data.</p>
@@ -390,9 +406,9 @@ y = \sigma(0.8+0.7x).
 <p>The validation set is not always required. If we use cross-validation technique for hyperparameters tuning, like <code>sklearn.model_selection.GridSearchCV()</code>, we don’t need a separated validation set. In this case, we will only need the training set and the test set, and run <code>GridSearchCV</code> over the training set. The cross-validation will be discussed in {numref}<code>Section %s&lt;section-cross-validation&gt;</code>.</p>
 <p>The sizes and strategies for dataset division depends on the problem and data available. It is often recommanded that more training data should be used. The typical distribution of training, validation and test is <span class="math inline">\((6:3:1)\)</span>, <span class="math inline">\((7:2:1)\)</span> or <span class="math inline">\((8:1:1)\)</span>. Sometimes validation set is discarded and only training set and test set are used. In this case the distribution of training and test set is usually <span class="math inline">\((7:3)\)</span>, <span class="math inline">\((8:2)\)</span> or <span class="math inline">\((9:1)\)</span>.</p>
 </section>
-<section id="workflow-in-developing-a-machine-learning-application" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="workflow-in-developing-a-machine-learning-application"><span class="header-section-number">3.4</span> Workflow in developing a machine learning application</h2>
-<p>The workflow described below is from {cite:p}<code>Har2012</code>.</p>
+<section id="workflow-in-developing-a-machine-learning-application" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="workflow-in-developing-a-machine-learning-application"><span class="header-section-number">1.3.4</span> Workflow in developing a machine learning application</h3>
+<p>The workflow described below is from <span class="citation" data-cites="Har2012">[<a href="../../index.html#ref-Har2012" role="doc-biblioref">3</a>]</span>.</p>
 <ol type="1">
 <li>Collect data.</li>
 <li>Prepare the input data.</li>
@@ -420,10 +436,10 @@ In the binary case, the above method can be stated in another way. We choose a t
 ### One-hot coding -->
 </section>
 </section>
-<section id="python-quick-guide" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Python quick guide</h1>
-<section id="python-notebook" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="python-notebook"><span class="header-section-number">4.1</span> Python Notebook</h2>
+<section id="python-quick-guide" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="python-quick-guide"><span class="header-section-number">1.4</span> Python quick guide</h2>
+<section id="python-notebook" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="python-notebook"><span class="header-section-number">1.4.1</span> Python Notebook</h3>
 <p>We mainly use Python Notebook (.ipynb) to write documents for this course. Currently all main stream Python IDE support Python Notebook. All of them are not entirely identical but the differences are not huge and you may choose any you like.</p>
 <p>One of the easiest ways to use Python Notebook is through <a href="https://jupyter.org/try">JupyterLab</a>. The best part about it is that you don’t need to worry about installation and configuration in the first place, and you can directly start to code.</p>
 <p>Click the above link and choose JupyterLab. Then you will see the following page.</p>
@@ -440,29 +456,33 @@ JupyterLite contains a few popular packages. Therefore it is totally ok if you w
 <li><a href="https://www.anaconda.com/">Anaconda</a></li>
 </ul>
 </section>
-<section id="python-fundamentals" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="python-fundamentals"><span class="header-section-number">4.2</span> Python fundamentals</h2>
-<p>We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is {cite:p}<code>Har2012</code>. ### Indentation Python is using indentation to denote code blocks. It is not convienent to write in the first place, but it forces you to write clean, readable code.</p>
+<section id="python-fundamentals" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="python-fundamentals"><span class="header-section-number">1.4.2</span> Python fundamentals</h3>
+<p>We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is <span class="citation" data-cites="Har2012">[<a href="../../index.html#ref-Har2012" role="doc-biblioref">3</a>]</span>.</p>
+<section id="indentation" class="level4" data-number="1.4.2.1">
+<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="indentation"><span class="header-section-number">1.4.2.1</span> Indentation</h4>
+<p>Python is using indentation to denote code blocks. It is not convienent to write in the first place, but it forces you to write clean, readable code.</p>
 <p>By the way, the <code>if</code> and <code>for</code> block are actually straightforward.</p>
 <div class="{grid}">
 <p>:gutter: 2</p>
-<p>:::{grid-item-card} One! <code>kiddcuwerptt python if jj &lt; 3:     jj = jj      print("It is smaller than 3.")</code></p>
+<p>:::{grid-item-card} One! <code>cqybjmpremtv python if jj &lt; 3:     jj = jj      print("It is smaller than 3.")</code></p>
 </div>
-<p>:::{grid-item-card} Two! <code>kiddcuwerptt python if jj &lt; 3:     jj = jj print("It is smaller than 3.")</code> ::: ::::</p>
+<p>:::{grid-item-card} Two! <code>cqybjmpremtv python if jj &lt; 3:     jj = jj print("It is smaller than 3.")</code> ::: ::::</p>
 <div class="{grid}">
 <p>:gutter: 2</p>
-<p>:::{grid-item-card} Three! <code>kiddcuwerptt python for i in range(3):     i = i + 1     print(i)</code></p>
+<p>:::{grid-item-card} Three! <code>cqybjmpremtv python for i in range(3):     i = i + 1     print(i)</code></p>
 </div>
-<p>:::{grid-item-card} Four! <code>kiddcuwerptt python for i in range(3):     i = i + 1 print(i)</code> ::: :::: Please tell the differences between the above codes.</p>
-<section id="list-and-dict" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="list-and-dict"><span class="header-section-number">4.2.1</span> <code>list</code> and <code>dict</code></h3>
-<p>Here are some very basic usage of lists of dictionaries in Python. ```kiddcuwerptt python newlist = list() newlist.append(1) newlist.append(‘hello’) print(newlist)</p>
+<p>:::{grid-item-card} Four! <code>cqybjmpremtv python for i in range(3):     i = i + 1 print(i)</code> ::: :::: Please tell the differences between the above codes.</p>
+</section>
+<section id="list-and-dict" class="level4" data-number="1.4.2.2">
+<h4 data-number="1.4.2.2" class="anchored" data-anchor-id="list-and-dict"><span class="header-section-number">1.4.2.2</span> <code>list</code> and <code>dict</code></h4>
+<p>Here are some very basic usage of lists of dictionaries in Python. ```cqybjmpremtv python newlist = list() newlist.append(1) newlist.append(‘hello’) print(newlist)</p>
 <p>newlisttwo = [1, ‘hello’] print(newlisttwo)</p>
 <p>newdict = dict() newdict[‘one’] = ‘good’ newdict[1] = ‘yes’ print(newdict)</p>
 <p>newdicttwo = {‘one’: ‘good’, 1: ‘yes’} print(newdicttwo)</p>
 <pre><code>
 
-### Loop through lists
+#### Loop through lists
 When creating `for` loops we may let Python directly loop through lists. Here is an example. The code is almost self-explained.
 ```{code-block} python
 alist = ['one', 2, 'three', 4]
@@ -470,8 +490,8 @@ alist = ['one', 2, 'three', 4]
 for item in alist:
     print(item)</code></pre>
 </section>
-<section id="reading-files" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="reading-files"><span class="header-section-number">4.2.2</span> Reading files</h3>
+<section id="reading-files" class="level4" data-number="1.4.2.3">
+<h4 data-number="1.4.2.3" class="anchored" data-anchor-id="reading-files"><span class="header-section-number">1.4.2.3</span> Reading files</h4>
 <p>There are a lot of functions that can read files. The basic one is to read any files as a big string. After we get the string, we may parse it based on the structure of the data.</p>
 <p>The above process sounds complicated. That’s why we have so many different functions reading files. Usually they focus on a certain types of files (e.g.&nbsp;spreadsheets, images, etc..), parse the data into a particular data structure for us to use later.</p>
 <p>I will mention a few examples.</p>
@@ -482,8 +502,8 @@ for item in alist:
 <li><p><code>.json</code> files <code>.json</code> is a file format to store dictionary type of data. To read a <code>json</code> file and parse it as a dictionary, we need <a href="https://docs.python.org/3/library/json.html#json.load"><code>json.load</code></a> from the package <code>json</code>.</p></li>
 </ul>
 </section>
-<section id="writing-files" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="writing-files"><span class="header-section-number">4.2.3</span> Writing files</h3>
+<section id="writing-files" class="level4" data-number="1.4.2.4">
+<h4 data-number="1.4.2.4" class="anchored" data-anchor-id="writing-files"><span class="header-section-number">1.4.2.4</span> Writing files</h4>
 <ul>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html"><code>pandas.DataFrame.to_csv</code></a></li>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html"><code>pandas.DataFrame.to_excel</code></a></li>
@@ -492,28 +512,28 @@ for item in alist:
 <li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imsave.html"><code>json.dump</code></a></li>
 </ul>
 </section>
-<section id="relative-paths" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="relative-paths"><span class="header-section-number">4.2.4</span> Relative paths</h3>
+<section id="relative-paths" class="level4" data-number="1.4.2.5">
+<h4 data-number="1.4.2.5" class="anchored" data-anchor-id="relative-paths"><span class="header-section-number">1.4.2.5</span> Relative paths</h4>
 <p>In this course, when reading and writing files, please keep all the files using relative paths. That is, only write the path starting from the working directory.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {prf:example} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2"></a>Consider the following tasks:</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>1. Your working directory is `C:/Users/Xinli/projects/`.</span>
-<span id="cb7-5"><a href="#cb7-5"></a>2. Want to read a file `D:/Files/example.csv`.</span>
-<span id="cb7-6"><a href="#cb7-6"></a>3. Want to generate a file whose name is `result.csv` and put it in a subfoler named `foldername`.</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>To do the tasks, don't directly run the code `pd.read_csv('D:/Files/example.csv')`. Instead you should first copy the file to your working directory `C:/Users/Xinli/projects/`, and then run the following code. </span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a>```{code-block} python</span>
-<span id="cb7-11"><a href="#cb7-11"></a>import pandas as pd</span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a>df = pd.read_csv('example.csv')</span>
-<span id="cb7-14"><a href="#cb7-14"></a>df.to_csv('foldername/result.csv')</span>
-<span id="cb7-15"><a href="#cb7-15"></a>```</span>
-<span id="cb7-16"><a href="#cb7-16"></a>Please pay attention to how the paths are written.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {prf:example} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a>Consider the following tasks:</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>1. Your working directory is `C:/Users/Xinli/projects/`.</span>
+<span id="cb4-5"><a href="#cb4-5"></a>2. Want to read a file `D:/Files/example.csv`.</span>
+<span id="cb4-6"><a href="#cb4-6"></a>3. Want to generate a file whose name is `result.csv` and put it in a subfoler named `foldername`.</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>To do the tasks, don't directly run the code `pd.read_csv('D:/Files/example.csv')`. Instead you should first copy the file to your working directory `C:/Users/Xinli/projects/`, and then run the following code. </span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>```{code-block} python</span>
+<span id="cb4-11"><a href="#cb4-11"></a>import pandas as pd</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>df = pd.read_csv('example.csv')</span>
+<span id="cb4-14"><a href="#cb4-14"></a>df.to_csv('foldername/result.csv')</span>
+<span id="cb4-15"><a href="#cb4-15"></a>```</span>
+<span id="cb4-16"><a href="#cb4-16"></a>Please pay attention to how the paths are written.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="section" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="section"><span class="header-section-number">4.2.5</span> <code>.</code></h3>
+<section id="section" class="level4" data-number="1.4.2.6">
+<h4 data-number="1.4.2.6" class="anchored" data-anchor-id="section"><span class="header-section-number">1.4.2.6</span> <code>.</code></h4>
 <ul>
 <li>class and packages.</li>
 <li>Get access to attributes and methods</li>
@@ -521,10 +541,10 @@ for item in alist:
 </ul>
 </section>
 </section>
-<section id="some-additional-topics" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="some-additional-topics"><span class="header-section-number">4.3</span> Some additional topics</h2>
-<section id="package-management-and-virtual-environment" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="package-management-and-virtual-environment"><span class="header-section-number">4.3.1</span> Package management and Virtual environment</h3>
+<section id="some-additional-topics" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="some-additional-topics"><span class="header-section-number">1.4.3</span> Some additional topics</h3>
+<section id="package-management-and-virtual-environment" class="level4" data-number="1.4.3.1">
+<h4 data-number="1.4.3.1" class="anchored" data-anchor-id="package-management-and-virtual-environment"><span class="header-section-number">1.4.3.1</span> Package management and Virtual environment</h4>
 <ul>
 <li><a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html"><code>conda</code></a>
 <ul>
@@ -557,8 +577,8 @@ for item in alist:
 </ul></li>
 </ul>
 </section>
-<section id="version-control" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="version-control"><span class="header-section-number">4.3.2</span> Version Control</h3>
+<section id="version-control" class="level4" data-number="1.4.3.2">
+<h4 data-number="1.4.3.2" class="anchored" data-anchor-id="version-control"><span class="header-section-number">1.4.3.2</span> Version Control</h4>
 <ul>
 <li><code>Git</code>
 <ul>
@@ -572,14 +592,15 @@ for item in alist:
 </section>
 </section>
 </section>
-<section id="exercises" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Exercises</h1>
-<p>These exercises are from {cite:p}<code>Klo2021</code>, {cite:p}<code>Ger2019</code> and {cite:p}<code>Har2012</code>.</p>
-<section id="python-notebook-1" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="python-notebook-1"><span class="header-section-number">5.1</span> Python Notebook</h2>
-<p>```xruvczosbp Hello World!</p>
+<section id="exercises" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.5</span> Exercises</h2>
+<p>These exercises are from <span class="citation" data-cites="Klo2021">[<a href="../../index.html#ref-Klo2021" role="doc-biblioref">4</a>]</span>, <span class="citation" data-cites="Ger2019">[<a href="../../index.html#ref-Ger2019" role="doc-biblioref">1</a>]</span> and <span class="citation" data-cites="Har2012">[<a href="../../index.html#ref-Har2012" role="doc-biblioref">3</a>]</span>.</p>
+<section id="python-notebook-1" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="python-notebook-1"><span class="header-section-number">1.5.1</span> Python Notebook</h3>
+<p>```bphadcsrkr Hello World!</p>
 <p>Please set up a Python Notebook environment and type <code>print('Hello World!')</code>.</p>
 <pre><code>
+
 
 ```{exercise}
 
@@ -590,9 +611,9 @@ Please set up a Python Notebook and start a new virtual environment and type `pr
 ### dd
 {cite:p}`Klo2021` -->
 </section>
-<section id="basic-python" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="basic-python"><span class="header-section-number">5.2</span> Basic Python</h2>
-<p>```xruvczosbp Play with lists :label: ex1helloworld</p>
+<section id="basic-python" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="basic-python"><span class="header-section-number">1.5.2</span> Basic Python</h3>
+<p>```bphadcsrkr Play with lists :label: ex1helloworld</p>
 <p>Please complete the following tasks. - Write a <code>for</code> loop to print values from 0 to 4. - Combine two lists <code>['apple', 'orange']</code> and <code>['banana']</code> using <code>+</code>. - Sort the list <code>['apple', 'orange', 'banana']</code> using <code>sorted()</code>.</p>
 <pre><code>
 ````{solution} ex1helloworld
@@ -634,8 +655,8 @@ namelist = people.keys()
 
 df = pd.DataFrame(people)
 ```</code></pre>
-<p>````xruvczosbp The dataset iris :label: ex1iris</p>
-<p><code>kiddcuwerptt python from sklearn.datasets import load_iris iris = load_iris()</code> Please explore this dataset. - Please get the features for <code>iris</code> and save it into <code>X</code> as an numpy array. - What is the meaning of these features? - Please get the labels for <code>iris</code> and save it into <code>y</code> as an numpy array. - What is the meaning of labels?</p>
+<p>````bphadcsrkr The dataset iris :label: ex1iris</p>
+<p><code>cqybjmpremtv python from sklearn.datasets import load_iris iris = load_iris()</code> Please explore this dataset. - Please get the features for <code>iris</code> and save it into <code>X</code> as an numpy array. - What is the meaning of these features? - Please get the labels for <code>iris</code> and save it into <code>y</code> as an numpy array. - What is the meaning of labels?</p>
 <pre><code>````{solution} ex1iris
 :class: dropdown
 We first find that `iris` is a dictionary. Then we can look at all the keys by `iris.keys()`. The interesting keys are `data`, `target`, `target_names` and `feature_names`. We can also read the description of the dataset by looking at `DESCR`. 
@@ -646,7 +667,7 @@ y = iris['target']
 print(iris['target'])
 ```
 Since the data is already saved as numpy arrays, we don't need to do anything to change its type.</code></pre>
-<p>```<code>xruvczosbp Play with Pandas :label: ex1pandastitanic Please download the Titanic data file from {Download}</code>here&lt;./assests/datasets/titanic.csv&gt;`. Then follow the instructions to perform the required tasks.</p>
+<p>```<code>bphadcsrkr Play with Pandas :label: ex1pandastitanic Please download the Titanic data file from {Download}</code>here&lt;./assests/datasets/titanic.csv&gt;`. Then follow the instructions to perform the required tasks.</p>
 <ul>
 <li>Use <code>pandas.read_csv</code> to read the dataset and save it as a dataframe object <code>df</code>.</li>
 <li>Change the values of the <code>Sex</code> column that <code>male</code> is <code>0</code> and <code>female</code> is <code>1</code>.</li>
@@ -659,6 +680,20 @@ Since the data is already saved as numpy arrays, we don't need to do anything to
 Not yet done!</code></pre>
 
 
+<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="ref-Ger2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline"><span class="smallcaps">Géron</span>, A. (2019). <em>Hands-on machine learning with scikit-learn, keras, and TensorFlow concepts, tools, and techniques to build intelligent systems: Concepts, tools, and techniques to build intelligent systems</em>. O’Reilly Media.</div>
+</div>
+<div id="ref-Cho2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span class="smallcaps">Chollet</span>, F. (2021). <em><a href="https://www.manning.com/books/deep-learning-with-python-second-edition">Deep learning with python, second edition</a></em>. MANNING PUBN.</div>
+</div>
+<div id="ref-Har2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span class="smallcaps">Harrington</span>, P. (2012). <em><a href="https://www.manning.com/books/machine-learning-in-action">Machine learning in action</a></em>. Manning Publications.</div>
+</div>
+<div id="ref-Klo2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span class="smallcaps">Klosterman</span>, S. (2021). <em><a href="https://www.packtpub.com/product/data-science-projects-with-python/9781838551025">Data science projects with python: A case study approach to gaining valuable insights from real data with machine learning</a></em>. Packt Publishing, Limited.</div>
+</div>
+</div>
 </section>
 </section>
 
