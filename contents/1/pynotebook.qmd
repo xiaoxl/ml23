@@ -25,79 +25,83 @@ JupyterLite contains a few popular packages. Therefore it is totally ok if you w
 
 
 ### Python fundamentals
-We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is @Har2012. 
+We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is @Har2012. Another referenece is [My notes](https://xiaoxl.github.io/pr23/).
 
 #### Indentation
 Python is using indentation to denote code blocks. It is not convienent to write in the first place, but it forces you to write clean, readable code.
 
 By the way, the `if` and `for` block are actually straightforward.
 
-::::{grid}
-:gutter: 2
+:::{layout-nrow=2}
 
-:::{grid-item-card} One!
-```{code-block} python
+```{python}
+#| eval: false
 if jj < 3:
     jj = jj 
     print("It is smaller than 3.")
 ```
-:::
 
-:::{grid-item-card} Two!
-```{code-block} python
+
+
+```{python}
+#| eval: false
 if jj < 3:
     jj = jj
 print("It is smaller than 3.")
 ```
-:::
-::::
 
-::::{grid}
-:gutter: 2
 
-:::{grid-item-card} Three!
-```{code-block} python
+```{python}
+#| eval: false
 for i in range(3):
     i = i + 1
     print(i)
 ```
-:::
 
-:::{grid-item-card} Four!
-```{code-block} python
+```{python}
+#| eval: false
 for i in range(3):
     i = i + 1
 print(i)
 ```
 :::
-::::
+
+
 Please tell the differences between the above codes.
 
 
 #### `list` and `dict`
 Here are some very basic usage of lists of dictionaries in Python.
-```{code-block} python
+
+```{python}
 newlist = list()
 newlist.append(1)
 newlist.append('hello')
-print(newlist)
+newlist
+```
 
+```{python}
 newlisttwo = [1, 'hello']
-print(newlisttwo)
+newlisttwo
+```
 
+```{python}
 newdict = dict()
 newdict['one'] = 'good'
 newdict[1] = 'yes'
-print(newdict)
+newdict
+```
 
+```{python}
 newdicttwo = {'one': 'good', 1: 'yes'}
-print(newdicttwo)
+newdicttwo
 ```
 
 
 #### Loop through lists
 When creating `for` loops we may let Python directly loop through lists. Here is an example. The code is almost self-explained.
-```{code-block} python
+
+```{python}
 alist = ['one', 2, 'three', 4]
 
 for item in alist:
@@ -134,7 +138,9 @@ Both of them are spreadsheets format. Usually we use [`pandas.read_csv`](https:/
 #### Relative paths
 In this course, when reading and writing files, please keep all the files using relative paths. That is, only write the path starting from the working directory. 
 
-````{prf:example} 
+
+::: {#exm-}
+
 
 Consider the following tasks:
 
@@ -144,7 +150,8 @@ Consider the following tasks:
 
 To do the tasks, don't directly run the code `pd.read_csv('D:/Files/example.csv')`. Instead you should first copy the file to your working directory `C:/Users/Xinli/projects/`, and then run the following code. 
 
-```{code-block} python
+```{python}
+#| eval: false
 import pandas as pd
 
 df = pd.read_csv('example.csv')
@@ -152,7 +159,8 @@ df.to_csv('foldername/result.csv')
 ```
 Please pay attention to how the paths are written.
 
-````
+
+:::
 
 
 #### `.`
@@ -162,6 +170,8 @@ Please pay attention to how the paths are written.
 - Chaining dots.
 
 ### Some additional topics
+
+You may read about these parts from the appendices of [My notes](https://xiaoxl.github.io/pr23/).
 
 #### Package management and Virtual environment
 

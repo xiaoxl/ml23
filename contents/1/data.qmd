@@ -1,78 +1,52 @@
 ## Basic setting for Machine learning problems
 
-```{note}
+
+::: {.callout-note}
 We by default assume that we are dealing with a **Supervised** **Classification** problem.
-```
+:::
+
 
 ### Input and output data structure
 Since we are dealing with Supervised Classification problems, the desired solutions are given. These desired solutions in Classification problems are also called *labels*. The properties that the data are used to describe are called *features*. Both features and labels are usually organized as row vectors. 
 
 
 :::{#exm-} 
-The example is extracted from {cite:p}`Har2012`. There are some sample data shown in the following table. We would like to use these information to classify bird species.
+The example is extracted from @Har2012. There are some sample data shown in the following table. We would like to use these information to classify bird species.
 
-```{list-table} Bird species classification based on four features
-:header-rows: 1
 
-* - Weight (g)
-  - Wingspan (cm)
-  - Webbed feet?
-  - Back color
-  - Species
-* - 1000.1
-  - 125.0
-  - No
-  - Brown
-  - Buteo jamaicensis
-* - 3000.7
-  - 200.0
-  - No
-  - Gray
-  - Sagittarius serpentarius
-* - 3300.0
-  - 220.3
-  - No
-  - Gray
-  - Sagittarius serpentarius
-* - 4100.0
-  - 136.0
-  - Yes
-  - Black
-  - Gavia immer
-* - 3.0
-  - 11.0
-  - No
-  - Green
-  - Calothorax lucifer
-* - 570.0
-  - 75.0
-  - No
-  - Black
-  - Campephilus principalis
+```{python}
+#| label: tbl-table
+#| tbl-cap: Bird species classification based on four features
+#| echo: false
+
+import pandas as pd
+table = [[1000.1, 125.0, 'No', 'Brown', 'Buteo jamaicensis'],
+         [3000.7, 200.0, 'No', 'Gray', 'Sagittarius serpentarius'],
+         [3300.0, 220.3, 'No', 'Gray', 'Sagittarius serpentarius'],
+         [4100.0, 136.0, 'Yes', 'Black', 'Gavia immer'],
+         [3.0, 11.0, 'No', 'Green', 'Calothorax lucifer'],
+         [570.0, 75.0, 'No', 'Black', 'Campephilus principalis']]
+
+headers=['Weight (g)', 'Wingspan (cm)', 'Webbed feet?', 'Back color', 'Species']
+df = pd.DataFrame(table, columns=headers, index=None)
+df.style.set_properties(**{'text-align': 'right'}).set_table_styles([ dict(selector='th', props=[('text-align', 'right')] ) ]).hide(axis="index")
 ```
+
 The first four columns are features, and the last column is the label. The first two features are numeric and can take on decimal values. The third feature is binary that can only be $1$ (Yes) or $0$ (No). The fourth feature is an enumeration over the color palette. You may either treat it as categorical data or numeric data, depending on how you want to build the model and what you want to get out of the data. In this example we will use it as categorical data that we only choose it from a list of colors ($1$ --- Brown, $2$ --- Gray, $3$ --- Black, $4$ --- Green). 
 
 Then we are able to transform the above data into the following form:
 
+| Features | Labels | 
+|-----|-----|
+| $\begin{bmatrix}1001.1 & 125.0 & 0 & 1 \end{bmatrix}$   | $1$    |
+| $\begin{bmatrix}3000.7 & 200.0 & 0 & 2 \end{bmatrix}$    | $2$    |
+| $\begin{bmatrix}3300.0 & 220.3 & 0 & 2 \end{bmatrix}$    | $2$  |
+| $\begin{bmatrix}4100.0 & 136.0 & 1 & 3 \end{bmatrix}$    | $3$    |
+| $\begin{bmatrix}3.0 & 11.0 & 0 & 4 \end{bmatrix}$    | $4$    |
+| $\begin{bmatrix}570.0 & 75.0 & 0 & 3 \end{bmatrix}$    | $5$    |
 
-```{list-table} Vectorized Bird species data
-:header-rows: 1
+: Vectorized Bird species data {#tbl-vectorized}
 
-* - Features
-  - Labels
-* - $\begin{bmatrix}1001.1 & 125.0 & 0 & 1 \end{bmatrix}$
-  - $1$
-* - $\begin{bmatrix}3000.7 & 200.0 & 0 & 2 \end{bmatrix}$
-  - $2$
-* - $\begin{bmatrix}3300.0 & 220.3 & 0 & 2 \end{bmatrix}$
-  - $2$
-* - $\begin{bmatrix}4100.0 & 136.0 & 1 & 3 \end{bmatrix}$
-  - $3$
-* - $\begin{bmatrix}3.0 & 11.0 & 0 & 4 \end{bmatrix}$
-  - $4$
-* - $\begin{bmatrix}570.0 & 75.0 & 0 & 3 \end{bmatrix}$
-  - $5$
-```
 
 Then the Supervised Learning problem is stated as follows: Given the features and the labels, we would like to find a model that can classify future data.
 
@@ -91,7 +65,7 @@ y = \sigma(0.8+0.7x).
 $$
 The two cofficients $0.8$ and $0.7$ are the parameters of the model. The model `Logistic regression`, the learning rate `0.1` and the maximal iteration `100` are all hyperparametrs. If we change to a different set of hyperparameters, we may get a different model, with a different set of parameters.
 
-The details of Logistic regression will be discussed in {numref}`Chapter %s<chapter-log-reg>`.
+The details of Logistic regression will be discussed later.
 
 ### Evaluate a Machine Learning model
 Once the model is built, how do we know that it is good or not? The naive idea is to test the model on some brand new data and check whether it is able to get the desired results. The usual way to achieve it is to split the input dataset into three pieces: *training set*, *validation set* and *test set*.
