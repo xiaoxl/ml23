@@ -38,10 +38,14 @@ This naive example explains the idea of k-NN. Here is a more detailed descriptio
 
 ### The Algorithm
 
- k-NN Classifier
-**Inputs** Given the training data set $\{(X_i, y_i)\}$ where $X_i=(x_i^1,x_i^2,\ldots,x_i^n)$ represents $n$ features and $y_i$ represents labels. Given a new data point $\tilde{X}=(\tilde{x}^1,\tilde{x}^2,\ldots,\tilde{x}^n)$.
 
-**Outputs** Want to find the best label for $\tilde{X}$.
+
+::: {.callout-note}
+# k-NN Classifier
+
+**Inputs**: Given the training data set $\{(X_i, y_i)\}$ where $X_i=(x_i^1,x_i^2,\ldots,x_i^n)$ represents $n$ features and $y_i$ represents labels. Given a new data point $\tilde{X}=(\tilde{x}^1,\tilde{x}^2,\ldots,\tilde{x}^n)$.
+
+**Outputs**: Want to find the best label for $\tilde{X}$.
 
 1. Compute the distance from $\tilde{X}$ to each $X_i$.
 2. Sort all these distances from the nearest to the furthest. 
@@ -49,6 +53,7 @@ This naive example explains the idea of k-NN. Here is a more detailed descriptio
 4. Determine the labels for each of these $k$ nearest points, and compute the frenqucy of each labels.
 5. The most frequent label is considered to be the label of $\tilde{X}$.
 
+:::
 
 ### Details
 - The distance between two data points are defined by the Euclidean distance:

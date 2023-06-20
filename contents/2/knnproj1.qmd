@@ -50,15 +50,12 @@ scatter = ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train)
 
 # Generate legends.
 labels = ['setosa', 'versicolor', 'virginica']
-fig.legend(handles=scatter.legend_elements()[0], labels=labels,
-           loc="right", title="Labels")
-
-# plt.show()
+_ = fig.legend(handles=scatter.legend_elements()[0], labels=labels,
+               loc="right", title="Labels")
 ```
 
 
-(section:applyourknn)=
-### Apply our k-NN model 
+### Apply our k-NN model {#sec-applyourknn}
 
 Now let us apply k-NN to this dataset. We first use our codes. Here I use `from assests.codes.knn` to import our functions since I put all our functions in `./assests/codes/knn.py`. Then the poential code is 
 ```python
@@ -96,7 +93,7 @@ This `y_pred` is the result we got for the test set. We may compare it with the 
 
 ```{python}
 acc = np.mean(y_pred == y_test)
-print(acc)
+acc
 
 ```
 
@@ -115,7 +112,7 @@ clf.fit(X_train_norm, y_train)
 y_pred_sk = clf.predict(X_test_norm)
 
 acc = np.mean(y_pred_sk == y_test)
-print(acc)
+acc
 ```
 
 
@@ -142,11 +139,11 @@ steps = [('scaler', MinMaxScaler()),
 pipe = Pipeline(steps=steps)
 pipe.fit(X_train, y_train)
 y_pipe = pipe.predict(X_test)
-print(accuracy_score(y_pipe, y_test))
+accuracy_score(y_pipe, y_test)
 ```
 
 
-### Visualize the Decision boundary
+### Visualize the Decision boundary [Optional]
 Using the classifier we get above, we are able to classify every points on the plane. This enables us to draw the following plot, which is called the Decision boundary. It helps us to visualize the relations between features and the classes.
 
 We use `DecisionBoundaryDisplay` from `sklearn.inspection` to plot the decision boundary. The function requires us to have a fitted classifier. We may use the classifier `pipe` we got above. Note that this classifier should have some build-in structures that our `classify_kNN` function doesn't have. We may rewrite our codes to make it work, but this goes out of the scope of this section. This is supposed to be Python programming exercise. We will talk about it in the future if we have enough time.
@@ -170,8 +167,8 @@ disp.figure_.set_size_inches((10,7))
 ```
 
 
-(section-cross-validation)=
-### k-Fold Cross-Validation
+
+### k-Fold Cross-Validation {#sec-cross-validation}
 
 Previously we perform a random split and test our model in this case. What would happen if we fit our model on another split? We might get a different accuracy score. So in order to evaluate the performance of our model, it is natual to consider several different split and compute the accuracy socre for each case, and combine all these socres together to generate an index to indicate whehter our model is good or bad. This naive idea is called *k-Fold Cross-Validation*.
 
@@ -183,8 +180,11 @@ The algorithm is described as follows. We first randomly split the dataset into 
 ```{python}
 from sklearn.model_selection import cross_val_score
 cv_scores = cross_val_score(pipe, X, y, cv=5)
-print(cv_scores)
-print(np.mean(cv_scores))
+cv_scores
+```
+
+```{python}
+np.mean(cv_scores)
 ```
 
 
@@ -204,7 +204,7 @@ n_list = list(range(1, 101))
 parameters = dict(knn__n_neighbors=n_list)
 clf = GridSearchCV(pipe, parameters)
 clf.fit(X, y)
-print(clf.best_estimator_.get_params()["knn__n_neighbors"])
+clf.best_estimator_.get_params()["knn__n_neighbors"]
 ```
 
 
@@ -213,7 +213,7 @@ After we fit the data, the `best_estimator_.get_params()` can be printed. It tel
 
 ```{python}
 cv_scores = cross_val_score(clf.best_estimator_, X, y, cv=5)
-print(np.mean(cv_scores))
+np.mean(cv_scores)
 ```
 
 

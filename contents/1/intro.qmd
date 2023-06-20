@@ -22,7 +22,7 @@ In this Chapter we will discuss
 {{< include pynotebook.qmd >}}
 
 
-{{< include project.qmd >}}
+{{< include project.qmd >}} 
 
 
 

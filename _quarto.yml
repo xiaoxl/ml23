@@ -7,7 +7,7 @@ number-sections: true
 toc-depth: 3
 number-depth: 4
 bibliography: book.bib
-csl: C:/Users/Xinli/Documents/ims.csl
+csl: ims.csl
 
 crossref:
   labels: arabic        # (default is arabic)
@@ -15,6 +15,7 @@ crossref:
 
 execute:
   freeze: auto
+  cache: true
 
 knitr:
   opts_chunk:
@@ -46,7 +47,7 @@ book:
     - index.qmd
     - contents/1/intro.qmd
     - contents/2/intro.qmd
-#       - contents/1/03-.qmd
+    - contents/3/intro.qmd
 #       - contents/4/04-.qmd
 #       - contents/5/05-.qmd
 #       - contents/6/06-.qmd

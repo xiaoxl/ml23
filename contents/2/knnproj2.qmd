@@ -1,6 +1,6 @@
 ## k-NN Project 2: Dating Classification
 
-The data can be downloaded from {Download}`here<./assests/datasets/datingTestSet2.txt>`.
+The data can be downloaded from [here](./assests/datasets/datingTestSet2.txt).
 
 
 ### Background
@@ -65,7 +65,7 @@ X_train_norm, parameters = encodeNorm(X_train)
 X_test_norm, _ = encodeNorm(X_test, parameters=parameters)
 ```
 
-
+- Using our codes.
 
 ```{python}
 # Using our codes.
@@ -76,10 +76,11 @@ y_pred = np.array([classify_kNN(row, X_train_norm, y_train, k=n_neighbors)
                    for row in X_test_norm])
 
 acc = np.mean(y_pred == y_test)
-print(acc)
+acc
 ```
 
 
+- Using sklearn.
 
 ```{python}
 # Using sklearn.
@@ -94,7 +95,7 @@ steps = [('scaler', MinMaxScaler()),
 pipe = Pipeline(steps=steps)
 pipe.fit(X_train, y_train)
 y_pipe = pipe.predict(X_test)
-print(accuracy_score(y_pipe, y_test))
+accuracy_score(y_pipe, y_test)
 ```
 
 
@@ -108,7 +109,7 @@ n_list = list(range(1, 101))
 parameters = dict(knn__n_neighbors=n_list)
 clf = GridSearchCV(pipe, parameters)
 clf.fit(X, y)
-print(clf.best_estimator_.get_params()["knn__n_neighbors"])
+clf.best_estimator_.get_params()["knn__n_neighbors"]
 ```
 
 
@@ -117,5 +118,5 @@ From this result, in this case the best `k` is `4`. The corresponding cross-vali
 
 ```{python}
 cv_scores = cross_val_score(clf.best_estimator_, X, y, cv=5)
-print(np.mean(cv_scores))
+np.mean(cv_scores)
 ```
