@@ -36,7 +36,7 @@ format:
     documentclass: scrreprt
 
 book:
-  title: "ML23"
+  title: "Machine Learning Fall 2023"
   subtitle: "Lecture notes for Fall 2023 at Arkansas Tech University"
   author: "Xinli Xiao"
   date: last-modified
@@ -48,7 +48,7 @@ book:
     - contents/1/intro.qmd
     - contents/2/intro.qmd
     - contents/3/intro.qmd
-#       - contents/4/04-.qmd
+    - contents/4/intro.qmd
 #       - contents/5/05-.qmd
 #       - contents/6/06-.qmd
   #   - part: "Part II: R"

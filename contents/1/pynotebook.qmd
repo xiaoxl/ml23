@@ -25,7 +25,7 @@ JupyterLite contains a few popular packages. Therefore it is totally ok if you w
 
 
 ### Python fundamentals
-We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is @Har2012. Another referenece is [My notes](https://xiaoxl.github.io/pr23/).
+We will put some very basic Python commands here for you to warm up. More advanced Python knowledge will be covered during the rest of the semester. The main reference for this part is @Har2012. Another referenece is [My notes](https://xiaoxl.github.io/pr23f/).
 
 #### Indentation
 Python is using indentation to denote code blocks. It is not convienent to write in the first place, but it forces you to write clean, readable code.

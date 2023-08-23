@@ -1,18 +1,20 @@
-## k-NN Project 3: `MNIST` Handwritten recognition
+## k-NN Project 3: Handwritten recognition
 
-We would like to let the machine recognize handwritten digits. `MNIST` is a classical dataset that contains handwritten digits information. Now we apply kNN algrotithm to it. 
-
-`MNIST` is a classical dataset. It can be found from many repository. We will directly load it from `tensorflow.keras`. The instructions of installing `tensorflow` can be found at [here](https://www.tensorflow.org/install).
+We would like to let the machine recognize handwritten digits. The dataset comes from the [UCI dataset repository](https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits). Now we apply kNN algrotithm to it. 
 
 ### Dataset description
-Every digit is stored as a $28\times28$ picture. This is a $28\times28$ matrix. Every entry represents a gray value of the corresponding pixel, whose value is from 0 to 255. The label of each matrix is the digit it represents. Note that the dataset provided is already splitted into a training set and a test set.
+Every digit is stored as a $8\times8$ picture. This is a $8\times8$ matrix. Every entry represents a gray value of the corresponding pixel, whose value is from 0 to 16. The label of each matrix is the digit it represents. Note that the dataset provided is already splitted into a training set and a test set.
 
 
 
 ```{python}
-import tensorflow.keras as keras
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
 
-(X_train, y_train), (X_test, y_test) = keras.datasets.mnist.load_data()
+X = datasets.load_digits().images
+y = datasets.load_digits().target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.15)
 ```
 
 
@@ -26,7 +28,17 @@ print(X_test.shape)
 print(y_test.shape)
 print(type(X_train))
 ```
-From these information we can see that the training set contains 60000 digits and the test set contains 10000 digits. Each digit is represented by a $28\times28$ numpy array. Let us load one and display the digit by `matplotlib.pyplot.imshow`.
+
+
+```{python}
+#| echo: false
+#| output: false
+tr0 = X_train.shape[0]
+te0 = X_test.shape[0]
+yt0 = y_train[0]
+```
+
+From these information we can see that the training set contains `{python} tr0` digits and the test set contains `{python} te0` digits. Each digit is represented by a $8\times8$ numpy array. Let us load one and display the digit by `matplotlib.pyplot.imshow`.
 
 
 ```{python}
@@ -34,14 +46,15 @@ digit = X_train[0]
 
 import matplotlib.pyplot as plt
 plt.imshow(digit, cmap='gray')
+
 ```
-This image seems to be a `5`. We could double check our guess by looking at the label. The following shows that it is really a `5`.
+This image represents a handwritten digit. Could you recognize it? We could check our guess by looking at the label. The following shows that it is a `{python} yt0`.
 
 
 ```{python}
 y_train[0]
 ```
-Now we need to reshape these digits from $28\times28$ numpy arraies to $784$ numpy arraies. Similar to previous examples, we will also normalize the dataset.
+Now we need to reshape these digits from $8\times8$ numpy arraies to $64$ numpy arraies. Similar to previous examples, we will also normalize the dataset.
 
 
 ```{python}
@@ -58,30 +71,22 @@ X_test_norm, _ = encodeNorm(X_test, parameters=parameters)
 
 
 ### Apply k-NN
-Like the previous two examples, we now try to apply the k-NN algorithm to classify these handwritten digits. This time our codes and `sklearn` are more different. The main issue is that our codes don't have any optimizations and the runtime is super slow. `MNIST` is a bigger dataset comparing to the previous two, so it takes a long time to run our codes.
-
-Although we won't improve our codes to make it faster at the current stage, we will modify it a little bit to make the wait feels better.
-
-`tqdm` is package to show progress bar. Every time if you want to use a `for` loop to go through something `X`, you may wrap `tqdm` around `X` and this can show the progress of the loop and how much estimated time left. 
-
-To make the sample faster, we will only run the code over the first 10 examples. 
+Like the previous two examples, we now try to apply the k-NN algorithm to classify these handwritten digits. 
 
 
 
 ```{python}
 from assests.codes.knn import classify_kNN
-from tqdm import tqdm
 import numpy as np
 
 n_neighbors = 10
-N_sample = 10
-X_test_sample = X_test_norm[0:N_sample]
-y_test_sample = y_test[0:N_sample]
+X_test_sample = X_test_norm
+y_test_sample = y_test
 y_pred = np.array([classify_kNN(row, X_train_norm, y_train, k=n_neighbors)
-                   for row in tqdm(X_test_sample)])
+                   for row in X_test_sample])
 
 acc = np.mean(y_pred == y_test_sample)
-print(acc)
+acc
 ```
 
 
@@ -100,5 +105,5 @@ steps = [('scaler', MinMaxScaler()),
 pipe = Pipeline(steps=steps)
 pipe.fit(X_train, y_train)
 y_pipe = pipe.predict(X_test)
-print(accuracy_score(y_pipe, y_test))
+accuracy_score(y_pipe, y_test)
 ```

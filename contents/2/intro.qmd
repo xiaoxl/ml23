@@ -22,7 +22,7 @@ References: @Har2012.
 
 
 
-<!-- {{< include knnproj3.qmd >}} -->
+{{< include knnproj3.qmd >}}
 
 
 {{< include project.qmd >}}

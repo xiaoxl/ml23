@@ -106,10 +106,10 @@ There are many ways to modify the kNN algorithm. What we just mentioned is the s
 #| eval: false
 
 from sklearn.neighbors import KNeighborsClassifier
-clf = KNeighborsClassifier(n_neighbors=10, weights='uniform', algorithm='brute',
-                             metric='euclidean')
+clf = KNeighborsClassifier(n_neighbors=10, weights='uniform',
+                           algorithm='brute', metric='euclidean')
 clf.fit(X_train, y_train)
-y_pred = ckf.predict(X_test)
+y_pred = clf.predict(X_test)
 ```
 
 
@@ -155,3 +155,4 @@ def decodeNorm(X, parameters):
     return Xoriginal
 ```
 
+If you use `sklearn` you could use `MinMaxScaler` from `sklearn.preprocessing` to achive the same goal. The related codes will be discussed later in projects. I keep our handwritten codes here for Python practicing.
