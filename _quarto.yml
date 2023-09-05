@@ -32,15 +32,15 @@ format:
     code-block-border-left: true #"#31BAE9"
     code-line-numbers: true
     highlight-style: atom-one
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 book:
   title: "Machine Learning Fall 2023"
   subtitle: "Lecture notes for Fall 2023 at Arkansas Tech University"
   author: "Xinli Xiao"
   date: last-modified
-  downloads: [pdf]
+  # downloads: [pdf]
   # crossref:
   #   app-prefix: Appendix
   chapters: 
@@ -56,8 +56,8 @@ book:
   #       - contents/7/07-.qmd
   #       - contents/8/08-.qmd
   #   - contents/references.qmd
-  appendices:
-    - contents/app/intro.qmd
+  # appendices:
+    # - contents/app/intro.qmd
   #   - contents/app/path.qmd
   #   - contents/app/virtenv.qmd
   #   - contents/app/concepts.qmd

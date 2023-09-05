@@ -89,7 +89,7 @@ The output contains three pieces. The first is `train_sizes_abs` which is the nu
 
 The second output is `train_scores` and the third is `test_scores`, both of which are the scores we get from the training and testing process. Note that both are 2D `numpy` arrays, of the size `(number of different sizes, cv)`. Each row is a 1D `numpy` array representing the cross-validation scores, which is corresponding to a train size. If we want the mean as the cross-validation score, we could use `train_scores.mean(axis=1)`.
 
-After understanding the input and output, we could plot the learning curve. We still use the `horse colic` as the example. The details about the dataset can be found in @sec-dataset-horsecolic.
+After understanding the input and output, we could plot the learning curve. We still use the `horse colic` as the example. The details about the dataset can be found [here](https://xiaoxl.github.io/Datasets/contents/horse_colic.html).
 
 
 
