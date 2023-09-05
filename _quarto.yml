@@ -49,15 +49,15 @@ book:
     - contents/2/intro.qmd
     - contents/3/intro.qmd
     - contents/4/intro.qmd
-#       - contents/5/05-.qmd
-#       - contents/6/06-.qmd
+    - contents/5/intro.qmd
+    - contents/6/intro.qmd
   #   - part: "Part II: R"
   #     chapters:
   #       - contents/7/07-.qmd
   #       - contents/8/08-.qmd
   #   - contents/references.qmd
-  # appendices:
-  #   - contents/app/setup.qmd
+  appendices:
+    - contents/app/intro.qmd
   #   - contents/app/path.qmd
   #   - contents/app/virtenv.qmd
   #   - contents/app/concepts.qmd

@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Machine Learning Fall 2023 - 5&nbsp; Logistic regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../contents/app/intro.html" rel="next">
+<link href="../../contents/4/intro.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Machine Learning Fall 2023</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools">
+    <a href="../../Machine-Learning-Fall-2023.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../contents/5/intro.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/1/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/2/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">k-Nearest Neighbors algorithm (k-NN)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/3/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Decision Trees</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/4/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ensemble methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/5/intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/app/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#basic-idea" id="toc-basic-idea" class="nav-link active" data-scroll-target="#basic-idea"><span class="header-section-number">5.1</span> Basic idea</a>
+  <ul class="collapse">
+  <li><a href="#sigmoid-function" id="toc-sigmoid-function" class="nav-link" data-scroll-target="#sigmoid-function"><span class="header-section-number">5.1.1</span> Sigmoid function</a></li>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent"><span class="header-section-number">5.1.2</span> Gradient descent</a></li>
+  <li><a href="#the-formulas" id="toc-the-formulas" class="nav-link" data-scroll-target="#the-formulas"><span class="header-section-number">5.1.3</span> The Formulas</a></li>
+  <li><a href="#codes" id="toc-codes" class="nav-link" data-scroll-target="#codes"><span class="header-section-number">5.1.4</span> Codes</a></li>
+  <li><a href="#several-important-side-topics" id="toc-several-important-side-topics" class="nav-link" data-scroll-target="#several-important-side-topics"><span class="header-section-number">5.1.5</span> Several important side topics</a></li>
+  </ul></li>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization"><span class="header-section-number">5.2</span> Regularization</a>
+  <ul class="collapse">
+  <li><a href="#three-types-of-errors" id="toc-three-types-of-errors" class="nav-link" data-scroll-target="#three-types-of-errors"><span class="header-section-number">5.2.1</span> Three types of errors</a></li>
+  <li><a href="#underfit-vs-overfit" id="toc-underfit-vs-overfit" class="nav-link" data-scroll-target="#underfit-vs-overfit"><span class="header-section-number">5.2.2</span> Underfit vs Overfit</a></li>
+  <li><a href="#learning-curves-accuracy-vs-training-size" id="toc-learning-curves-accuracy-vs-training-size" class="nav-link" data-scroll-target="#learning-curves-accuracy-vs-training-size"><span class="header-section-number">5.2.3</span> Learning curves (accuracy vs training size)</a></li>
+  <li><a href="#regularization-1" id="toc-regularization-1" class="nav-link" data-scroll-target="#regularization-1"><span class="header-section-number">5.2.4</span> Regularization</a></li>
+  </ul></li>
+  <li><a href="#neural-network-implement-of-logistic-regression" id="toc-neural-network-implement-of-logistic-regression" class="nav-link" data-scroll-target="#neural-network-implement-of-logistic-regression"><span class="header-section-number">5.3</span> Neural network implement of Logistic regression</a>
+  <ul class="collapse">
+  <li><a href="#regularization-2" id="toc-regularization-2" class="nav-link" data-scroll-target="#regularization-2"><span class="header-section-number">5.3.1</span> Regularization</a></li>
+  </ul></li>
+  <li><a href="#multi-class-case" id="toc-multi-class-case" class="nav-link" data-scroll-target="#multi-class-case"><span class="header-section-number">5.4</span> Multi class case</a>
+  <ul class="collapse">
+  <li><a href="#naive-idea-one-vs-all" id="toc-naive-idea-one-vs-all" class="nav-link" data-scroll-target="#naive-idea-one-vs-all"><span class="header-section-number">5.4.1</span> Naive idea (one-vs-all)</a></li>
+  <li><a href="#softmax-function" id="toc-softmax-function" class="nav-link" data-scroll-target="#softmax-function"><span class="header-section-number">5.4.2</span> <code>Softmax</code> function</a></li>
+  <li><a href="#codes-1" id="toc-codes-1" class="nav-link" data-scroll-target="#codes-1"><span class="header-section-number">5.4.3</span> Codes</a></li>
+  </ul></li>
+  <li><a href="#exercises-and-projects" id="toc-exercises-and-projects" class="nav-link" data-scroll-target="#exercises-and-projects"><span class="header-section-number">5.5</span> Exercises and Projects</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<p>Consider a set of training data <span class="math inline">\((x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \ldots\)</span>, where <span class="math inline">\(x^{(i)}=(x^{(i)}_1, x^{(i)}_2, \ldots, x^{(i)}_n)\)</span> is a <span class="math inline">\(n\)</span>-dim vector, and <span class="math inline">\(y^{(i)}\)</span> is a real number. We would like to use Linear regression to find the relation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>In this case, we assume that <span class="math inline">\(y\)</span> is a linear function of <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+y=\theta_0 + \sum_{j=1}^n\theta_jx_j.
+\]</span> The purpose of Linear regression is to used the given training data to find out the best <span class="math inline">\(\Theta=(\theta_0, \theta_1, \theta_2,\ldots,\theta_n)\)</span>.</p>
+<p>If we set <span class="math inline">\(\hat{x}=(1, x_1, \ldots,x_n)\)</span>, then the above formula can be reformulated by matrix multiplication.</p>
+<p><span class="math display">\[
+y=\Theta \hat{x}^T.
+\]</span></p>
+<p>When we want to deal with classification problem, we may still use this regression idea, but we have to do some modification.</p>
+<section id="basic-idea" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="basic-idea"><span class="header-section-number">5.1</span> Basic idea</h2>
+<p>The Logsitic regression is used to predict the probability of a data point belonging to a specific class. It is based on linear regression. The major difference is that logistic regreesion will have an activation function <span class="math inline">\(\sigma\)</span> at the final stage to change the predicted values of the linear regression to the values that indicate classes. In the case of binary classification, the outcome of <span class="math inline">\(\sigma\)</span> will be between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which is related to the two classes respectively. In this case, the number is interepted as the probability of the data to be in one of the specific class.</p>
+<p>The model for Logistic regression is as follows:</p>
+<p><span class="math display">\[
+p=\sigma(L(x))=\sigma\left(\theta_0+\sum_{j=1}^n\theta_jx_j\right)=\sigma\left(\Theta \hat{x}^T\right).
+\]</span></p>
+<p>In most cases, this activation function is chosen to be the Sigmoid funciton.</p>
+<section id="sigmoid-function" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="sigmoid-function"><span class="header-section-number">5.1.1</span> Sigmoid function</h3>
+<p>The <em>Sigmoid</em> function is defined as follows:</p>
+<p><span class="math display">\[
+\sigma(z)=\frac{1}{1+\mathrm{e}^{-z}}.
+\]</span> The graph of the function is shown below.</p>
+<div id="2d595c57" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The main properties of <span class="math inline">\(\sigma\)</span> are listed below as a Lemma.</p>
+<div id="lem-sig" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 5.1 </strong></span>The Sigmoid function <span class="math inline">\(\sigma(z)\)</span> satisfies the following properties.</p>
+<ol type="1">
+<li><span class="math inline">\(\sigma(z)\rightarrow \infty\)</span> when <span class="math inline">\(z\mapsto \infty\)</span>.</li>
+<li><span class="math inline">\(\sigma(z)\rightarrow -\infty\)</span> when <span class="math inline">\(z\mapsto -\infty\)</span>.</li>
+<li><span class="math inline">\(\sigma(0)=0.5\)</span>.</li>
+<li><span class="math inline">\(\sigma(z)\)</span> is always increasing.</li>
+<li><span class="math inline">\(\sigma'(z)=\sigma(z)(1-\sigma(z))\)</span>.</li>
+</ol>
+</div>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span>We will only look at the last one.</p>
+<p><span class="math display">\[
+\begin{split}
+\sigma'(z)&amp;=-\frac{(1+\mathrm e^{-z})'}{(1+\mathrm e^{-z})^2}=\frac{\mathrm e^{-z}}{(1+\mathrm e^{-z})^2}=\frac{1}{1+\mathrm e^{-z}}\frac{\mathrm e^{-z}}{1+\mathrm e^{-z}}\\
+&amp;=\sigma(z)\left(\frac{1+\mathrm e^{-z}}{1+\mathrm e^{-z}}-\frac{1}{1+\mathrm e^{-z}}\right)=\sigma(z)(1-\sigma(z)).
+\end{split}
+\]</span></p>
+</div>
+</section>
+<section id="gradient-descent" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="gradient-descent"><span class="header-section-number">5.1.2</span> Gradient descent</h3>
+<p>Assume that we would like to minimize a function <span class="math inline">\(J(\Theta)\)</span>, where this <span class="math inline">\(\Theta\)</span> is an <span class="math inline">\(N\)</span>-dim vector. Geometricly, we could treat <span class="math inline">\(J\)</span> as a height function, and it tells us the height of the mountain. Then to minimize <span class="math inline">\(J\)</span> is the same thing as to find the lowest point. One idea is to move towards the lowest point step by step. During each step we only need to lower our current height. After several steps we will be around the lowest point.</p>
+<p>The geometric meaning of <span class="math inline">\(\nabla J\)</span> is the direction that <span class="math inline">\(J\)</span> increase the most. Therefore the opposite direction is the one we want to move in. The formula to update <span class="math inline">\(x\)</span> is</p>
+<p><span class="math display">\[
+\Theta_{\text{new}} = \Theta_{\text{old}}-\alpha \nabla J(\Theta_{\text{old}}),
+\]</span> where <span class="math inline">\(\alpha\)</span> is called the <em>learning rate</em> which controls how fast you want to learn. Usually if <span class="math inline">\(\alpha\)</span> is small, the learning tends to be slow and stble, and when <span class="math inline">\(\alpha\)</span> is big, the learning tends to be fast and unstable.</p>
+<p>In machine learning, in most cases we would like to formulate the problem in terms of finding the lowest point of a <em>cost function</em> <span class="math inline">\(J(\Theta)\)</span>. Then we could start to use Logistic regression to solve it. For binary classification problem, the cost function is defined to be</p>
+<p><span class="math display">\[
+J(\Theta)=-\frac1m\sum_{i=1}^m\left[y^{(i)}\log(p^{(i)})+(1-y^{(i)})\log(1-p^{(i)})\right].
+\]</span> Here <span class="math inline">\(m\)</span> is the number of data points, <span class="math inline">\(y^{(i)}\)</span> is the labelled result (which is either <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>), <span class="math inline">\(p^{(i)}\)</span> is the predicted value (which is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The algorithm gets its name since we are using the gradient to find a direction to lower our height.</p>
+</div>
+</div>
+</section>
+<section id="the-formulas" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="the-formulas"><span class="header-section-number">5.1.3</span> The Formulas</h3>
+<div id="thm-reggrad" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 5.1 </strong></span>The gradient of <span class="math inline">\(J\)</span> is computed by</p>
+<p><span id="eq-nablaJ"><span class="math display">\[
+\nabla J =\frac1m(\textbf{p}-\textbf{y})^T\hat{\textbf{X}}.
+\tag{5.1}\]</span></span></p>
+</div>
+<details>
+<summary>
+Click for details.
+</summary>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>The formula is an application of the chain rule for the multivariable functions.</p>
+<p><span class="math display">\[
+\begin{split}
+\dfrac{\partial p}{\partial \theta_k}&amp;=\dfrac{\partial}{\partial \theta_k}\sigma\left(\theta_0+\sum_{j=1}^n\theta_jx_j\right)=\dfrac{\partial}{\partial \theta_k}\sigma(L(\Theta))\\
+&amp;=\sigma(L)(1-\sigma(L))\dfrac{\partial}{\partial \theta_k}\left(\theta_0+\sum_{j=1}^n\theta_jx_j\right)\\
+&amp;=\begin{cases}
+p(1-p)&amp;\text{ if }k=0,\\
+p(1-p)x_k&amp;\text{ otherwise}.
+\end{cases}
+\end{split}
+\]</span> Then</p>
+<p><span class="math display">\[
+\nabla p = \left(\frac{\partial p}{\partial\theta_0},\ldots,\frac{\partial p}{\partial\theta_n}\right) = p(1-p)\hat{x}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\nabla \log(p) = \frac{\nabla p}p =\frac{p(1-p)\hat{x}}{p}=(1-p)\hat{x}.
+\]</span></p>
+<p><span class="math display">\[
+\nabla \log(1-p) = \frac{-\nabla p}{1-p} =-\frac{p(1-p)\hat{x}}{1-p}=-p\hat{x}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\begin{split}
+\nabla J&amp; = -\frac1m\sum_{i=1}^m\left[y^{(i)}\nabla \log(p^{(i)})+(1-y^{(i)})\nabla \log(1-p^{(i)})\right]\\
+&amp;=-\frac1m\sum_{i=1}^m\left[y^{(i)}(1-p^{(i)})\hat{x}^{(i)}+(1-y^{(i)})(-p^{(i)}\hat{x}^{(i)})\right]\\
+&amp;=-\frac1m\sum_{i=1}^m\left[(y^{(i)}-p^{(i)})\hat{x}^{(i)}\right].
+\end{split}
+\]</span></p>
+<p>We write <span class="math inline">\(\hat{x}^{(i)}\)</span> as row vectors, and stack all these row vectors vertically. What we get is a matrix <span class="math inline">\(\hat{\textbf X}\)</span> of the size <span class="math inline">\(m\times (1+n)\)</span>. We stack all <span class="math inline">\(y^{(i)}\)</span> (resp. <span class="math inline">\(p^{(i)}\)</span>) vectically to get the <span class="math inline">\(m\)</span>-dim column vector <span class="math inline">\(\textbf y\)</span> (resp. <span class="math inline">\(\textbf p\)</span>).</p>
+<p>Using this notation, the previous formula becomes</p>
+<p><span class="math display">\[
+\nabla J =\frac1m(\textbf{p}-\textbf{y})^T\hat{\textbf{X}}.
+\]</span></p>
+<p>After the gradient can be computed, we can start to use the gradient descent method. Note that, although <span class="math inline">\(\Theta\)</span> are not explicitly presented in the formula of <span class="math inline">\(\nabla J\)</span>, this is used to modify <span class="math inline">\(\Theta\)</span>:</p>
+<p><span class="math display">\[
+\Theta_{s+1} = \Theta_s - \alpha\nabla J.
+\]</span></p>
+</div>
+</details>
+</section>
+<section id="codes" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="codes"><span class="header-section-number">5.1.4</span> Codes</h3>
+<p>We will only talk about using packages. <code>sklearn</code> provides two methods to implement the Logistic regression. The API interface is very similar to other models.</p>
+<p>Note that Logistic regression is very sensitive to the scale of features. Therefore we need to normalize the features before throwing them into the model.</p>
+<p>Let’s still take <code>iris</code> as an example.</p>
+<div id="39028398" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb1-5"><a href="#cb1-5"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb1-6"><a href="#cb1-6"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb1-7"><a href="#cb1-7"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first method is <code>sklearn.linear_model.LogisticRegression</code>.</p>
+<div id="83dcdec3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>steps <span class="op">=</span> [(<span class="st">'normalize'</span>, MinMaxScaler()),</span>
+<span id="cb2-6"><a href="#cb2-6"></a>         (<span class="st">'log'</span>, LogisticRegression())]</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>log_reg <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>log_reg.fit(X_train, y_train)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>log_reg.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>1.0</code></pre>
+</div>
+</div>
+<p>Note that this method has an option <code>solver</code> that will set the way to solve the Logistic regression problem, and there is no “stochastic gradient descent” provided. The default solver for this <code>LogsiticRegression</code> is <code>lbfgs</code> which will NOT be discussed in lectures.</p>
+<p>The second method is <code>sklearn.linear_model.SGDClassifier</code>.</p>
+<div id="43de8457" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>steps <span class="op">=</span> [(<span class="st">'normalize'</span>, MinMaxScaler()),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>         (<span class="st">'log'</span>, SGDClassifier(loss<span class="op">=</span><span class="st">'log_loss'</span>, max_iter<span class="op">=</span><span class="dv">100</span>))]</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>sgd_clf <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>sgd_clf.fit(X_train, y_train)</span>
+<span id="cb4-10"><a href="#cb4-10"></a>sgd_clf.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>0.9130434782608695</code></pre>
+</div>
+</div>
+<p>This method is the one we discussed in lectures. The <code>log_loss</code> loss function is the binary entropy function we mentioned in lectures. If you change to other loss functions it will become other models.</p>
+<p>From the above example, you may notice that <code>SGDClassifier</code> doesn’t perform as well as <code>LogisticRegression</code>. This is due to the algorithm. To make <code>SGDClassifier</code> better you need to tune the hyperparameters, like <code>max_iter</code>, <code>learning_rate</code>/<code>alpha</code>, <code>penalty</code>, etc..</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The argument <code>warm_start</code> is used to set whether you want to use your previous model. When set to <code>True</code>, it will reuse the solution of the previous call to fit as initialization, otherwise, just erase the previous solution. The default is <code>False</code>.</p>
+<p>Repeatedly calling <code>fit</code> when <code>warm_start</code> is <code>True</code> can result in a different solution than when calling <code>fit</code> a single time because of the way the data is shuffled.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that for both methods, regularization (which will be discussed later) is applied by default.</p>
+</div>
+</div>
+</section>
+<section id="several-important-side-topics" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="several-important-side-topics"><span class="header-section-number">5.1.5</span> Several important side topics</h3>
+<section id="epochs" class="level4" data-number="5.1.5.1">
+<h4 data-number="5.1.5.1" class="anchored" data-anchor-id="epochs"><span class="header-section-number">5.1.5.1</span> Epochs</h4>
+<p>We use epoch to describe feeding data into the model. One <em>Epoch</em> is when an entire dataset is passed through the model once. When using gradient descent, we tend to run several epochs. The number of maximal epochs is one important hyperparameter of this model.</p>
+<p>The general idea is that more epochs are better for the score of the model, but it will definitely be slower. In addition, sometimes due to many other factors, after a few epochs, the model becomes stall. To train for more epochs cannot improve the model. In this case you have to turn to other methods.</p>
+</section>
+<section id="batch-gradient-descent-vs-sgd-vs-minibatch" class="level4" data-number="5.1.5.2">
+<h4 data-number="5.1.5.2" class="anchored" data-anchor-id="batch-gradient-descent-vs-sgd-vs-minibatch"><span class="header-section-number">5.1.5.2</span> Batch Gradient Descent vs SGD vs Minibatch</h4>
+<p>Recall the Formula <a href="#eq-nablaJ" class="quarto-xref">Equation&nbsp;<span>5.1</span></a>:</p>
+<p><span class="math display">\[
+\nabla J =\frac1m(\textbf{p}-\textbf{y})^T\hat{\textbf{X}}.
+\]</span> We could rewrite this formula:</p>
+<p><span class="math display">\[
+\nabla J =\frac1m(\textbf{p}-\textbf{y})^T\hat{\textbf{X}}=\frac1m\sum_{i=1}^m\left[(p^{(i)}-y^{(i)})\hat{x}^{(i)}\right].
+\]</span> This new formula can be understood in the following way: For every data point, we could get one gradient direction. Then <span class="math inline">\(\nabla J\)</span> is the average of all gradient directions. So this algorithm can be expressed as that compute the gradient for every data points and then take the average, and finally update the parameters once. This algorithm is called <em>batch gradient descent</em>.</p>
+<p>Following the idea, there is another way to update the model. For every data point, we could compute one gradient direction, and we could use the gradient direction to update the parameters of the model. This algorithm is called <em>stochastic gradient descent</em>.</p>
+<p>Then there is an algrothm living in the middle, called <em>mini-batch gradient descent</em>. In this case, we will group the data set into a collection of subsets of a fiexed number of training examples. Each subset is called a <em>mini-batch</em>, and the fixed number of elements of each mini-batch is called the <em>batch size</em>. Using this method, we will just go through mini-batches one at a time, compute the average of the gradient for these data, and then update the parameters of the model after we finish one mini-batch. Assume that the total number of the dataset is <code>N</code>, the mini-batch size is <code>m</code>. Then there are <code>N/m</code> mini-batches, and during one epoch we will update the model <code>N/m</code> times.</p>
+<p>Mini-batch size is one important hyperparameters of this model. Usually the larger the batch size is, the less variance the model has. Then it tends to behave more smoothly, but it will also be slower, and might be stuck to a local minimal. The smaller batch size is more chaotic. It might go faster, but it tends not to converge.</p>
+</section>
+</section>
+</section>
+<section id="regularization" class="level2 page-columns page-full" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="regularization"><span class="header-section-number">5.2</span> Regularization</h2>
+<section id="three-types-of-errors" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="three-types-of-errors"><span class="header-section-number">5.2.1</span> Three types of errors</h3>
+<p>Every estimator has its advantages and drawbacks. Its generalization error can be decomposed in terms of bias, variance and noise. The <strong>bias</strong> of an estimator is its average error for different training sets. The <strong>variance</strong> of an estimator indicates how sensitive it is to varying training sets. Noise is a property of the data.</p>
+</section>
+<section id="underfit-vs-overfit" class="level3 page-columns page-full" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="underfit-vs-overfit"><span class="header-section-number">5.2.2</span> Underfit vs Overfit</h3>
+<p>When fit a model to data, it is highly possible that the model is underfit or overfit.</p>
+<p>Roughly speaking, <strong>underfit</strong> means the model is not sufficient to fit the training samples, and <strong>overfit</strong> means that the models learns too many noise from the data. In many cases, high bias is related to underfit, and high variance is related to overfit.</p>
+<p>The following example is from <a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py">the <code>sklearn</code> guide</a>. Although it is a polynomial regression example, it grasps the key idea of underfit and overfit.</p>
+<div id="67484392" class="cell page-columns page-full" data-execution_count="5">
+<div class="cell-output cell-output-display column-page">
+<p><img src="intro_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="learning-curves-accuracy-vs-training-size" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="learning-curves-accuracy-vs-training-size"><span class="header-section-number">5.2.3</span> Learning curves (accuracy vs training size)</h3>
+<p>A learning curve shows the validation and training score of an estimator for varying a key hyperparameter. In most cases the key hyperparameter is the training size or the number of epochs. It is a tool to find out how much we benefit from altering the hyperparameter by training more data or training for more epochs, and whether the estimator suffers more from a variance error or a bias error.</p>
+<p><code>sklearn</code> provides <code>sklearn.model_selection.learning_curve()</code> to generate the values that are required to plot such a learning curve. However this function is just related to the sample size. If we would like to talk about epochs, we need other packages.</p>
+<p>Let us first look at the learning curve about sample size. The official document page is <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.learning_curve.html">here</a>. The function takes input <code>estimator</code>, dataset <code>X</code>, <code>y</code>, and an arry-like argument <code>train_sizes</code>. The dataset <code>(X, y)</code> will be split into pieces using the cross-validation technique. The number of pieces is set by the argument <code>cv</code>. The default value is <code>cv=5</code>. For details about cross-validation please see <a href="../2/intro.html#sec-cross-validation" class="quarto-xref"><span>Section&nbsp;2.2.6</span></a>.</p>
+<p>Then the model is trained over a random sample of the training set, and evaluate the score over the test set. The size of the sample of the training set is set by the argument <code>train_sizes</code>. This argument is array-like. Therefore the process will be repeated several times, and we can see the impact of increasing the training size.</p>
+<p>The output contains three pieces. The first is <code>train_sizes_abs</code> which is the number of elements in each training set. This output is mainly for reference. The difference between the output and the input <code>train_sizes</code> is that the input can be float which represents the percentagy. The output is always the exact number of elements.</p>
+<p>The second output is <code>train_scores</code> and the third is <code>test_scores</code>, both of which are the scores we get from the training and testing process. Note that both are 2D <code>numpy</code> arrays, of the size <code>(number of different sizes, cv)</code>. Each row is a 1D <code>numpy</code> array representing the cross-validation scores, which is corresponding to a train size. If we want the mean as the cross-validation score, we could use <code>train_scores.mean(axis=1)</code>.</p>
+<p>After understanding the input and output, we could plot the learning curve. We still use the <code>horse colic</code> as the example. The details about the dataset can be found in <span class="quarto-unresolved-ref">?sec-dataset-horsecolic</span>.</p>
+<div id="f55ac425" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>url <span class="op">=</span> <span class="st">'http://archive.ics.uci.edu/ml/machine-learning-databases/horse-colic/horse-colic.data'</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>df <span class="op">=</span> pd.read_csv(url, delim_whitespace<span class="op">=</span><span class="va">True</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>df <span class="op">=</span> df.replace(<span class="st">"?"</span>, np.NaN)</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>df.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>df.drop(columns<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>df[<span class="dv">23</span>].replace({<span class="dv">1</span>: <span class="dv">1</span>, <span class="dv">2</span>: <span class="dv">0</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>X <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].to_numpy().astype(<span class="bu">float</span>)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>y <span class="op">=</span> df[<span class="dv">23</span>].to_numpy().astype(<span class="bu">int</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb6-15"><a href="#cb6-15"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We use the model <code>LogisticRegression</code>. The following code plot the learning curve for this model.</p>
+<div id="acff17bc" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>steps <span class="op">=</span> [(<span class="st">'scalar'</span>, MinMaxScaler()),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>         (<span class="st">'log'</span>, clf)]</span>
+<span id="cb7-8"><a href="#cb7-8"></a>pipe <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> learning_curve</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-11"><a href="#cb7-11"></a>train_sizes, train_scores, test_scores <span class="op">=</span> learning_curve(pipe, X_train, y_train,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>                                                        train_sizes<span class="op">=</span>np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">20</span>))</span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-15"><a href="#cb7-15"></a>plt.plot(train_sizes, train_scores.mean(axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">'train'</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a>plt.plot(train_sizes, test_scores.mean(axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The learning curve is a primary tool for us to study the bias and variance. Usually</p>
+<ul>
+<li>If the two training curve and the testing curve are very close to each other, this means that the variance is low. Otherwise the variance is high, and this means that the model probabily suffer from overfitting.</li>
+<li>If the absolute training curve score is high, this means that the bias is low. Otherwise the bias is high, and this means that the model probabily suffer from underfitting.</li>
+</ul>
+<p>In the above example, although regularization is applied by default, you may still notice some overfitting there.</p>
+</section>
+<section id="regularization-1" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="regularization-1"><span class="header-section-number">5.2.4</span> Regularization</h3>
+<p>Regularization is a technique to deal with overfitting. Here we only talk about the simplest method: ridge regression, also known as Tikhonov regularizaiton. Because of the formula given below, it is also called <em><span class="math inline">\(L_2\)</span> regularization</em>. The idea is to add an additional term <span class="math inline">\(\dfrac{\alpha}{2m}\sum_{i=1}^m\theta_i^2\)</span> to the original cost function. When training with the new cost function, this additional term will force the parameters in the original term to be as small as possible. After finishing training, the additional term will be dropped, and we use the original cost function for validation and testing. Note that in the additional term <span class="math inline">\(\theta_0\)</span> is not presented.</p>
+<p>The hyperparameter <span class="math inline">\(\alpha\)</span> is the <em>regularization strength</em>. If <span class="math inline">\(\alpha=0\)</span>, the new cost function becomes the original one; If <span class="math inline">\(\alpha\)</span> is very large, the additional term dominates, and it will force all parameters to be almost <span class="math inline">\(0\)</span>. In different context, the regularization strength is also given by <span class="math inline">\(C=\dfrac{1}{2\alpha}\)</span>, called <em>inverse of regularization strength</em>.</p>
+<section id="the-math-of-regularization" class="level4" data-number="5.2.4.1">
+<h4 data-number="5.2.4.1" class="anchored" data-anchor-id="the-math-of-regularization"><span class="header-section-number">5.2.4.1</span> The math of regularization</h4>
+<div id="thm-ridgegrad" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 5.2 </strong></span>The gradient of the ridge regression cost function is</p>
+<p><span class="math display">\[
+\nabla J=\frac1m(\textbf{p}-\textbf{y})^T\hat{\textbf{X}}+\frac{\alpha}{m}\Theta.
+\]</span></p>
+<p>Note that <span class="math inline">\(\Theta\)</span> doesn’t contain <span class="math inline">\(\theta_0\)</span>, or you may treat <span class="math inline">\(\theta_0=0\)</span>.</p>
+</div>
+<p>The computation is straightforward.</p>
+</section>
+<section id="the-code" class="level4" data-number="5.2.4.2">
+<h4 data-number="5.2.4.2" class="anchored" data-anchor-id="the-code"><span class="header-section-number">5.2.4.2</span> The code</h4>
+<p>Regularization is directly provided by the logistic regression functions.</p>
+<ul>
+<li>In <code>LogisticRegression</code>, the regularization is given by the argument <code>penalty</code> and <code>C</code>. <code>penalty</code> specifies the regularizaiton method. It is <code>l2</code> by default, which is the method above. <code>C</code> is the inverse of regularization strength, whose default value is <code>1</code>.</li>
+<li>In <code>SGDClassifier</code>, the regularization is given by the argument <code>penalty</code> and <code>alpha</code>. <code>penalty</code> is the same as that in <code>LogisticRegression</code>, and <code>alpha</code> is the regularization strength, whose default value is <code>0.0001</code>.</li>
+</ul>
+<p>Let us see the above example.</p>
+<div id="2bc1688f" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, C<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>steps <span class="op">=</span> [(<span class="st">'scalar'</span>, MinMaxScaler()),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>         (<span class="st">'log'</span>, clf)]</span>
+<span id="cb8-4"><a href="#cb8-4"></a>pipe <span class="op">=</span> Pipeline(steps<span class="op">=</span>steps)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> learning_curve</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-7"><a href="#cb8-7"></a>train_sizes, train_scores, test_scores <span class="op">=</span> learning_curve(pipe, X_train, y_train,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>                                                        train_sizes<span class="op">=</span>np.linspace(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">20</span>))</span>
+<span id="cb8-9"><a href="#cb8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-11"><a href="#cb8-11"></a>plt.plot(train_sizes, train_scores.mean(axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">'train'</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>plt.plot(train_sizes, test_scores.mean(axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>After we reduce <code>C</code> from <code>1</code> to <code>0.1</code>, the regularization strength is increased. Then you may find that the gap between the two curves are reduced. However the overall performace is also reduced, from 85%~90% in <code>C=1</code> case to around 80% in <code>C=0.1</code> case. This means that the model doesn’t fit the data well as the previous one. Therefore this is a trade-off: decrease the variance but increase the bias.</p>
+</section>
+</section>
+</section>
+<section id="neural-network-implement-of-logistic-regression" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="neural-network-implement-of-logistic-regression"><span class="header-section-number">5.3</span> Neural network implement of Logistic regression</h2>
+<p>In the previous sections, we use gradient descent to run the Logistic regression model. We mentioned some important concepts, like epochs, mini-batch, etc.. But we didn’t implement them. In fact <code>sklearn</code> doesn’t provide a very good tool to do all these computations. Hence we turn to another package for this model. We are going to use <code>keras</code> to build a Logistic regression model, and plot the “loss vs epochs” learning curves.</p>
+<p><code>keras</code> is high level Neural network library built upon <code>tensorflow</code>. We will talk about Neural network next Chapter. The package is installed along with <code>tensorflow</code>. You may follow the <a href="https://www.tensorflow.org/install">instructions</a> to install it.</p>
+<p>To use <code>keras</code> to implement logistic regression, we need the following modules: a <code>Sequential</code> model, a <code>Dense</code> layer. The model is organized as follows.</p>
+<p>We still use the horse colic dataset as an example.</p>
+<div id="5c2b406f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>url <span class="op">=</span> <span class="st">'http://archive.ics.uci.edu/ml/machine-learning-databases/horse-colic/horse-colic.data'</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>df <span class="op">=</span> pd.read_csv(url, delim_whitespace<span class="op">=</span><span class="va">True</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a>df <span class="op">=</span> df.replace(<span class="st">"?"</span>, np.NaN)</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a>df.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-9"><a href="#cb9-9"></a>df.drop(columns<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a>df[<span class="dv">23</span>].replace({<span class="dv">1</span>: <span class="dv">1</span>, <span class="dv">2</span>: <span class="dv">0</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a>X <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].to_numpy().astype(<span class="bu">float</span>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>y <span class="op">=</span> df[<span class="dv">23</span>].to_numpy().astype(<span class="bu">int</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb9-15"><a href="#cb9-15"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we need to perform normalization before throwing the data into the model. Here we use the <code>MinMaxScaler()</code> from <code>sklearn</code> package. The normalization layer in keras is a little bit more complicated and doesn’t fit into situation.</p>
+<div id="c514b650" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>mms <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb10-4"><a href="#cb10-4"></a>mms.fit(X_train)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>X_train <span class="op">=</span> mms.transform(X_train)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>X_test <span class="op">=</span> mms.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the following code, we first set up the model, and then add one <code>Dense</code> layer. This <code>Dense</code> layer means that we would perform a linear transformation to the input, by the formula <span class="math inline">\(\theta_0+\theta_1x_1+\theta_2x_2+\ldots+\theta_nx_n\)</span>. Then there are three arguments:</p>
+<ul>
+<li><code>1</code>: means that there is only output.</li>
+<li><code>activation='sigmoid'</code>: means that we will apply the <code>sigmoid</code> function after the linear transformation.</li>
+<li><code>input_dim</code>: means the dimension of the input. Note that this dimension is the dimension of one individual data point. You don’t take the size of the training set into consideration.</li>
+</ul>
+<p>After building the basic architectal of the model, we need to speicify a few more arguments. In the <code>model.compile()</code> step, we have to input the <code>optimizer</code>, the loss function (which is the <code>binary_crossentropy</code> in our case) and the metrics to test the performance of the model (which is accuracy in our case).</p>
+<p>The <code>optimizer</code> is how the parameters are updated. The best choice in general is <code>adam</code>. The default setting is <code>RMSprop</code> and the optimizer discussed in our lecture is <code>sgd</code>. We will use <code>adam</code> here, since the learning curve it produces looks better (for illustration).</p>
+<p>Finally we could train the model. The argument is straightforward.</p>
+<div id="211416a2" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> keras_core <span class="im">as</span> keras</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> keras <span class="im">import</span> models, layers</span>
+<span id="cb11-3"><a href="#cb11-3"></a>model <span class="op">=</span> models.Sequential()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>model.add(layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>, input_dim<span class="op">=</span>X_train.shape[<span class="dv">1</span>]))</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb11-8"><a href="#cb11-8"></a>hist <span class="op">=</span> model.fit(X_train, y_train, epochs<span class="op">=</span><span class="dv">400</span>, batch_size<span class="op">=</span><span class="dv">30</span>, validation_data<span class="op">=</span>(X_test, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we assign the output of <code>model.fit()</code> to a variable <code>hist</code>. The infomation about this training process is recorded inside. We will extract those information.</p>
+<div id="d6d8eda1" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>loss_train <span class="op">=</span> hist.history[<span class="st">'loss'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2"></a>loss_val <span class="op">=</span> hist.history[<span class="st">'val_loss'</span>]</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>acc_train <span class="op">=</span> hist.history[<span class="st">'accuracy'</span>]</span>
+<span id="cb12-5"><a href="#cb12-5"></a>acc_val <span class="op">=</span> hist.history[<span class="st">'val_accuracy'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now could plot the learning curve (loss vs epochs) and the learning curve (accuracy vs epochs).</p>
+<div id="ebf4e542" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-2"><a href="#cb13-2"></a>plt.plot(loss_train, label<span class="op">=</span><span class="st">'train_loss'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>plt.plot(loss_val, label<span class="op">=</span><span class="st">'val_loss'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="bbbc3a97" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plt.plot(acc_train, label<span class="op">=</span><span class="st">'train_acc'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>plt.plot(acc_val, label<span class="op">=</span><span class="st">'val_acc'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="regularization-2" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="regularization-2"><span class="header-section-number">5.3.1</span> Regularization</h3>
+<p>To apply regularization, we just need to modify the layer we added to the model. The argument is <code>kernel_regularizer</code>. We would like to set it to be <code>keras.regularizers.L2(alpha)</code>, where <code>alpha</code> is the regularization strength.</p>
+<div id="cca4829b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> keras <span class="im">import</span> models, layers, regularizers</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>model <span class="op">=</span> models.Sequential()</span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>model.add(layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>, input_dim<span class="op">=</span>X_train.shape[<span class="dv">1</span>],</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                       kernel_regularizer<span class="op">=</span>regularizers.L2(<span class="fl">0.5</span>)))</span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'sgd'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb15-9"><a href="#cb15-9"></a>hist <span class="op">=</span> model.fit(X_train, y_train, epochs<span class="op">=</span><span class="dv">400</span>, batch_size<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>                 validation_data<span class="op">=</span>(X_test, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="91ece876" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>loss_train <span class="op">=</span> hist.history[<span class="st">'loss'</span>]</span>
+<span id="cb16-2"><a href="#cb16-2"></a>loss_val <span class="op">=</span> hist.history[<span class="st">'val_loss'</span>]</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a>acc_train <span class="op">=</span> hist.history[<span class="st">'accuracy'</span>]</span>
+<span id="cb16-5"><a href="#cb16-5"></a>acc_val <span class="op">=</span> hist.history[<span class="st">'val_accuracy'</span>]</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>plt.plot(loss_train, label<span class="op">=</span><span class="st">'train_loss'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a>plt.plot(loss_val, label<span class="op">=</span><span class="st">'val_loss'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="5bbca0ec" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>plt.plot(acc_train, label<span class="op">=</span><span class="st">'train_acc'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>plt.plot(acc_val, label<span class="op">=</span><span class="st">'val_acc'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>You may compare what we get here with the codes we get before.</p>
+</section>
+</section>
+<section id="multi-class-case" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="multi-class-case"><span class="header-section-number">5.4</span> Multi class case</h2>
+<section id="naive-idea-one-vs-all" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="naive-idea-one-vs-all"><span class="header-section-number">5.4.1</span> Naive idea (one-vs-all)</h3>
+<p>Assume that there are <span class="math inline">\(N\)</span> classes. The naive idea is to decompose this <span class="math inline">\(N\)</span>-class classification problem into <span class="math inline">\(N\)</span> binary classification problems. The model will contains <span class="math inline">\(N\)</span> classifiers. The <span class="math inline">\(i\)</span>th classifer is used to classify whehter the given features has the label <code>i</code> or not.</p>
+<p>For example, asusme we are dealing with the <code>iris</code> dataset. There are 3 classes. By the naive idea, we will modify the labels into <code>Setosa</code> and <code>not Setosa</code>, and use it to train the first classifier. Similarly we can have two more classifiers to tell <code>Versicolour</code>/<code>not Versicolour</code> and <code>Virginica</code>/<code>not Virginica</code>. Then we combine all three classifiers to get a final classifier to put the data into one of the three classes.</p>
+</section>
+<section id="softmax-function" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="softmax-function"><span class="header-section-number">5.4.2</span> <code>Softmax</code> function</h3>
+<p>A better method is mimic the sigmoid function. Recall that in binary classification problem, after</p>
+<p><span class="math display">\[
+z=L(x)=\theta_0+\sum_{i=1}^n\theta_ix_i,
+\]</span> the sigmoid function is applied <span class="math inline">\(p=\sigma(z)\)</span>. This <span class="math inline">\(p\)</span> is interepreted as the probability for the data belonging to class <span class="math inline">\(1\)</span>. For <span class="math inline">\(N\)</span>-class problem, we could generalize the sigmoid function to <code>softmax</code> function, whose value is a <span class="math inline">\(N\)</span>-dimensional vector <span class="math inline">\(p=[p_k]_{i=1}^N\)</span>. Here <span class="math inline">\(p_k\)</span> represents the probability for the data belonging to class <span class="math inline">\(k\)</span>. Then after we get the vector <span class="math inline">\(p\)</span>, we then find the highest probability and that indicates the class of the data point.</p>
+<p>The <code>softmax</code> function is defined in the following way:</p>
+<p><span class="math display">\[
+p_k=\sigma(z)=\dfrac{\exp(z_k)}{\sum_{i=1}^N\exp(z_i)},\quad \text{ for }z=[z_1, z_2,\ldots,z_N].
+\]</span> In the model, each <span class="math inline">\(z_i=L_i(x)=\theta^{(i)}_0+\sum_{i=1}^n\theta^{(i)}_ix_i,\)</span> has its own weights.</p>
+<p>The related cost function is also updated:</p>
+<p><span class="math display">\[
+J(\Theta)=-\sum_{i=1}^Ny_k\ln(p_i).
+\]</span> Therefore the same gradient descent algorithm can be applied.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that <code>sigmoid</code> function and the <code>binary crossentropy</code> cost functions are the special case of <code>softmax</code> function.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The labels are not recorded as labels, but as vectors. This is called dummy variables, or one-hot encodings.</p>
+</div>
+</div>
+</section>
+<section id="codes-1" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="codes-1"><span class="header-section-number">5.4.3</span> Codes</h3>
+<ul>
+<li>Both <code>LogisticRegression()</code> and <code>SGDClassifier()</code> by default uses the one-vs-all naive idea.</li>
+<li>Using <code>kears</code>, <code>softmax</code> can be implemented. The key configuration is the loss function <code>loss='categorical_crossentropy'</code> and the activation function <code>softmax</code>. Note that in this case the labels should be translated into one-hot vectors.</li>
+</ul>
+<p>We use <code>make_classification</code> as an example. To save time we won’t carefully tune the hyperparameters here.</p>
+<div id="a1a546c9" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_informative<span class="op">=</span><span class="dv">2</span>, n_redundant<span class="op">=</span><span class="dv">2</span>, n_repeated<span class="op">=</span><span class="dv">2</span>, n_classes<span class="op">=</span><span class="dv">3</span>, n_clusters_per_class<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Although there are totally 10 features, the dataset can be visualized using the informative features. By description, the informative features are the first two.</p>
+<div id="733af809" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="intro_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="81e51805" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>clf <span class="op">=</span> LogisticRegression()</span>
+<span id="cb20-4"><a href="#cb20-4"></a>clf.fit(X_train, y_train)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>clf.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>0.8466666666666667</code></pre>
+</div>
+</div>
+<div id="f73ed51f" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a>clf <span class="op">=</span> SGDClassifier()</span>
+<span id="cb22-4"><a href="#cb22-4"></a>clf.fit(X_train, y_train)</span>
+<span id="cb22-5"><a href="#cb22-5"></a>clf.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>0.8266666666666667</code></pre>
+</div>
+</div>
+<p>To apply <code>keras</code> package, we should first change <code>y</code> into one-hot vectors. Here we use the function provided by <code>keras</code>.</p>
+<div id="73fdf56e" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> keras_core <span class="im">as</span> keras</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="im">from</span> keras.utils <span class="im">import</span> to_categorical</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="im">from</span> keras <span class="im">import</span> models, layers</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>vy_train <span class="op">=</span> to_categorical(y_train, num_classes<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>vy_test <span class="op">=</span> to_categorical(y_test, num_classes<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb24-7"><a href="#cb24-7"></a></span>
+<span id="cb24-8"><a href="#cb24-8"></a>model <span class="op">=</span> models.Sequential()</span>
+<span id="cb24-9"><a href="#cb24-9"></a>model.add(layers.Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>, input_dim<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb24-10"><a href="#cb24-10"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb24-11"><a href="#cb24-11"></a></span>
+<span id="cb24-12"><a href="#cb24-12"></a>model.fit(X_train, vy_train, epochs<span class="op">=</span><span class="dv">50</span>, batch_size<span class="op">=</span><span class="dv">50</span>, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb24-13"><a href="#cb24-13"></a>_ <span class="op">=</span> model.evaluate(X_test, vy_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exercises-and-projects" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="exercises-and-projects"><span class="header-section-number">5.5</span> Exercises and Projects</h2>
+<div id="exr-" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.1 </strong></span>Please hand write a report about the details of the math formulas for Logistic regression.</p>
+</div>
+<div id="exr-" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.2 </strong></span>CHOOSE ONE: Please use <code>sklearn</code> to apply the LogisticRegression to one of the following datasets. You may either use <code>LogisticRegression</code> or <code>SGDClassifier</code>. - the <code>iris</code> dataset. - the dating dataset. - the <code>titanic</code> dataset.</p>
+<p>Please in addition answer the following questions. 1. What is your accuracy score? 2. How many epochs do you use? 3. Plot the learning curve (accuracy vs training sizes).</p>
+</div>
+<div id="exr-" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.3 </strong></span>CHOOSE ONE: Please use <code>keras</code> to apply the LogisticRegression to one of the following datasets. - the <code>iris</code> dataset. - the dating dataset. - the <code>titanic</code> dataset.</p>
+<p>Please in addition answer the following questions. 1. What is your accuracy score? 2. How many epochs do you use? 3. What is the batch size do you use? 4. Plot the learning curve (loss vs epochs, accuracy vs epochs). 5. Analyze the bias / variance status.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../contents/4/intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ensemble methods</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../contents/app/intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
