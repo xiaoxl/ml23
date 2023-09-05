@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../contents/5/intro.html" rel="prev">
+<link href="../../contents/6/intro.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -180,6 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contents/6/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -209,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-iris-dataset" id="toc-the-iris-dataset" class="nav-link active" data-scroll-target="#the-iris-dataset"><span class="header-section-number">A.1</span> the <code>iris</code> dataset</a></li>
   <li><a href="#the-breast_cancer-dataset" id="toc-the-breast_cancer-dataset" class="nav-link" data-scroll-target="#the-breast_cancer-dataset"><span class="header-section-number">A.2</span> The <code>breast_cancer</code> dataset</a></li>
-  <li><a href="#app-dataset-horsecolic" id="toc-app-dataset-horsecolic" class="nav-link" data-scroll-target="#app-dataset-horsecolic"><span class="header-section-number">A.3</span> the Horse Colic Dataset</a></li>
+  <li><a href="#sec-dataset-horsecolic" id="toc-sec-dataset-horsecolic" class="nav-link" data-scroll-target="#sec-dataset-horsecolic"><span class="header-section-number">A.3</span> the Horse Colic Dataset</a></li>
   <li><a href="#the-dating-dataset" id="toc-the-dating-dataset" class="nav-link" data-scroll-target="#the-dating-dataset"><span class="header-section-number">A.4</span> the Dating dataset</a></li>
   <li><a href="#the-dataset-randomly-generated" id="toc-the-dataset-randomly-generated" class="nav-link" data-scroll-target="#the-dataset-randomly-generated"><span class="header-section-number">A.5</span> The dataset randomly generated</a></li>
   <li><a href="#mnist-dataset" id="toc-mnist-dataset" class="nav-link" data-scroll-target="#mnist-dataset"><span class="header-section-number">A.6</span> <code>MNIST</code> dataset</a></li>
@@ -241,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="the-iris-dataset" class="level2" data-number="A.1">
 <h2 data-number="A.1" class="anchored" data-anchor-id="the-iris-dataset"><span class="header-section-number">A.1</span> the <code>iris</code> dataset</h2>
-<div id="79d999ac" class="cell" data-execution_count="2">
+<div id="d6a560a4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -253,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-breast_cancer-dataset" class="level2" data-number="A.2">
 <h2 data-number="A.2" class="anchored" data-anchor-id="the-breast_cancer-dataset"><span class="header-section-number">A.2</span> The <code>breast_cancer</code> dataset</h2>
-<div id="c3f8d18d" class="cell" data-execution_count="3">
+<div id="01e21ecc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_breast_cancer</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -263,10 +269,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="app-dataset-horsecolic" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="app-dataset-horsecolic"><span class="header-section-number">A.3</span> the Horse Colic Dataset</h2>
+<section id="sec-dataset-horsecolic" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="sec-dataset-horsecolic"><span class="header-section-number">A.3</span> the Horse Colic Dataset</h2>
 <p>The data is from the <a href="https://archive.ics.uci.edu/ml/datasets/Horse+Colic">UCI database</a>. The data is loaded as follows. <code>?</code> represents missing data.</p>
-<div id="922360a7" class="cell" data-execution_count="4">
+<div id="066f0a20" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -284,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We also would like to change the label from <code>1</code> and <code>2</code> to <code>0</code> and <code>1</code> for the purpose of Logistic regression.</li>
 </ol>
 <p><em>This part should be modified if you want to improve the performance of your model.</em></p>
-<div id="f8504bcf" class="cell" data-execution_count="5">
+<div id="57f1a916" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>df.drop(columns<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a>df[<span class="dv">23</span>].replace({<span class="dv">1</span>: <span class="dv">1</span>, <span class="dv">2</span>: <span class="dv">0</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
@@ -313,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>make_moon</code> dataset</li>
 </ul>
 <p>This is used to generate two interleaving half circles.</p>
-<div id="1e61959f" class="cell" data-execution_count="6">
+<div id="58e3bd70" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_moons</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -325,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>This is a generated isotropic Gaussian and label samples by quantile.</p>
 <p>The following code are from <a href="https://scikit-learn.org/stable/auto_examples/ensemble/plot_adaboost_twoclass.html#sphx-glr-auto-examples-ensemble-plot-adaboost-twoclass-py">this page</a>. It is used to generate a relative complex dataset by combining two datesets together.</p>
-<div id="66536ff7" class="cell" data-execution_count="7">
+<div id="0ba97997" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_gaussian_quantiles</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
@@ -338,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It can also be used to generate multiclass dataset.</p>
-<div id="5c20f454" class="cell" data-execution_count="8">
+<div id="f3c725bf" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_gaussian_quantiles</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -351,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>This will create a multiclass dataset. Without shuffling, <code>X</code> horizontally stacks features in the following order: the primary <code>n_informative</code> features, followed by <code>n_redundant</code> linear combinations of the informative features, followed by <code>n_repeated</code> duplicates, drawn randomly with replacement from the informative and redundant features.</p>
 <p>For more details please see the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html#sklearn.datasets.make_classification">official document</a>.</p>
-<div id="d463dd42" class="cell" data-execution_count="9">
+<div id="cef402eb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
@@ -365,18 +371,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>tensorflow</code> provides the data with the original split.</li>
 </ul>
-<div id="755eee2d" class="cell" data-execution_count="10">
+<div id="ee3cf9cb" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> keras_core <span class="im">as</span> keras</span>
 <span id="cb10-2"><a href="#cb10-2"></a>(X_train, y_train), (X_test, y_test) <span class="op">=</span> keras.datasets.mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Using TensorFlow backend</code></pre>
+</div>
 </div>
 </section>
 <section id="titanic-dataset" class="level2" data-number="A.7">
 <h2 data-number="A.7" class="anchored" data-anchor-id="titanic-dataset"><span class="header-section-number">A.7</span> <code>titanic</code> dataset</h2>
 <p>This is the famuous Kaggle101 dataset. The original data can be download from <a href="https://www.kaggle.com/competitions/titanic/data">the Kaggle page</a>. You may also download the {Download}<code>training data&lt;./assests/datasets/titanic/train.csv&gt;</code> and the {Download}<code>test data&lt;./assests/datasets/titanic/test.csv&gt;</code> by click the link.</p>
-<div id="eaceb87d" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-2"><a href="#cb11-2"></a>dftrain <span class="op">=</span> pd.read_csv(<span class="st">'train.csv'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>dftest <span class="op">=</span> pd.read_csv(<span class="st">'test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="03fd5cdc" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2"></a>dftrain <span class="op">=</span> pd.read_csv(<span class="st">'train.csv'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>dftest <span class="op">=</span> pd.read_csv(<span class="st">'test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="hidden">
 <p>The original is a little bit messy with missing values and mix of numeric data and string data. The above code reads the data into a DataFrame. The following code does some basic of preprocess. This part should be modified if you want to improve the performance of your model.</p>
@@ -385,32 +394,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Fill the missing values in column <code>Age</code> and <code>Fare</code> by <code>0</code>.</li>
 <li>Replace the column <code>Sex</code> by the following map: <code>{'male': 0, 'female': 1}</code>.</li>
 </ol>
-<div id="b352fbee" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">def</span> getnp(df):</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    df[<span class="st">'mapSex'</span>] <span class="op">=</span> df[<span class="st">'Sex'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: {<span class="st">'male'</span>: <span class="dv">0</span>, <span class="st">'female'</span>: <span class="dv">1</span>}[x])</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    dfx <span class="op">=</span> df[[<span class="st">'Pclass'</span>, <span class="st">'mapSex'</span>, <span class="st">'Age'</span>, <span class="st">'SibSp'</span>, <span class="st">'Parch'</span>, <span class="st">'Fare'</span>]].copy()</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    dfx[<span class="st">'Fare'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-8"><a href="#cb12-8"></a>    dfx[<span class="st">'Age'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="cf">if</span> <span class="st">'Survived'</span> <span class="kw">in</span> df.columns:</span>
-<span id="cb12-10"><a href="#cb12-10"></a>        y <span class="op">=</span> df[<span class="st">'Survived'</span>].to_numpy()</span>
-<span id="cb12-11"><a href="#cb12-11"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-12"><a href="#cb12-12"></a>        y <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a>    X <span class="op">=</span> dfx.to_numpy()</span>
-<span id="cb12-14"><a href="#cb12-14"></a>    <span class="cf">return</span> (X, y)</span>
-<span id="cb12-15"><a href="#cb12-15"></a></span>
-<span id="cb12-16"><a href="#cb12-16"></a>X_train, y_train <span class="op">=</span> getnp(dftrain)</span>
-<span id="cb12-17"><a href="#cb12-17"></a>X_test, _ <span class="op">=</span> getnp(dftest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e6cf440e" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="kw">def</span> getnp(df):</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    df[<span class="st">'mapSex'</span>] <span class="op">=</span> df[<span class="st">'Sex'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: {<span class="st">'male'</span>: <span class="dv">0</span>, <span class="st">'female'</span>: <span class="dv">1</span>}[x])</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    dfx <span class="op">=</span> df[[<span class="st">'Pclass'</span>, <span class="st">'mapSex'</span>, <span class="st">'Age'</span>, <span class="st">'SibSp'</span>, <span class="st">'Parch'</span>, <span class="st">'Fare'</span>]].copy()</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    dfx[<span class="st">'Fare'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    dfx[<span class="st">'Age'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="cf">if</span> <span class="st">'Survived'</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb13-10"><a href="#cb13-10"></a>        y <span class="op">=</span> df[<span class="st">'Survived'</span>].to_numpy()</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-12"><a href="#cb13-12"></a>        y <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>    X <span class="op">=</span> dfx.to_numpy()</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="cf">return</span> (X, y)</span>
+<span id="cb13-15"><a href="#cb13-15"></a></span>
+<span id="cb13-16"><a href="#cb13-16"></a>X_train, y_train <span class="op">=</span> getnp(dftrain)</span>
+<span id="cb13-17"><a href="#cb13-17"></a>X_test, _ <span class="op">=</span> getnp(dftest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For the purpose of submitting to Kaggle, after getting <code>y_pred</code>, we could use the following file to prepare for the submission file.</p>
-<div id="20b809b7" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> getdf(df, y):</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    df[<span class="st">'Survived'</span>] <span class="op">=</span> y</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="cf">return</span> df[[<span class="st">'PassengerId'</span>, <span class="st">'Survived'</span>]]</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a>getdf(dftest, y_pred).to_csv(<span class="st">'result.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fce680ed" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> getdf(df, y):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    df[<span class="st">'Survived'</span>] <span class="op">=</span> y</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="cf">return</span> df[[<span class="st">'PassengerId'</span>, <span class="st">'Survived'</span>]]</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>getdf(dftest, y_pred).to_csv(<span class="st">'result.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -418,16 +427,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="A.8" class="anchored" data-anchor-id="plant-survival-data-with-salt-and-microbe-treatments"><span class="header-section-number">A.8</span> Plant survival data with salt and microbe treatments</h2>
 <p>This dataset is supported by DART SEED grant. It is provided by Dr.&nbsp;Suresh Subedi from ATU. The dataset is about the outcomes of certain treatments applied to plants. We would like to predict whether the plants survive based on the status of the plants and the treatments. The datafile can be downloaded from <a href="assests/datasets/plants.xlsx">here</a>.</p>
 <p>We could use the following code to read the data.</p>
-<div id="2529fd55" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'assests/datasets/plants.xlsx'</span>, engine<span class="op">=</span><span class="st">'openpyxl'</span>, sheet_name<span class="op">=</span><span class="st">'data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="748f50d1" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'plants.xlsx'</span>, engine<span class="op">=</span><span class="st">'openpyxl'</span>, sheet_name<span class="op">=</span><span class="st">'data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are a few missing values. The missing values in <code>Outcome_after 12 months</code> are all <code>dead</code>. These are not recorded as <code>dead</code> because the cause of the death is more complicated and needs to be studied separatedly. In our case we could simply fill it with <code>dead</code>.</p>
 <p>There are two more missing values in <code>Stem diameter</code>. For simplicity we drop them directly.</p>
-<div id="17515485" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df[<span class="st">'Outcome_after 12 months'</span>].fillna(<span class="st">'dead'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>df <span class="op">=</span> df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="44298d94" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df[<span class="st">'Outcome_after 12 months'</span>].fillna(<span class="st">'dead'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>df <span class="op">=</span> df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="hidden">
 <p>Then we would like to transform the data. Here are the rules.</p>
@@ -439,14 +448,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Column <code>SN</code> will be dropped.</p>
 <p>Finally we put these together to get the features <code>X</code> and the label <code>y</code>.</p>
-<div id="d9836093" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df[<span class="st">'Endophyte '</span>] <span class="op">=</span> df[<span class="st">'Endophyte '</span>].<span class="bu">map</span>({<span class="st">'I+'</span>: <span class="dv">1</span>, <span class="st">'I-'</span>: <span class="op">-</span><span class="dv">1</span>})</span>
-<span id="cb16-2"><a href="#cb16-2"></a>df[<span class="st">'Treatment'</span>] <span class="op">=</span> df[<span class="st">'Treatment'</span>].<span class="bu">map</span>({<span class="st">'Fresh'</span>: <span class="dv">0</span>, <span class="st">'Salt'</span>: <span class="dv">1</span>})</span>
-<span id="cb16-3"><a href="#cb16-3"></a>df[<span class="st">'Tree_Replicate'</span>] <span class="op">=</span> df[<span class="st">'Tree_Replicate'</span>].<span class="bu">str</span>[<span class="dv">1</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a>df[<span class="st">'Outcome_after 12 months'</span>] <span class="op">=</span> df[<span class="st">'Outcome_after 12 months'</span>].<span class="bu">map</span>({<span class="st">'survived'</span>: <span class="dv">1</span>, <span class="st">'dead'</span>: <span class="dv">0</span>})</span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a>X <span class="op">=</span> df.iloc[:, <span class="dv">1</span>: <span class="op">-</span><span class="dv">1</span>].to_numpy()</span>
-<span id="cb16-7"><a href="#cb16-7"></a>y <span class="op">=</span> df[<span class="st">'Outcome_after 12 months'</span>].to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ac45cc34" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df[<span class="st">'Endophyte '</span>] <span class="op">=</span> df[<span class="st">'Endophyte '</span>].<span class="bu">map</span>({<span class="st">'I+'</span>: <span class="dv">1</span>, <span class="st">'I-'</span>: <span class="op">-</span><span class="dv">1</span>})</span>
+<span id="cb17-2"><a href="#cb17-2"></a>df[<span class="st">'Treatment'</span>] <span class="op">=</span> df[<span class="st">'Treatment'</span>].<span class="bu">map</span>({<span class="st">'Fresh'</span>: <span class="dv">0</span>, <span class="st">'Salt'</span>: <span class="dv">1</span>})</span>
+<span id="cb17-3"><a href="#cb17-3"></a>df[<span class="st">'Tree_Replicate'</span>] <span class="op">=</span> df[<span class="st">'Tree_Replicate'</span>].<span class="bu">str</span>[<span class="dv">1</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>df[<span class="st">'Outcome_after 12 months'</span>] <span class="op">=</span> df[<span class="st">'Outcome_after 12 months'</span>].<span class="bu">map</span>({<span class="st">'survived'</span>: <span class="dv">1</span>, <span class="st">'dead'</span>: <span class="dv">0</span>})</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a>X <span class="op">=</span> df.iloc[:, <span class="dv">1</span>: <span class="op">-</span><span class="dv">1</span>].to_numpy()</span>
+<span id="cb17-7"><a href="#cb17-7"></a>y <span class="op">=</span> df[<span class="st">'Outcome_after 12 months'</span>].to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 
@@ -800,8 +809,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../contents/5/intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression</span></span>
+      <a href="../../contents/6/intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
