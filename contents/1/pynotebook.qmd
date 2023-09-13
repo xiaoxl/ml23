@@ -171,7 +171,7 @@ Please pay attention to how the paths are written.
 
 ### Some additional topics
 
-You may read about these parts from the appendices of [My notes](https://xiaoxl.github.io/pr23/).
+You may read about these parts from the appendices of [My notes](https://xiaoxl.github.io/pr23f/contents/app/virtenv.html).
 
 #### Package management and Virtual environment
 

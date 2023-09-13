@@ -73,28 +73,24 @@ $$
 ### The codes
 
 - `argsort`
-- `get`
-- `sorted`
+- `unique`
+- `argmax`
 
 ```{python}
-#| eval: false
+import numpy as np
 
-def classify_kNN(inX, X, y, k):
-    # create a new 2-d numpy array by copying inX for each row.
-    Xmat = np.tile(np.array([inX]), (X.shape[0], 1))
+def classify_kNN(inX, X, y, k=5):
     # compute the distance between each row of X and Xmat
-    Dmat = np.sqrt(np.sum((Xmat - X)**2, axis=1))
+    Dmat = np.sqrt(((inX - X)**2).sum(axis=1))
     # sort by distance
-    sortedlist = Dmat.argsort()
-    # count the freq. of the first k items
-    k = min(k, len(sortedlist))
-    classCount = dict()
-    for i in sortedlist[:k]:
-        classCount[y[i]] = classCount.get(y[i], 0) + 1
-    # find out the most freqent one
-    sortedCount = sorted(classCount.items(), key=lambda x:x[1],
-                         reverse=True)
-    return sortedCount[0][0]
+    k = min(k, Dmat.shape[0])
+    argsorted = Dmat.argsort()[:k]
+    relatedy = y[argsorted]
+    # count the freq. of the first k labels
+    labelcounts = np.unique(relatedy, return_counts=True)
+    # find the label with the most counts
+    label = labelcounts[0][labelcounts[1].argmax()]
+    return label
 ```
 
 ### `sklearn` packages
@@ -104,7 +100,6 @@ There are many ways to modify the kNN algorithm. What we just mentioned is the s
 
 ```{python}
 #| eval: false
-
 from sklearn.neighbors import KNeighborsClassifier
 clf = KNeighborsClassifier(n_neighbors=10, weights='uniform',
                            algorithm='brute', metric='euclidean')
@@ -129,7 +124,7 @@ $$
 The sample codes are listed below.
 
 ```{python}
-#| eval: false
+import numpy as np
 
 def encodeNorm(X, parameters=None):
     # parameters contains minVals and ranges

@@ -20,6 +20,7 @@ We first load the data and store it into a DataFrame.
 
 
 ```{python}
+#| echo: false
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,6 +29,15 @@ df = pd.read_csv('./assests/datasets/datingTestSet2.txt', sep='\t', header=None)
 df.head()
 ```
 
+```{python}
+#| eval: false
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('datingTestSet2.txt', sep='\t', header=None)
+df.head()
+```
 
 To make it easier to read, we would like to change the name of the columns.
 
@@ -55,7 +65,6 @@ Similar to the previous example, we will apply both methods for comparisons.
 
 ```{python}
 from sklearn.model_selection import train_test_split
-from assests.codes.knn import encodeNorm
 X = np.array(df[['Mileage', 'Gamingtime', 'Icecream']])
 y = np.array(df['Rating'])
 
@@ -69,8 +78,6 @@ X_test_norm, _ = encodeNorm(X_test, parameters=parameters)
 
 ```{python}
 # Using our codes.
-from assests.codes.knn import classify_kNN
-
 n_neighbors = 10
 y_pred = np.array([classify_kNN(row, X_train_norm, y_train, k=n_neighbors)
                    for row in X_test_norm])

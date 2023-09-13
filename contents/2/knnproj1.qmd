@@ -22,12 +22,13 @@ The split will be randomly. You may set the argument `random_state` to be a cert
 
 After we get the training set, we should also normalize it. All our normalization should be based on the training set. When we want to use our model on some new data points, we will use the same normalization parameters to normalize the data points in interests right before we apply the model. Here since we mainly care about the test set, we could normalize the test set at this stage.
 
-Note that in the following code, the function `encodeNorm` defined in the previous section is used. I import it from `assests.codes.knn`. You need to modify this part based on your file structure. See @sec-applyourknn for more details.
+Note that in the following code, the function `encodeNorm` defined in the previous section is used. 
+<!-- I import it from `assests.codes.knn`. You need to modify this part based on your file structure. See @sec-applyourknn for more details. -->
 
 
 ```{python}
 from sklearn.model_selection import train_test_split
-from assests.codes.knn import encodeNorm
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=1, stratify=y)
 
 X_train_norm, parameters = encodeNorm(X_train)
@@ -56,19 +57,17 @@ _ = fig.legend(handles=scatter.legend_elements()[0], labels=labels,
 
 ### Apply our k-NN model {#sec-applyourknn}
 
-Now let us apply k-NN to this dataset. We first use our codes. Here I use `from assests.codes.knn` to import our functions since I put all our functions in `./assests/codes/knn.py`. Then the poential code is 
+Now let us apply k-NN to this dataset. We first use our codes. The poential code is 
 ```{python}
 #| eval: false
 y_pred = classify_kNN(X_test, X_train, y_train, k=10)
 ```
 
-Note that the above code is actually wrong. The issue ist that our function `classify_kNN` can only classify one row of data. To classify many rows, we need to use a `for` loop. 
+However the above code is actually wrong. The issue is that our function `classify_kNN` can only classify one row of data. To classify many rows, we need to use a `for` loop. 
 
 
 
 ```{python}
-from assests.codes.knn import classify_kNN
-
 n_neighbors = 10
 y_pred = list()
 for row in X_test_norm:
@@ -80,8 +79,6 @@ We could use list comprehension to simply the above codes.
 
 
 ```{python}
-from assests.codes.knn import classify_kNN
-
 n_neighbors = 10
 y_pred = np.array([classify_kNN(row, X_train_norm, y_train, k=n_neighbors)
                    for row in X_test_norm])
