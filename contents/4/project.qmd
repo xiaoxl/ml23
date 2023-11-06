@@ -42,4 +42,27 @@ Please build an `AdaBoost` model.
 
 Please use `RandomForestClassifier`, `ExtraTreesClassifier` and `KNeighbourClassifier` to form a voting classifier, and apply to the `MNIST` dataset. 
 
+
+:::
+
+
+
+::: {.callout-note}
+# `MNIST`
+
+This dataset can be loaded using the following code.
+
+```{python}
+#| eval: false
+import numpy as np
+import requests
+from io import BytesIO
+r = requests.get('https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz', stream = True) 
+data = np.load(BytesIO(r.raw.read()))
+X_train = data['x_train']
+X_test = data['x_test']
+y_train = data['y_train']
+y_test = data['y_test']
+```
+
 :::
