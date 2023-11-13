@@ -11,11 +11,13 @@ Please hand write a report about the details of the math formulas for Logistic r
 
 ::: {#exr-}
 CHOOSE ONE: Please use `sklearn` to apply the LogisticRegression to one of the following datasets. You may either use `LogisticRegression` or `SGDClassifier`.
+
 - the `iris` dataset.
 - the dating dataset.
 - the `titanic` dataset.
 
 Please in addition answer the following questions.
+
 1. What is your accuracy score?
 2. How many epochs do you use?
 3. Plot the learning curve (accuracy vs training sizes).
@@ -26,11 +28,13 @@ Please in addition answer the following questions.
 ::: {#exr-}
 
 CHOOSE ONE: Please use `keras` to apply the LogisticRegression to one of the following datasets.
+
 - the `iris` dataset.
 - the dating dataset.
 - the `titanic` dataset.
 
 Please in addition answer the following questions.
+
 1. What is your accuracy score?
 2. How many epochs do you use?
 3. What is the batch size do you use?
