@@ -1,7 +1,19 @@
 ## Neural network implement of Logistic regression
 In the previous sections, we use gradient descent to run the Logistic regression model. We mentioned some important concepts, like epochs, mini-batch, etc.. But we didn't implement them. In fact `sklearn` doesn't provide a very good tool to do all these computations. Hence we turn to another package for this model. We are going to use `keras` to build a Logistic regression model, and plot the "loss vs epochs" learning curves.
 
-`keras` is high level Neural network library built upon `tensorflow`. We will talk about Neural network next Chapter. The package is installed along with `tensorflow`. You may follow the [instructions](https://www.tensorflow.org/install) to install it.
+`keras` is high level Neural network library. It is now in the phase of transition from single backend `tensorflow` to multi-backend. The old version is installed along with `tensorflow`. You may use the following command to install it. 
+
+```{.bash}
+pip install tensorflow
+```
+If you want to use new version, besides installing `tensorflow`, you should also install `keras-core`. Currently we still use `tensorflow` as the backend. This part may be updated after the stable version is released.
+
+```{.bash}
+pip install keras-core
+```
+You may follow the instructions for [`tensforflow`](https://www.tensorflow.org/install) and [`keras`](https://github.com/keras-team/keras) for more details.
+
+
 
 To use `keras` to implement logistic regression, we need the following modules: a `Sequential` model, a `Dense` layer. The model is organized as follows.
 
