@@ -35,11 +35,13 @@ Now we build a neural network. This is a 2-layer model, with 1 hidden layer with
 
 ```{python}
 #| output: false
+#| warning: false
 import keras_core as keras
-from keras import models, layers
+from keras import models, layers, Input
 model = models.Sequential()
 
-model.add(layers.Dense(10, activation='sigmoid', input_dim=X_train.shape[1]))
+model.add(Input(shape=(X_train.shape[1],)))
+model.add(layers.Dense(10, activation='sigmoid'))
 model.add(layers.Dense(1, activation='sigmoid'))
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -75,6 +77,7 @@ Let us add the layer to the model and retrain it.
 
 ```{python}
 #| output: false
+#| warning: false
 import keras_core as keras
 from keras import regularizers
 model = models.Sequential()
